@@ -8,10 +8,10 @@
   <StackPanel>
 
     <ToggleButton>
-      <StackPanel Orientation="Horizontal">
+      <Grid ColumnDefinitions="0.5*, 0.5*">
         <TextBlock Text="{Binding CategoryName}" />
         <TextBlock Text="{Binding CategoryAmount}" />
-      </StackPanel>
+      </Grid>
     </ToggleButton>
 
     <ItemsControl Items="{Binding RecordViewModels}">
