@@ -6,8 +6,8 @@
              x:Class="MoneyApp.RecordView">
   
   <Grid ColumnDefinitions="0.3*, 0.7*">
-    <TextBlock Text="{Binding RecordName}" Grid.Column="0"/>
-    <TextBlock Text="{Binding RecordAmount}" Grid.Column="1"/>
+    <TextBlock Text="{Binding Name}" Grid.Column="0"/>
+    <TextBlock Text="{Binding Amount}" Grid.Column="1"/>
   </Grid>
 
 </UserControl>
