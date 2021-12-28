@@ -12,6 +12,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <v:WalletView DataContext="{Binding WalletViewModels}"/>
+    <v:WalletView DataContext="{Binding WalletViewModel}"/>
 
 </Window>
