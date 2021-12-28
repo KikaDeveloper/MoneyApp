@@ -7,14 +7,12 @@
   
   <StackPanel>
 
-    <ToggleButton>
       <Grid ColumnDefinitions="0.5*, 0.5*">
-        <TextBlock Text="{Binding CategoryName}" />
-        <TextBlock Text="{Binding CategoryAmount}" />
+        <TextBlock Text="{Binding Category.Name}" />
+        <TextBlock Text="{Binding Category.Amount}" />
       </Grid>
-    </ToggleButton>
 
-    <ItemsControl Items="{Binding RecordViewModels}">
+    <ItemsControl IsVisible="false" Items="{Binding RecordViewModels}">
       <ItemsControl.ItemTemplate>
         <DataTemplate>
           <v:RecordView DataContext="{Binding RecordViewModel}"/>
