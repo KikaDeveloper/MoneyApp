@@ -5,12 +5,20 @@
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.WalletView">
   
-  <TabControl>
+  <TabControl Items="{Binding WalletAdapters}">
+
+    <TabControl.ItemTemplate>
+      <DataTemplate>
+        <StackPanel>
+          <TextBlock Text="{Binding Wallet.Name}"/>
+        </StackPanel>
+      </DataTemplate>
+    </TabControl.ItemTemplate>
 
     <TabControl.ContentTemplate>
       <DataTemplate>
         <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.2*, *">
-          <v:CategoryManagerView Grid.Column="0"/>
+          <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0"/>
         </Grid>
       </DataTemplate>
     </TabControl.ContentTemplate>
