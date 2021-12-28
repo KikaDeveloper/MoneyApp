@@ -3,7 +3,7 @@
         xmlns:vm="using:MoneyApp.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+        xmlns:v="using:MoneyApp"
         x:Class="MoneyApp.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
         Title="MoneyApp">
@@ -12,6 +12,6 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+    <v:WalletView DataContext="{Binding WalletViewModels}"/>
 
 </Window>

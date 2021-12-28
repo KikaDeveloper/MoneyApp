@@ -10,7 +10,7 @@
     <TabControl.ContentTemplate>
       <DataTemplate>
         <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.2*, *">
-          
+          <v:CategoryManagerView Grid.Column="0"/>
         </Grid>
       </DataTemplate>
     </TabControl.ContentTemplate>
