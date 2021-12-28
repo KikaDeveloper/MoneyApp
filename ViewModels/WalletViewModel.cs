@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ReactiveUI;
 using MoneyApp.Models;
@@ -14,8 +15,8 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
         }
 
-        public WalletViewModel(){
-
+        public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
+            WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
         }
     }
 }
