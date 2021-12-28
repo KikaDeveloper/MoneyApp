@@ -4,7 +4,7 @@ namespace MoneyApp.Models
 {
     public class WalletAdapter
     {
-        public Wallet Wallet { get; set; }
-        public CategoryManagerViewModel ViewModel { get; set; }
+        public Wallet? Wallet { get; set; }
+        public CategoryManagerViewModel? ViewModel { get; set; }
     }   
 }
