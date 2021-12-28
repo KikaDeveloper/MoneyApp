@@ -1,11 +1,19 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using ReactiveUI;
 
 namespace MoneyApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        public string Greeting => "Welcome to Avalonia!";
+        private WalletViewModel? _walletViewModels;
+
+        public WalletViewModel WalletViewModels
+        {
+            get => _walletViewModels!;
+            set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
+        }
+
+        public MainWindowViewModel(){
+
+        }
     }
 }
