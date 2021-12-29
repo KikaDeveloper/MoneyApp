@@ -43,6 +43,24 @@ namespace MoneyApp.ViewModels
                                         }
                                     }
                                 }
+                            },
+                            new CategoryViewModel(){
+                                Category = new Category(){
+                                    Id = 2,
+                                    Name = "Shop",
+                                    Amount = 1000,
+                                    WalletId = 1
+                                },
+                                RecordViewModels = new ObservableCollection<RecordViewModel>(){
+                                    new RecordViewModel(){
+                                        Record = new Record(){
+                                            Id = 2,
+                                            Name = "Car",
+                                            Amount = 1500,
+                                            CategoryId = 2
+                                        }
+                                    }
+                                }
                             }
                         }
                     }

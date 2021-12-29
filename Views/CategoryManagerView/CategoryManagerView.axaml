@@ -5,12 +5,19 @@
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.CategoryManagerView">
   
-  <ListBox Items="{Binding CategoryViewModels}">
+  <ListBox Items="{Binding CategoryViewModels}" SelectionMode="Toggle">
     <ListBox.ItemTemplate>
       <DataTemplate>
         <v:CategoryView/>
       </DataTemplate>
     </ListBox.ItemTemplate>
+
+    <ListBox.Styles>
+      <Style Selector="ListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+      </Style>
+    </ListBox.Styles>
+
   </ListBox>
 
 </UserControl>
