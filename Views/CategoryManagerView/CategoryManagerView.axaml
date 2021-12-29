@@ -4,20 +4,48 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.CategoryManagerView">
-  
-  <ListBox Items="{Binding CategoryViewModels}" SelectionMode="Toggle">
-    <ListBox.ItemTemplate>
-      <DataTemplate>
-        <v:CategoryView/>
-      </DataTemplate>
-    </ListBox.ItemTemplate>
+             
+      <ListBox Items="{Binding CategoryViewModels}"
+               SelectionMode="Toggle"
+               SelectedItem="{Binding SelectedCategory}">
+            <ListBox.ItemTemplate>
+                  <DataTemplate>
+                      <Grid ColumnDefinitions="0.5*, 0.5*"
+                              RowDefinitions="30, *"
+                              HorizontalAlignment="Stretch">
+                              <TextBlock Text="{Binding Category.Name}"
+                                    Grid.Column="0"
+                                    Grid.Row="0" />
+                              <TextBlock Text="{Binding Category.Amount}"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    HorizontalAlignment="Right" />
 
-    <ListBox.Styles>
-      <Style Selector="ListBoxItem">
-        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-      </Style>
-    </ListBox.Styles>
-
-  </ListBox>
-
+                              <StackPanel Background="DarkGray"
+                                          Grid.ColumnSpan="2"
+                                          Grid.Row="1">
+                                    <ItemsControl Items="{Binding RecordViewModels}">
+                                          <ItemsControl.ItemTemplate>
+                                                <DataTemplate>
+                                                      <v:RecordView />
+                                                </DataTemplate>
+                                          </ItemsControl.ItemTemplate>
+                                    </ItemsControl>
+                              </StackPanel>
+                        </Grid>
+                  </DataTemplate>
+      </ListBox.ItemTemplate>
+      <ListBox.Styles>
+            <Style Selector="ListBoxItem">
+                  <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+            </Style>
+            <!-- скрытие и открытие панели с записями -->
+            <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel">
+                  <Setter Property="IsVisible" Value="true"/>
+            </Style>
+            <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel">
+                  <Setter Property="IsVisible" Value="false"/>
+            </Style>
+            </ListBox.Styles>
+      </ListBox>
 </UserControl>
