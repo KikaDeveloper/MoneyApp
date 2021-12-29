@@ -18,7 +18,7 @@
     <TabControl.ContentTemplate>
       <DataTemplate>
         <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.2*, *">
-          <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0"/>
+          <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0" Grid.Row="1"/>
         </Grid>
       </DataTemplate>
     </TabControl.ContentTemplate>
