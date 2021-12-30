@@ -37,6 +37,36 @@ namespace MoneyApp.Services{
                     }
                 }
             );
+
+            modelBuilder.Entity<AmountRatio>().HasData(
+                new AmountRatio[]{
+                    new AmountRatio(){
+                        Id = 1,
+                        Name = "day",
+                        Ratio = 1
+                    },
+                    new AmountRatio(){
+                        Id = 2,
+                        Name = "week",
+                        Ratio = 7
+                    },
+                    new AmountRatio(){
+                        Id = 3,
+                        Name = "month",
+                        Ratio = 31
+                    },
+                    new AmountRatio(){
+                        Id = 4,
+                        Name = "6 month",
+                        Ratio = 186,
+                    },
+                    new AmountRatio(){
+                        Id = 5,
+                        Name = "year",
+                        Ratio = 366
+                    }
+                }
+            );
         }
 
     }
