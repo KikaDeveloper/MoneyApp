@@ -5,24 +5,37 @@
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.WalletView">
   
-  <TabControl Items="{Binding WalletAdapters}">
+  <Grid RowDefinitions="35, *">
 
-    <TabControl.ItemTemplate>
-      <DataTemplate>
-        <StackPanel>
-          <TextBlock Text="{Binding Wallet.Name}"/>
-        </StackPanel>
-      </DataTemplate>
-    </TabControl.ItemTemplate>
+    <Panel Grid.Row="0" 
+            HorizontalAlignment="Stretch">
+      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}" 
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"/>
+    </Panel>
 
-    <TabControl.ContentTemplate>
-      <DataTemplate>
-        <Grid ColumnDefinitions="0.5*, 0.5*" RowDefinitions="0.2*, *">
-          <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0" Grid.Row="1"/>
-        </Grid>
-      </DataTemplate>
-    </TabControl.ContentTemplate>
+    <TabControl Grid.Row="1"
+                Items="{Binding WalletAdapters}"
+                SelectedItem="{Binding SelectedAdapter}">
 
-  </TabControl>
+      <TabControl.ItemTemplate>
+        <DataTemplate>
+          <StackPanel>
+            <TextBlock Text="{Binding Wallet.Name}"/>
+          </StackPanel>
+        </DataTemplate>
+      </TabControl.ItemTemplate>
+
+      <TabControl.ContentTemplate>
+        <DataTemplate>
+          <Grid ColumnDefinitions="0.5*, 0.5*">
+            <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0"/>
+          </Grid>
+        </DataTemplate>
+      </TabControl.ContentTemplate>
+
+    </TabControl>
+
+  </Grid>
 
 </UserControl>
