@@ -8,6 +8,9 @@ namespace MoneyApp.Services{
         private readonly string _dbPath;
 
         public DbSet<Wallet> Wallets { get; set; } = default!;
+        public DbSet<Category> Categories { get; set; } = default!;
+        public DbSet<Record> Records { get; set; } = default!;
+        public DbSet<AmountRatio> AmountRatios { get; set; } = default!;
 
         public AppContext(string dbPath){
             _dbPath = dbPath;

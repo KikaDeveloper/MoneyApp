@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -15,13 +14,19 @@ namespace MoneyApp.Services
             _db.Database.EnsureCreated();
         }
 
-        public async Task<IEnumerable<Wallet>> GetWallets()
-        {
-            var result = await _db.Wallets.ToListAsync();
-            return result;
-        }
+        public async Task<IEnumerable<Wallet>> GetWalletsAsync()
+            => await _db.Wallets.ToListAsync();
 
-        public async Task<bool> InsertWallet(Wallet wallet){
+        public async Task<IEnumerable<Category>> GetCategoriesAsync()
+            => await _db.Categories.ToListAsync();
+
+        public async Task<IEnumerable<Record>> GetRecordsAsync()
+            => await _db.Records.ToListAsync();
+
+        public async Task<IEnumerable<AmountRatio>> GetAmountRatiosAsync() 
+            => await _db.AmountRatios.ToListAsync();
+
+        public async Task<bool> InsertWalletAsync(Wallet wallet){
                 var tracking = await _db.Wallets.AddAsync(wallet);
                 await _db.SaveChangesAsync();
                 return tracking.State == EntityState.Added;
