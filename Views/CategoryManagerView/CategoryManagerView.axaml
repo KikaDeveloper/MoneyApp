@@ -11,15 +11,18 @@
             <ListBox.ItemTemplate>
                   <DataTemplate>
                       <Grid ColumnDefinitions="0.5*, 0.5*"
-                              RowDefinitions="30, *"
-                              HorizontalAlignment="Stretch">
+                              RowDefinitions="30, *">
                               <TextBlock Text="{Binding Category.Name}"
                                     Grid.Column="0"
-                                    Grid.Row="0" />
+                                    Grid.Row="0" 
+                                    VerticalAlignment="Center"
+                                    FontSize="18"/>
                               <TextBlock Text="{Binding Category.Amount}"
                                     Grid.Column="1"
                                     Grid.Row="0"
-                                    HorizontalAlignment="Right" />
+                                    HorizontalAlignment="Right"
+                                    VerticalAlignment="Center"
+                                    FontSize="18"/>
 
                               <StackPanel Background="DarkGray"
                                           Grid.ColumnSpan="2"

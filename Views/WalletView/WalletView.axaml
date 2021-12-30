@@ -3,16 +3,28 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
-             x:Class="MoneyApp.WalletView">
+             x:Class="MoneyApp.WalletView"
+             Margin="10">
   
   <Grid RowDefinitions="35, *">
 
-    <Panel Grid.Row="0" 
-            HorizontalAlignment="Stretch">
+    <StackPanel Grid.Row="0" 
+                Spacing="5"
+                Orientation="Horizontal"
+                HorizontalAlignment="Center">
       <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}" 
                   HorizontalAlignment="Center"
-                  VerticalAlignment="Center"/>
-    </Panel>
+                  VerticalAlignment="Center"
+                  FontSize="28"/>
+      <TextBlock Text="out of"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  FontSize="28"/>
+      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  FontSize="28"/>
+    </StackPanel>
 
     <TabControl Grid.Row="1"
                 Items="{Binding WalletAdapters}"
@@ -20,8 +32,17 @@
 
       <TabControl.ItemTemplate>
         <DataTemplate>
-          <StackPanel>
-            <TextBlock Text="{Binding Wallet.Name}"/>
+          <StackPanel Margin="10"
+                      Orientation="Horizontal"
+                      VerticalAlignment="Center"
+                      Spacing="5">
+            <TextBlock Text="{Binding Wallet.Name}"
+                        FontSize="20"/>
+            <Button Height="18"
+                    Width="18">
+              <TextBlock Text="X"
+                          FontSize="10"/>
+            </Button>
           </StackPanel>
         </DataTemplate>
       </TabControl.ItemTemplate>
