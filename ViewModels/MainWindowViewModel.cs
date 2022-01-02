@@ -1,6 +1,7 @@
 ﻿using ReactiveUI;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Reactive.Linq;
 using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
@@ -15,7 +16,17 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
         }
 
+        public Interaction<AddWalletViewModel, Wallet?> AddWalletInteraction { get; }
+
         public MainWindowViewModel(){
+
+            AddWalletInteraction = new Interaction<AddWalletViewModel, Wallet?>();
+
+            WalletViewModel.AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
+                var input = new AddWalletViewModel();
+                var result = await AddWalletInteraction.Handle(input);                
+            });
+
             WalletViewModel = new WalletViewModel(new List<WalletAdapter>(){
                 new WalletAdapter(){
                     Wallet = new Wallet(){
