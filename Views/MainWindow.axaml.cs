@@ -1,7 +1,8 @@
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
-
+using ReactiveUI;
 namespace MoneyApp.Views
 {
     public partial class MainWindow : Window
