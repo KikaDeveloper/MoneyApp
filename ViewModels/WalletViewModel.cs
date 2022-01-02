@@ -23,6 +23,8 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedAdapter, value);
         }
 
+        public IReactiveCommand? AddWalletCommand { get; set; }
+
         public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
             WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
             SelectedAdapter = WalletAdapters.First();
