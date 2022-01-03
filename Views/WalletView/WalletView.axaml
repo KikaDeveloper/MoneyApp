@@ -3,60 +3,56 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
-             x:Class="MoneyApp.WalletView"
-             Margin="10">
+             x:Class="MoneyApp.WalletView">
   
-  <Grid RowDefinitions="35, *">
+  <DockPanel>
 
-    <StackPanel Grid.Row="0" 
-                Spacing="5"
-                Orientation="Horizontal"
-                HorizontalAlignment="Center">
-      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}" 
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  FontSize="28"/>
-      <TextBlock Text="out of"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  FontSize="28"/>
-      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  FontSize="28"/>
-    </StackPanel>
+    <TabControl Items="{Binding WalletAdapters}"
+                SelectedItem="{Binding SelectedAdapter}"
+                TabStripPlacement="Left">
 
-    <TabControl Grid.Row="1"
-                Items="{Binding WalletAdapters}"
-                SelectedItem="{Binding SelectedAdapter}">
+        <TabControl.ItemTemplate>
+          <DataTemplate>
+            <StackPanel Background="#C4C4C4"
+                        Orientation="Horizontal"
+                        Spacing="13"
+                        Height="50">
+              <TextBlock FontSize="20" 
+                        Text="{Binding Wallet.Name}" 
+                        Margin="38 0 0 0"
+                        VerticalAlignment="Center"/>
+              <Button Width="20"
+                      Height="20" 
+                      Margin="0 0 17 0"/>
+            </StackPanel>
+          </DataTemplate>
+        </TabControl.ItemTemplate>
 
-      <TabControl.ItemTemplate>
-        <DataTemplate>
-          <StackPanel Margin="10"
-                      Orientation="Horizontal"
-                      VerticalAlignment="Center"
-                      Spacing="5">
-            <TextBlock Text="{Binding Wallet.Name}"
-                        FontSize="20"/>
-            <Button Height="18"
-                    Width="18">
-              <TextBlock Text="X"
-                          FontSize="10"/>
-            </Button>
-          </StackPanel>
-        </DataTemplate>
-      </TabControl.ItemTemplate>
+        <TabControl.ItemsPanel>
+          <ItemsPanelTemplate>
+            <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150"/>
+          </ItemsPanelTemplate>
+        </TabControl.ItemsPanel>
 
-      <TabControl.ContentTemplate>
-        <DataTemplate>
-          <Grid ColumnDefinitions="0.5*, 0.5*">
-            <v:CategoryManagerView DataContext="{Binding ViewModel}" Grid.Column="0"/>
-          </Grid>
-        </DataTemplate>
-      </TabControl.ContentTemplate>
+      <TabControl.Styles>
+
+      <Style Selector="TabItem">
+        <Setter Property="Template">
+          <ControlTemplate>
+              <ContentPresenter Name="PART_ContentPresenter"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              Content="{TemplateBinding Header}"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Margin="0"/>
+          </ControlTemplate>
+        </Setter>
+      </Style>
+
+      </TabControl.Styles>
 
     </TabControl>
 
-  </Grid>
+  </DockPanel>
 
 </UserControl>
