@@ -68,6 +68,15 @@ namespace MoneyApp.ViewModels
                             }
                         }
                     }
+                },
+                new WalletAdapter(){
+                    Wallet = new Wallet(){
+                        Id = 2,
+                        Name = "Wallet2",
+                        Amount = 10500,
+                        AmountRatioId = 1
+                    },
+                    ViewModel = new CategoryManagerViewModel()
                 }
             });
 

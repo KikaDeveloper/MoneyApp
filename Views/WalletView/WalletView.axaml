@@ -5,16 +5,32 @@
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.WalletView">
   
-
   <Grid RowDefinitions="0.7*, 8*">
 
-    <StackPanel Orientation="Horizontal"
-                Grid.Row="0"
-                Spacing="10">
-      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"/>
-      <TextBlock Text="out of"/>
-      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"/>
-    </StackPanel>
+    <Grid Grid.Row="0"
+          Background="#DCDCDC"
+          ColumnDefinitions="6.5*, 3.5*">
+
+          <Border Grid.Column="0"
+                  CornerRadius="15"
+                  Background="#F2F2F2"
+                  HorizontalAlignment="Center"
+                  VerticalAlignment="Center"
+                  Padding="16 3">
+            <StackPanel Orientation="Horizontal"
+                        Spacing="8">
+              <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                          FontSize="20"/>
+              <TextBlock Text="out of"
+                          FontSize="20"/>
+              <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                          FontSize="20"/>
+            </StackPanel>
+          </Border>
+
+          <ComboBox Grid.Column="1"/>
+
+    </Grid>
 
     <DockPanel Grid.Row="1">
 
@@ -56,7 +72,7 @@
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150"/>
+              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150" Spacing="0"/>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
 
