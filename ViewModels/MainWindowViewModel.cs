@@ -20,13 +20,6 @@ namespace MoneyApp.ViewModels
 
         public MainWindowViewModel(){
 
-            AddWalletInteraction = new Interaction<AddWalletViewModel, Wallet?>();
-
-            WalletViewModel.AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var input = new AddWalletViewModel();
-                var result = await AddWalletInteraction.Handle(input);                
-            });
-
             WalletViewModel = new WalletViewModel(new List<WalletAdapter>(){
                 new WalletAdapter(){
                     Wallet = new Wallet(){
@@ -77,6 +70,14 @@ namespace MoneyApp.ViewModels
                     }
                 }
             });
+
+            AddWalletInteraction = new Interaction<AddWalletViewModel, Wallet?>();
+
+            WalletViewModel.AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
+                var input = new AddWalletViewModel();
+                var result = await AddWalletInteraction.Handle(input);                
+            });
+            
         }
     }
 }
