@@ -5,65 +5,87 @@
              xmlns:v="using:MoneyApp"
              x:Class="MoneyApp.WalletView">
   
-  <DockPanel>
 
-    <TabControl Items="{Binding WalletAdapters}"
-                SelectedItem="{Binding SelectedAdapter}"
-                TabStripPlacement="Left">
+  <Grid RowDefinitions="0.7*, 8*">
 
-        <TabControl.ItemTemplate>
-          <DataTemplate>
-            <StackPanel Background="#C4C4C4"
-                        Orientation="Horizontal"
-                        Spacing="13"
-                        Height="50">
-              <TextBlock FontSize="20" 
-                        Text="{Binding Wallet.Name}" 
-                        Margin="38 0 0 0"
-                        VerticalAlignment="Center"/>
-              <Button Width="20"
-                      Height="20" 
-                      Margin="0 0 17 0"
-                      Background="#E4DEDE"
-                      Classes="delete">
-                <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
-                      Fill="#757575"
-                      Height="10"
-                      Width="10"/>
-              </Button>
-            </StackPanel>
-          </DataTemplate>
-        </TabControl.ItemTemplate>
+    <StackPanel Orientation="Horizontal"
+                Grid.Row="0"
+                Spacing="10">
+      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"/>
+      <TextBlock Text="out of"/>
+      <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"/>
+    </StackPanel>
 
-        <TabControl.ItemsPanel>
-          <ItemsPanelTemplate>
-            <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150"/>
-          </ItemsPanelTemplate>
-        </TabControl.ItemsPanel>
+    <DockPanel Grid.Row="1">
 
-      <TabControl.Styles>
+      <TabControl Items="{Binding WalletAdapters}"
+                  SelectedItem="{Binding SelectedAdapter}"
+                  TabStripPlacement="Left">
 
-      <Style Selector="TabItem">
-        <Setter Property="Template">
-          <ControlTemplate>
-              <ContentPresenter Name="PART_ContentPresenter"
-                              ContentTemplate="{TemplateBinding HeaderTemplate}"
-                              Content="{TemplateBinding Header}"
-                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                              Margin="0"/>
-          </ControlTemplate>
-        </Setter>
-      </Style>
-      <!-- убиарет вн. отступы(для иконки)  -->
-      <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Padding" Value="0"/>
-      </Style>
+          <TabControl.ItemTemplate>
+            <DataTemplate>
+              <StackPanel Background="#C4C4C4"
+                          Orientation="Horizontal"
+                          Spacing="13"
+                          Height="50">
+                <TextBlock FontSize="20" 
+                          Text="{Binding Wallet.Name}" 
+                          Margin="38 0 0 0"
+                          VerticalAlignment="Center"/>
+                <Button Width="20"
+                        Height="20" 
+                        Margin="0 0 17 0"
+                        Background="#E4DEDE"
+                        Classes="delete">
+                  <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
+                        Fill="#757575"
+                        Height="10"
+                        Width="10"/>
+                </Button>
+              </StackPanel>
+            </DataTemplate>
+          </TabControl.ItemTemplate>
 
-      </TabControl.Styles>
+          <TabControl.ContentTemplate>
+            <DataTemplate>
+              <Grid ColumnDefinitions="5*, 5*">
+                <v:CategoryManagerView Grid.Column="0" DataContext="{Binding ViewModel}"/>
+              </Grid>
+            </DataTemplate>
+          </TabControl.ContentTemplate>
 
-    </TabControl>
+          <TabControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150"/>
+            </ItemsPanelTemplate>
+          </TabControl.ItemsPanel>
 
-  </DockPanel>
+        <TabControl.Styles>
+
+        <Style Selector="TabItem">
+          <Setter Property="Template">
+            <ControlTemplate>
+                <ContentPresenter Name="PART_ContentPresenter"
+                                ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                Content="{TemplateBinding Header}"
+                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                Margin="0"/>
+            </ControlTemplate>
+          </Setter>
+        </Style>
+
+        <!-- убиарет вн. отступы(для иконки)  -->
+        <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
+          <Setter Property="Padding" Value="0"/>
+        </Style>
+
+        </TabControl.Styles>
+
+      </TabControl>
+
+    </DockPanel>
+
+  </Grid>
 
 </UserControl>
