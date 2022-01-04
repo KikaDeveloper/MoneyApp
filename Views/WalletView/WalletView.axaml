@@ -44,25 +44,27 @@
 
           <TabControl.ItemTemplate>
             <DataTemplate>
-              <StackPanel Background="#C4C4C4"
-                          Orientation="Horizontal"
-                          Spacing="13"
-                          Height="50">
+              <Grid ColumnDefinitions="8*, 2*"
+                    Background="#C4C4C4"
+                    Height="50">
                 <TextBlock FontSize="20" 
                           Text="{Binding Wallet.Name}" 
-                          Margin="38 0 0 0"
-                          VerticalAlignment="Center"/>
+                          Margin="10 0 0 0"
+                          VerticalAlignment="Center"
+                          HorizontalAlignment="Center"
+                          Grid.Column="0"/>
                 <Button Width="20"
                         Height="20" 
                         Margin="0 0 17 0"
                         Background="#E4DEDE"
+                        Grid.Column="1"
                         Classes="delete">
                   <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
                         Fill="#757575"
                         Height="10"
                         Width="10"/>
                 </Button>
-              </StackPanel>
+              </Grid>
             </DataTemplate>
           </TabControl.ItemTemplate>
 
