@@ -11,6 +11,7 @@ namespace MoneyApp.ViewModels
         private ObservableCollection<WalletAdapter>? _walletAdpters;
         private ReadOnlyCollection<AmountRatio>? _amountRatios;
         private WalletAdapter? _selectedAdapter;
+        private AmountRatio? _selectedRatio;
 
         public ObservableCollection<WalletAdapter> WalletAdapters 
         {
@@ -30,11 +31,18 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedAdapter, value);
         }
 
+        public AmountRatio SelectedRatio
+        {
+            get => _selectedRatio!;
+            set => this.RaiseAndSetIfChanged(ref _selectedRatio, value);
+        }
+
         public IReactiveCommand? AddWalletCommand { get; set; }
 
         public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters, IList<AmountRatio> amountRatios){
             WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
             AmountRatios = new ReadOnlyCollection<AmountRatio>(amountRatios);
+            SelectedRatio = AmountRatios.First();
             SelectedAdapter = WalletAdapters.First();
         }
     }

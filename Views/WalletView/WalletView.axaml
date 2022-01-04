@@ -11,6 +11,7 @@
           Background="#DCDCDC"
           ColumnDefinitions="6.5*, 3.5*">
 
+          <!-- Wallet amount -->
           <Border Grid.Column="0"
                   CornerRadius="15"
                   Background="#F2F2F2"
@@ -28,10 +29,12 @@
             </StackPanel>
           </Border>
 
+          <!-- ComboBox -->
           <ComboBox Grid.Column="1"
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center"
-                    Items="{Binding AmountRatios}"/>
+                    Items="{Binding AmountRatios}"
+                    SelectedItem="{Binding SelectedRatio}"/>
 
     </Grid>
 
