@@ -5,15 +5,17 @@
         x:Class="MoneyApp.Dialog.DialogWindow"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
-        Width="310" Height="190"
+        MaxWidth="310" MaxHeight="150"
         Title="DialogWindow">
   
-  <Grid RowDefinitions="4*, 4*, 2*">
-    
-    <TextBox Watermark="Name" Grid.Row="0"/>
-    <TextBox Watermark="Amount" Grid.Row="1"/>
-    <Button Content="Add" Grid.Row="2"/>
-
-  </Grid>
+  <DockPanel>
+    <StackPanel Orientation="Vertical"
+                Margin="20 15"
+                Spacing="15">
+      <TextBox Watermark="Name"/>
+      <TextBox Watermark="Amount" />
+      <Button Content="Add" />
+    </StackPanel>
+  </DockPanel>
 
 </Window>
