@@ -9,12 +9,19 @@ namespace MoneyApp.ViewModels
     public class WalletViewModel : ViewModelBase
     {
         private ObservableCollection<WalletAdapter>? _walletAdpters;
+        private ReadOnlyCollection<AmountRatio>? _amountRatios;
         private WalletAdapter? _selectedAdapter;
 
         public ObservableCollection<WalletAdapter> WalletAdapters 
         {
             get => _walletAdpters!;
             set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
+        }
+
+        public ReadOnlyCollection<AmountRatio> AmountRatios
+        {
+            get => _amountRatios!;
+            set => this.RaiseAndSetIfChanged(ref _amountRatios, value);
         }
 
         public WalletAdapter SelectedAdapter
