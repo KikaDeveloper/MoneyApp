@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
+             Margin="3 15"
              x:Class="MoneyApp.CategoryManagerView">
              
       <ListBox Items="{Binding CategoryViewModels}"
@@ -11,12 +12,13 @@
             <ListBox.ItemTemplate>
                   <DataTemplate>
                       <Grid ColumnDefinitions="0.5*, 0.5*"
-                              RowDefinitions="30, *">
+                              RowDefinitions="18, *">
                               <TextBlock Text="{Binding Category.Name}"
                                     Grid.Column="0"
                                     Grid.Row="0" 
                                     VerticalAlignment="Center"
-                                    FontSize="18"/>
+                                    FontSize="18"
+                                    Margin="5"/>
                               <TextBlock Text="{Binding Category.Amount}"
                                     Grid.Column="1"
                                     Grid.Row="0"
@@ -24,31 +26,49 @@
                                     VerticalAlignment="Center"
                                     FontSize="18"/>
 
-                              <StackPanel Background="DarkGray"
-                                          Grid.ColumnSpan="2"
-                                          Grid.Row="1">
+                              <StackPanel Grid.ColumnSpan="2"
+                                          Grid.Row="1"
+                                          Margin="0 10 0 0">
                                     <ItemsControl Items="{Binding RecordViewModels}">
                                           <ItemsControl.ItemTemplate>
                                                 <DataTemplate>
                                                       <v:RecordView />
                                                 </DataTemplate>
                                           </ItemsControl.ItemTemplate>
+                                          <ItemsControl.ItemsPanel>
+                                                <ItemsPanelTemplate>
+                                                      <StackPanel Orientation="Vertical" Spacing="12"/>
+                                                </ItemsPanelTemplate>
+                                          </ItemsControl.ItemsPanel>
                                     </ItemsControl>
                               </StackPanel>
                         </Grid>
                   </DataTemplate>
       </ListBox.ItemTemplate>
+
+      <ListBox.ItemsPanel>
+            <ItemsPanelTemplate>
+                  <StackPanel Orientation="Vertical" Spacing="13"/> 
+            </ItemsPanelTemplate>
+      </ListBox.ItemsPanel>
+
       <ListBox.Styles>
+
             <Style Selector="ListBoxItem">
                   <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                  <Setter Property="Background" Value="#DCDCDC"/>
+                  <Setter Property="CornerRadius" Value="10"/>
             </Style>
+
             <!-- скрытие и открытие панели с записями -->
             <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel">
                   <Setter Property="IsVisible" Value="true"/>
             </Style>
+
             <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel">
                   <Setter Property="IsVisible" Value="false"/>
             </Style>
+
             </ListBox.Styles>
       </ListBox>
 </UserControl>
