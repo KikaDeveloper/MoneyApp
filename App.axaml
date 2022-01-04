@@ -8,5 +8,7 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <StyleInclude Source="/Styles/ComboBox.axaml"/>
+        <StyleInclude Source="/Styles/ComboBoxItem.axaml"/>
     </Application.Styles>
 </Application>
