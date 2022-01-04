@@ -4,10 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MoneyApp.RecordView">
-  
-  <Grid ColumnDefinitions="0.3*, 0.7*">
-    <TextBlock Text="{Binding Record.Name}" Grid.Column="0"/>
-    <TextBlock Text="{Binding Record.Amount}" Grid.Column="1"/>
-  </Grid>
+  <Border CornerRadius="8"
+          Background="#F2F2F2"
+          Padding="5 8">
+    <Grid ColumnDefinitions="4*, 4*, 2*">
+      <TextBlock Text="{Binding Record.Name}" 
+                  Grid.Column="0"
+                  FontSize="16"
+                  HorizontalAlignment="Left"
+                  Margin="5 0 0 0"/>
+      <TextBlock Text="{Binding Record.Amount}" 
+                  Grid.Column="1"
+                  FontSize="16"
+                  HorizontalAlignment="Right"/>
+      <Button Grid.Column="2"
+              Height="20"
+              Width="20"
+              HorizontalAlignment="Right"
+              Margin="0 0 5 0">
+         <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
+                Fill="#757575"
+                Height="10"
+                Width="10"/> 
+      </Button>
+    </Grid>
+  </Border>
 
 </UserControl>
