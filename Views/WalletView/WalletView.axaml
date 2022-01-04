@@ -6,7 +6,7 @@
              x:Class="MoneyApp.WalletView">
   
   <Grid RowDefinitions="0.7*, 8*">
-
+    <!-- Header -->
     <Grid Grid.Row="0"
           Background="#DCDCDC"
           ColumnDefinitions="6.5*, 3.5*">
@@ -78,7 +78,9 @@
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150" Spacing="0"/>
+              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150" Spacing="0">
+                <Button Content="Add" Command="{Binding AddWalletCommand}"/>
+              </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
 

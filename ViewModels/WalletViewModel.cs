@@ -32,8 +32,9 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand? AddWalletCommand { get; set; }
 
-        public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
+        public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters, IList<AmountRatio> amountRatios){
             WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
+            AmountRatios = new ReadOnlyCollection<AmountRatio>(amountRatios);
             SelectedAdapter = WalletAdapters.First();
         }
     }

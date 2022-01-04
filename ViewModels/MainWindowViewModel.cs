@@ -78,6 +78,18 @@ namespace MoneyApp.ViewModels
                     },
                     ViewModel = new CategoryManagerViewModel()
                 }
+            },
+            new List<AmountRatio>(){
+                new AmountRatio(){
+                    Id = 1,
+                    Name = "day",
+                    Ratio = 1
+                },
+                new AmountRatio(){
+                    Id = 2,
+                    Name = "week", 
+                    Ratio = 7
+                }
             });
 
             AddWalletInteraction = new Interaction<AddWalletViewModel, Wallet?>();
