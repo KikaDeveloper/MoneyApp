@@ -7,13 +7,18 @@
   
   <Grid RowDefinitions="0.7*, 8*">
     <!-- Header -->
-    <Grid Grid.Row="0"
+    <ContentControl Grid.Row="0"
           Background="#DCDCDC"
-          ColumnDefinitions="6.5*, 3.5*">
+          HorizontalAlignment="Stretch"
+          VerticalAlignment="Stretch"
+          HorizontalContentAlignment="Center"
+          VerticalContentAlignment="Center">
+
+        <StackPanel Orientation="Horizontal"
+                    Spacing="30">
 
           <!-- Wallet amount -->
-          <Border Grid.Column="0"
-                  CornerRadius="15"
+          <Border CornerRadius="15"
                   Background="#F2F2F2"
                   HorizontalAlignment="Center"
                   VerticalAlignment="Center"
@@ -30,13 +35,12 @@
           </Border>
 
           <!-- ComboBox -->
-          <ComboBox Grid.Column="1"
-                    HorizontalAlignment="Center"
+          <ComboBox HorizontalAlignment="Center"
                     VerticalAlignment="Center"
                     Items="{Binding AmountRatios}"
                     SelectedItem="{Binding SelectedRatio}"/>
-
-    </Grid>
+        </StackPanel>
+    </ContentControl>
 
     <DockPanel Grid.Row="1"
                 Background="#F2F2F2">
