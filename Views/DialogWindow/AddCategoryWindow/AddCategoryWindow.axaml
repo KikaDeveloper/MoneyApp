@@ -6,7 +6,7 @@
         WindowStartupLocation="CenterOwner"
         CanResize="False"
         MaxWidth="310" MaxHeight="150"
-        Title="DialogWindow">
+        Title="New Category">
   
   <DockPanel>
     <StackPanel Orientation="Vertical"
