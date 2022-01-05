@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using ReactiveUI;
 using MoneyApp.Models;
 
@@ -8,6 +9,15 @@ namespace MoneyApp.ViewModels
 
         private string? _name;
         private int _amount;
+        private AmountRatio? _selectedRatio;
+
+        private ReadOnlyCollection<AmountRatio>? _amountRatios;
+
+        public ReadOnlyCollection<AmountRatio> AmountRatios
+        {
+            get => _amountRatios!;
+            set => this.RaiseAndSetIfChanged(ref _amountRatios, value);
+        }
 
         public string InputName
         {
@@ -21,6 +31,12 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _amount, value);
         }
 
+        public AmountRatio SelectedRatio
+        {
+            get => _selectedRatio!;
+            set => this.RaiseAndSetIfChanged(ref _selectedRatio, value);
+        }
+
         public IReactiveCommand AddCommand { get; }
 
         public AddWalletViewModel(){
@@ -29,7 +45,7 @@ namespace MoneyApp.ViewModels
                 return new Wallet(){
                     Name = InputName,
                     Amount = InputAmount,
-                    AmountRatioId = 1
+                    AmountRatioId = SelectedRatio.Id
                 };
             });
 
