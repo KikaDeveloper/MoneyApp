@@ -57,7 +57,7 @@ namespace MoneyApp.Services{
                     },
                     new AmountRatio(){
                         Id = 4,
-                        Name = "6 month",
+                        Name = "six months",
                         Ratio = 186,
                     },
                     new AmountRatio(){

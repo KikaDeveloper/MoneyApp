@@ -65,5 +65,21 @@ namespace MoneyApp.Services
             return tracking.State == EntityState.Modified;
         }
 
+        public async Task<bool> InsertRecordAsync(Record record){
+            var tracking = await _db.Records.AddAsync(record);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Added;
+        }
+
+        public async Task<bool> DeleteRecordAsync(Record record){
+            var tracking = _db.Records.Remove(record);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Deleted;
+        }
+        public async Task<bool> UpdateRecordAsync(Record record){
+            var tracking = _db.Records.Remove(record);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Modified;
+        }
     }
 }
