@@ -21,15 +21,11 @@
     </Style>
 
     <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="LightGray"/>
+      <Setter Property="Background" Value="DarkGray"/>
     </Style>
             
-    <Style Selector="ComboBoxItem:selected">
-      <Setter Property="Foreground" Value="Black"/>
-    </Style>
-
     <Style Selector="ComboBoxItem:selected /template/ ContentPresenter">
-      <Setter Property="Background" Value="DarkGray"/>
+      <Setter Property="Background" Value="#C4C4C4"/>
     </Style>
 
 </Styles>

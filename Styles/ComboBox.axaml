@@ -56,4 +56,12 @@
           </Setter>
         </Style>
 
+        <Style Selector="ComboBox:pointerover /template/ Border#border">
+          <Setter Property="Background" Value="#C4C4C4"/>
+        </Style>
+
+        <Style Selector="ComboBox[IsDropDownOpen=true] /template/ Border#border">
+          <Setter Property="Background" Value="#C4C4C4"/>
+        </Style>
+
 </Styles>
