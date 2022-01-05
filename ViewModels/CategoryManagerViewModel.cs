@@ -5,12 +5,12 @@ namespace MoneyApp.ViewModels
 {
     public class CategoryManagerViewModel:ViewModelBase
     {
-        private ObservableCollection<CategoryViewModel>?  _caftegoryViewModels;
+        private ObservableCollection<CategoryViewModel>?  _categoryViewModels;
 
         public ObservableCollection<CategoryViewModel> CategoryViewModels
         {
-            get => _caftegoryViewModels!;
-            set => this.RaiseAndSetIfChanged(ref _caftegoryViewModels, value);
+            get => _categoryViewModels!;
+            set => this.RaiseAndSetIfChanged(ref _categoryViewModels, value);
         }
 
         public CategoryManagerViewModel(){

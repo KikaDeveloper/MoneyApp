@@ -98,9 +98,10 @@ namespace MoneyApp.ViewModels
             AddCategoryInteraction = new Interaction<AddCategoryViewModel, Category?>();
             AddRecordInteraction = new Interaction<AddRecordViewModel, Record?>();
 
-            WalletViewModel.AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
+            WalletViewModel.AddWalletCommand = ReactiveCommand.CreateFromTask<Wallet?>(async()=>{
                 var input = new AddWalletViewModel();
-                var result = await AddWalletInteraction.Handle(input);                
+                var result = await AddWalletInteraction.Handle(input); 
+                return result;               
             });
             
         }
