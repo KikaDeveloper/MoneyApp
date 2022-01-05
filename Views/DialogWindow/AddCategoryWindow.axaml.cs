@@ -4,9 +4,9 @@ using Avalonia.Markup.Xaml;
 
 namespace MoneyApp.Dialog
 {
-    public partial class DialogWindow : Window
+    public partial class AddCategoryWindow : Window
     {
-        public DialogWindow()
+        public AddCategoryWindow()
         {
             InitializeComponent();
 #if DEBUG
