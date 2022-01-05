@@ -71,6 +71,16 @@
 
             <!-- Триггеры для ListBoxItem-ов -->
             <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                  <Style.Animations>
+                         <Animation Duration="0:0:0.2" IterationCount="1">
+                              <KeyFrame Cue="0%">
+                                    <Setter Property="Background" Value="#DCDCDC"/>
+                              </KeyFrame>
+                              <KeyFrame Cue="100%">
+                                    <Setter Property="Background" Value="#C4C4C4"/>
+                              </KeyFrame>
+                         </Animation>
+                  </Style.Animations>
                   <Setter Property="Background" Value="#C4C4C4" />
             </Style>
 
