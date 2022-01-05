@@ -1,3 +1,4 @@
+using ReactiveUI;
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
