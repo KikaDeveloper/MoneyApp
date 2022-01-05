@@ -7,8 +7,8 @@
     <Color x:Key="Color3">#C4C4C4</Color>
     <Color x:Key="Color4">#757575</Color>
 
-    <SolidColorBrush x:Key="Foreground" Color="Black"/>
-    <SolidColorBrush x:Key="HighlightColor" Color="DarkGray"/> 
+    <Color x:Key="Foreground">Black</Color>
+    <Color x:Key="HighlightColor">DarkGray</Color> 
 
     <!-- Header resources -->
     <SolidColorBrush x:Key="HeaderBackground" Color="{StaticResource Color2}"/>
@@ -29,5 +29,7 @@
     <!-- Delete button resources -->
     <SolidColorBrush x:Key="DeleteButtonBackground" Color="#E4DEDE"/>
     <SolidColorBrush x:Key="DeleteButtonIconColor" Color="{StaticResource Color4}"/>
+    <x:Double x:Key="DeleteIconSize">10</x:Double>
+    <StreamGeometry x:Key="DeleteButtonIcon">M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z</StreamGeometry>
 
 </ResourceDictionary>
