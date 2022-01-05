@@ -112,13 +112,21 @@
 
         <!-- Selected state -->
         <Style Selector="TabItem:selected /template/ Panel">
-          <Setter Property="Background" Value="DarkGray" />
-          <!-- <Setter Property="Foreground" Value="Black"/> -->
+          <Setter Property="Background" Value="DarkGray"/>
+        </Style>
+
+        <Style Selector="TabItem /template/ Panel">
+            <Setter Property="Transitions">
+                <Transitions>
+                      <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+                </Transitions>
+            </Setter>
         </Style>
 
         <!-- PointerOver state -->
         <Style Selector="TabItem:pointerover /template/ Panel">
-          <Setter Property="Background" Value="DarkGray" />
+          <Setter Property="Background" Value="DarkGray"/>
+          <Setter Property="RenderTransform" Value="scale(0.9)"/>
         </Style>
 
         <!-- убирает вн. отступы(для иконки)  -->
