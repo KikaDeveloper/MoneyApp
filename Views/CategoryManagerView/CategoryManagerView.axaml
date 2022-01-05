@@ -69,6 +69,35 @@
                   <Setter Property="IsVisible" Value="false"/>
             </Style>
 
+            <!-- Триггеры для ListBoxItem-ов -->
+            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="#C4C4C4" />
+            </Style>
+
+            <!-- Pressed state -->
+             <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="#DCDCDC" />
+            </Style>
+
+            <!-- Selected state -->
+            <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="#DCDCDC" />
+                  <Setter Property="RenderTransform" Value="scale(0.98)"/>
+            </Style>
+
+            <!--  Selected PointerOver State  -->
+            <Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Background" Value="#C4C4C4" />
+            </Style>
+
+            <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+                  <Setter Property="Transitions">
+                  <Transitions>
+                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+                  </Transitions>
+                  </Setter>
+            </Style>
+
             </ListBox.Styles>
       </ListBox>
 </UserControl>
