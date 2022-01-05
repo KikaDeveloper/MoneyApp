@@ -12,9 +12,12 @@
     <StackPanel Orientation="Vertical"
                 Margin="20 15"
                 Spacing="15">
-      <TextBox Watermark="Name"/>
-      <TextBox Watermark="Amount" />
-      <Button Content="Add" />
+      <TextBox Watermark="Text"
+               Text="{Binding InputText}"/>
+      <TextBox Watermark="Amount"
+                Text="{Binding InputAmount}" />
+      <Button Content="Add" 
+              Command="{Binding AddCommand}"/>
     </StackPanel>
   </DockPanel>
 
