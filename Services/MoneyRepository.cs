@@ -14,6 +14,7 @@ namespace MoneyApp.Services
             _db.Database.EnsureCreated();
         }
 
+        #region Get
         public async Task<IEnumerable<Wallet>> GetWalletsAsync()
             => await _db.Wallets.ToListAsync();
 
@@ -26,11 +27,24 @@ namespace MoneyApp.Services
         public async Task<IEnumerable<AmountRatio>> GetAmountRatiosAsync() 
             => await _db.AmountRatios.ToListAsync();
 
+        #endregion
+        
         public async Task<bool> InsertWalletAsync(Wallet wallet){
                 var tracking = await _db.Wallets.AddAsync(wallet);
                 await _db.SaveChangesAsync();
                 return tracking.State == EntityState.Added;
         }
+        
+        public async Task<bool> DeleteWalletAsync(Wallet wallet){
+            var tracking = _db.Wallets.Remove(wallet);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Deleted;
+        }
 
+        public async Task<bool> UpdateWalletAsync(Wallet wallet){
+            var tracking = _db.Wallets.Update(wallet);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Modified;
+        }
     }
 }
