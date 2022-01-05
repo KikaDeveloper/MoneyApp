@@ -52,8 +52,8 @@
           <TabControl.ItemTemplate>
             <DataTemplate>
               <Grid ColumnDefinitions="8*, 2*"
-                    Background="#C4C4C4"
-                    Height="50">
+                    Height="50"
+                    Classes="item">
                 <TextBlock FontSize="20" 
                           Text="{Binding Wallet.Name}" 
                           Margin="10 0 0 0"
@@ -94,19 +94,34 @@
         <TabControl.Styles>
 
         <Style Selector="TabItem">
+          <Setter Property="Background" Value="#C4C4C4"/>
+          <Setter Property="Foreground" Value="Black"/>
           <Setter Property="Template">
             <ControlTemplate>
+              <Panel Background="{TemplateBinding Background}">
                 <ContentPresenter Name="PART_ContentPresenter"
                                 ContentTemplate="{TemplateBinding HeaderTemplate}"
                                 Content="{TemplateBinding Header}"
                                 HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
                                 VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
                                 Margin="0"/>
+              </Panel>
             </ControlTemplate>
           </Setter>
         </Style>
 
-        <!-- убиарет вн. отступы(для иконки)  -->
+        <!-- Selected state -->
+        <Style Selector="TabItem:selected /template/ Panel">
+          <Setter Property="Background" Value="DarkGray" />
+          <!-- <Setter Property="Foreground" Value="Black"/> -->
+        </Style>
+
+        <!-- PointerOver state -->
+        <Style Selector="TabItem:pointerover /template/ Panel">
+          <Setter Property="Background" Value="DarkGray" />
+        </Style>
+
+        <!-- убирает вн. отступы(для иконки)  -->
         <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
           <Setter Property="Padding" Value="0"/>
         </Style>
