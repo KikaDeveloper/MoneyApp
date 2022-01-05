@@ -1,0 +1,21 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        x:Class="MoneyApp.Dialog.AddWalletWindow"
+        WindowStartupLocation="CenterOwner"
+        CanResize="False"
+        MaxWidth="310" MaxHeight="150"
+        Title="New Wallet">
+  
+  <DockPanel>
+    <StackPanel Orientation="Vertical"
+                Margin="20 15"
+                Spacing="15">
+      <TextBox Watermark="Name"/>
+      <TextBox Watermark="Amount" />
+      <Button Content="Add" />
+    </StackPanel>
+  </DockPanel>
+
+</Window>

@@ -26,7 +26,7 @@ namespace MoneyApp.Views
         }
 
         public async Task AddWalletOpenDialog(InteractionContext<AddWalletViewModel, Wallet?> interaction){
-            var dialog = new DialogWindow();
+            var dialog = new AddWalletWindow();
             dialog.DataContext = interaction.Input;
             var result = await dialog.ShowDialog<Wallet?>(this);
             interaction.SetOutput(result);
