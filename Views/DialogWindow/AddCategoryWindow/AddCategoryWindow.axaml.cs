@@ -1,10 +1,11 @@
 using Avalonia;
-using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
+using MoneyApp.ViewModels;
 
 namespace MoneyApp.Dialog
 {
-    public partial class AddCategoryWindow : Window
+    public partial class AddCategoryWindow : ReactiveWindow<AddCategoryViewModel>
     {
         public AddCategoryWindow()
         {

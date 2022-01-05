@@ -1,10 +1,11 @@
 using Avalonia;
-using Avalonia.Controls;
+using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
+using MoneyApp.ViewModels;
 
 namespace MoneyApp.Dialog
 {
-    public partial class AddRecordWindow : Window
+    public partial class AddRecordWindow : ReactiveWindow<AddRecordViewModel>
     {
         public AddRecordWindow()
         {
