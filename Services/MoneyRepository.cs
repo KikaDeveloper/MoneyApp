@@ -46,5 +46,24 @@ namespace MoneyApp.Services
             await _db.SaveChangesAsync();
             return tracking.State == EntityState.Modified;
         }
+    
+        public async Task<bool> InsertCategoryAsync(Category category){
+            var tracking = await _db.Categories.AddAsync(category);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Added;
+        }
+
+        public async Task<bool> DeleteCategoryAsync(Category category){
+            var tracking = _db.Categories.Remove(category);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Deleted;
+        }
+
+        public async Task<bool> UpdateCategoryAsync(Category category){
+            var tracking = _db.Categories.Update(category);
+            await _db.SaveChangesAsync();
+            return tracking.State == EntityState.Modified;
+        }
+
     }
 }
