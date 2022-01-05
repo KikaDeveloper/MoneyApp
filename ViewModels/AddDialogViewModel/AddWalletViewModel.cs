@@ -1,3 +1,4 @@
+using System.Reactive;
 using System.Collections.ObjectModel;
 using ReactiveUI;
 using MoneyApp.Models;
@@ -37,11 +38,11 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedRatio, value);
         }
 
-        public IReactiveCommand AddCommand { get; }
+        public ReactiveCommand<Unit, Wallet?> AddCommand { get; }
 
         public AddWalletViewModel(){
             
-            AddCommand = ReactiveCommand.Create<Wallet>(() => {
+            AddCommand = ReactiveCommand.Create<Wallet?>(() => {
                 return new Wallet(){
                     Name = InputName,
                     Amount = InputAmount,
