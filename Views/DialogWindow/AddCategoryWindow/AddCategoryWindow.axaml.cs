@@ -1,3 +1,4 @@
+using System;
 using ReactiveUI;
 using Avalonia;
 using Avalonia.ReactiveUI;
@@ -14,6 +15,7 @@ namespace MoneyApp.Dialog
 #if DEBUG
             this.AttachDevTools();
 #endif
+            this.WhenActivated(d => ViewModel!.AddCommand.Subscribe(Close));
         }
 
         private void InitializeComponent()
