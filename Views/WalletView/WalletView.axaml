@@ -66,10 +66,10 @@
                         Background="#E4DEDE"
                         Grid.Column="1"
                         Classes="delete">
-                  <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
+                  <Path Data="{StaticResource DeleteButtonIcon}" 
                         Fill="#757575"
-                        Height="10"
-                        Width="10"/>
+                        Height="{StaticResource DeleteIconSize}"
+                        Width="{StaticResource DeleteIconSize}"/>
                 </Button>
               </Grid>
             </DataTemplate>
