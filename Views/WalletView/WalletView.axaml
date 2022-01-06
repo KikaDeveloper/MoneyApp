@@ -14,9 +14,6 @@
           HorizontalContentAlignment="Center"
           VerticalContentAlignment="Center">
 
-        <StackPanel Orientation="Horizontal"
-                    Spacing="30">
-
           <!-- Wallet amount -->
           <Border CornerRadius="15"
                   Background="#F2F2F2"
@@ -33,13 +30,6 @@
                           FontSize="20"/>
             </StackPanel>
           </Border>
-
-          <!-- ComboBox -->
-          <ComboBox HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Items="{Binding AmountRatios}"
-                    SelectedItem="{Binding SelectedRatio}"/>
-        </StackPanel>
     </ContentControl>
 
     <DockPanel Grid.Row="1"
