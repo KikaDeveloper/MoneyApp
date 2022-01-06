@@ -1,13 +1,11 @@
 
 namespace MoneyApp.Models{
-
-    public class AmountRatio
+    public enum AmountRatio
     {
-        public int Id { get; set; }
-        public string Name { get; set;} = default!;
-        public int Ratio {get; set; }
-
-        public override string ToString() => Name;
+        Day = 1,
+        Week = 7,
+        Month = 31,
+        SixMonths = 186,
+        Year = 365
     }
-
 }

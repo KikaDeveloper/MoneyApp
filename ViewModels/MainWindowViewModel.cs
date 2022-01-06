@@ -28,7 +28,7 @@ namespace MoneyApp.ViewModels
                         Id = 1,
                         Name = "Wallet1",
                         Amount = 10000,
-                        AmountRatioId = 1
+                        AmountRatio = AmountRatio.Day
                     },
                     ViewModel = new CategoryManagerViewModel(){
                         CategoryViewModels = new ObservableCollection<CategoryViewModel>(){
@@ -43,7 +43,7 @@ namespace MoneyApp.ViewModels
                                     new RecordViewModel(){
                                         Record = new Record(){
                                             Id = 1,
-                                            Name = "food",
+                                            Text = "food",
                                             Amount = 400,
                                             CategoryId = 1
                                         }
@@ -61,7 +61,7 @@ namespace MoneyApp.ViewModels
                                     new RecordViewModel(){
                                         Record = new Record(){
                                             Id = 2,
-                                            Name = "Car",
+                                            Text = "Car",
                                             Amount = 1500,
                                             CategoryId = 2
                                         }

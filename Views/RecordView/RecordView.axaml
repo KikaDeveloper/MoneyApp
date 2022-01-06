@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MoneyApp.RecordView">
+
   <Border CornerRadius="10"
           Background="#F2F2F2"
           Padding="5 8">
@@ -30,5 +31,4 @@
       </Button>
     </Grid>
   </Border>
-
 </UserControl>
