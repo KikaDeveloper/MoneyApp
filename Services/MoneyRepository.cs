@@ -24,9 +24,6 @@ namespace MoneyApp.Services
         public async Task<IEnumerable<Record>> GetRecordsAsync()
             => await _db.Records.ToListAsync();
 
-        public async Task<IEnumerable<AmountRatio>> GetAmountRatiosAsync() 
-            => await _db.AmountRatios.ToListAsync();
-
         #endregion
         
         public async Task<bool> InsertWalletAsync(Wallet wallet){
@@ -76,6 +73,7 @@ namespace MoneyApp.Services
             await _db.SaveChangesAsync();
             return tracking.State == EntityState.Deleted;
         }
+        
         public async Task<bool> UpdateRecordAsync(Record record){
             var tracking = _db.Records.Remove(record);
             await _db.SaveChangesAsync();
