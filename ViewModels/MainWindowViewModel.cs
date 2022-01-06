@@ -76,21 +76,9 @@ namespace MoneyApp.ViewModels
                         Id = 2,
                         Name = "Wallet2",
                         Amount = 10500,
-                        AmountRatioId = 1
+                        AmountRatio = AmountRatio.Day
                     },
                     ViewModel = new CategoryManagerViewModel()
-                }
-            },
-            new List<AmountRatio>(){
-                new AmountRatio(){
-                    Id = 1,
-                    Name = "day",
-                    Ratio = 1
-                },
-                new AmountRatio(){
-                    Id = 2,
-                    Name = "week", 
-                    Ratio = 7
                 }
             });
 
