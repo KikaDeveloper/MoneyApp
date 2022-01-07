@@ -9,8 +9,9 @@
     <!-- ListBoxItem -->
     <Style Selector="ListBoxItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="Background" Value="#DCDCDC"/>
-            <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="12"/>
     </Style>
 
     <!-- скрытие и открытие панели с записями -->

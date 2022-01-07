@@ -23,7 +23,7 @@
                                     Classes="category_box right"/>
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
-                                    Classes="delete">
+                                    Classes="delete right">
                                     <Path Data="{StaticResource DeleteButtonIcon}" 
                                           Classes="delete_icon"/>
                               </Button>
@@ -53,11 +53,6 @@
                   <StackPanel Orientation="Vertical" Spacing="13"/> 
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
-
-      <ListBox.Styles>
-
-            
-
-            </ListBox.Styles>
+      
       </ListBox>
 </UserControl>

@@ -8,6 +8,10 @@
         <Setter Property="Background" Value="{DynamicResource DeleteButtonBackground}"/>
     </Style>
 
+    <Style Selector="Button.right">
+        <Setter Property="HorizontalAlignment" Value="Right"/>
+    </Style>
+
     <Style Selector="Path.delete_icon">
         <Setter Property="Fill" Value="{DynamicResource DeleteButtonIconColor}"/>
         <Setter Property="Width" Value="{DynamicResource DeleteIconSize}"/>
