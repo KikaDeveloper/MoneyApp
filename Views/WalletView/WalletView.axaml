@@ -46,12 +46,9 @@
               <Grid ColumnDefinitions="8*, 2*"
                     Height="50"
                     Classes="item">
-                <TextBlock FontSize="20" 
-                          Text="{Binding Wallet.Name}" 
-                          Margin="10 0 0 0"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center"
-                          Grid.Column="0"/>
+                <TextBlock Text="{Binding Wallet.Name}" 
+                            Grid.Column="0"
+                            Classes="wallet_tab"/>
                 <Button Width="20"
                         Height="20" 
                         Margin="0 0 17 0"
@@ -70,56 +67,23 @@
           <TabControl.ContentTemplate>
             <DataTemplate>
               <Grid ColumnDefinitions="5*, 5*">
-                <v:CategoryManagerView Grid.Column="0" DataContext="{Binding ViewModel}"/>
+                <v:CategoryManagerView Grid.Column="0" 
+                                        DataContext="{Binding ViewModel}"/>
               </Grid>
             </DataTemplate>
           </TabControl.ContentTemplate>
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150" Spacing="0">
-                <Button Content="Add" Command="{Binding AddWalletCommand}"/>
+              <StackPanel Classes="wallet_tab_panel">
+                <Button Content="Add" 
+                        Command="{Binding AddWalletCommand}"/>
               </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
 
         <TabControl.Styles>
 
-        <Style Selector="TabItem">
-          <Setter Property="Background" Value="#C4C4C4"/>
-          <Setter Property="Foreground" Value="Black"/>
-          <Setter Property="Template">
-            <ControlTemplate>
-              <Panel Background="{TemplateBinding Background}">
-                <ContentPresenter Name="PART_ContentPresenter"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                Content="{TemplateBinding Header}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Margin="0"/>
-              </Panel>
-            </ControlTemplate>
-          </Setter>
-        </Style>
-
-        <!-- Selected state -->
-        <Style Selector="TabItem:selected /template/ Panel">
-          <Setter Property="Background" Value="DarkGray"/>
-        </Style>
-
-        <Style Selector="TabItem /template/ Panel">
-            <Setter Property="Transitions">
-                <Transitions>
-                      <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-                </Transitions>
-            </Setter>
-        </Style>
-
-        <!-- PointerOver state -->
-        <Style Selector="TabItem:pointerover /template/ Panel">
-          <Setter Property="Background" Value="DarkGray"/>
-          <Setter Property="RenderTransform" Value="scale(0.9)"/>
-        </Style>
 
         <!-- убирает вн. отступы(для иконки)  -->
         <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
