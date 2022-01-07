@@ -14,7 +14,7 @@ namespace MoneyApp.Services
             _db.Database.EnsureCreated();
         }
 
-        #region Get
+        #region GetCollections
         public async Task<IEnumerable<Wallet>> GetWalletsAsync()
             => await _db.Wallets.ToListAsync();
 
