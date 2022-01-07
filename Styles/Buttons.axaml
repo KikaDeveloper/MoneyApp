@@ -1,0 +1,26 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+ 
+    <Style Selector="Button.delete">
+        <Setter Property="Width" Value="{DynamicResource DeleteButtonSize}"/>
+        <Setter Property="Height" Value="{DynamicResource DeleteButtonSize}"/>
+        <Setter Property="Margin" Value="0 0 17 0"/>
+        <Setter Property="Background" Value="{DynamicResource DeleteButtonBackground}"/>
+    </Style>
+
+    <Style Selector="Path.delete_icon">
+        <Setter Property="Fill" Value="{DynamicResource DeleteButtonIconColor}"/>
+        <Setter Property="Width" Value="{DynamicResource DeleteIconSize}"/>
+        <Setter Property="Height" Value="{DynamicResource DeleteIconSize}"/>
+    </Style>
+
+    <Style Selector="">
+        <Setter Property="" Value=""/>
+    </Style>
+
+    <!-- убирает вн. отступы(для иконки)  -->
+    <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Padding" Value="0"/>
+    </Style>
+
+</Styles>

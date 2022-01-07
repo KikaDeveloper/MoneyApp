@@ -49,16 +49,10 @@
                 <TextBlock Text="{Binding Wallet.Name}" 
                             Grid.Column="0"
                             Classes="wallet_tab"/>
-                <Button Width="20"
-                        Height="20" 
-                        Margin="0 0 17 0"
-                        Background="#E4DEDE"
-                        Grid.Column="1"
+                <Button Grid.Column="1"
                         Classes="delete">
                   <Path Data="{StaticResource DeleteButtonIcon}" 
-                        Fill="#757575"
-                        Height="{StaticResource DeleteIconSize}"
-                        Width="{StaticResource DeleteIconSize}"/>
+                       Classes="delete_icon"/>
                 </Button>
               </Grid>
             </DataTemplate>
@@ -82,20 +76,7 @@
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
 
-        <TabControl.Styles>
-
-
-        <!-- убирает вн. отступы(для иконки)  -->
-        <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
-          <Setter Property="Padding" Value="0"/>
-        </Style>
-
-        </TabControl.Styles>
-
       </TabControl>
-
     </DockPanel>
-
   </Grid>
-
 </UserControl>
