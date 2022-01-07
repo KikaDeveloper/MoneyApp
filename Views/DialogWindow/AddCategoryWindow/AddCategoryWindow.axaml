@@ -2,19 +2,22 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="MoneyApp.Dialog.DialogWindow"
+        x:Class="MoneyApp.Dialog.AddCategoryWindow"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
         MaxWidth="310" MaxHeight="150"
-        Title="DialogWindow">
+        Title="New Category">
   
   <DockPanel>
     <StackPanel Orientation="Vertical"
                 Margin="20 15"
                 Spacing="15">
-      <TextBox Watermark="Name"/>
-      <TextBox Watermark="Amount" />
-      <Button Content="Add" />
+      <TextBox Watermark="Name"
+                Text="{Binding InputName}"/>
+      <TextBox Watermark="Amount" 
+                Text="{Binding InputAmount}"/>
+      <Button Content="Add" 
+              Command="{Binding AddCommand}"/>
     </StackPanel>
   </DockPanel>
 

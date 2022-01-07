@@ -1,18 +1,21 @@
+using System;
 using Avalonia;
 using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
 using MoneyApp.ViewModels;
+using ReactiveUI;
 
-namespace MoneyApp.Views
+namespace MoneyApp.Dialog
 {
-    public partial class MainWindow : ReactiveWindow<MainWindowViewModel>
+    public partial class AddRecordWindow : ReactiveWindow<AddRecordViewModel>
     {
-        public MainWindow()
+        public AddRecordWindow()
         {
             InitializeComponent();
 #if DEBUG
             this.AttachDevTools();
 #endif
+            this.WhenActivated(d => ViewModel!.AddCommand.Subscribe(Close));
         }
 
         private void InitializeComponent()

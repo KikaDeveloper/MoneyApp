@@ -1,6 +1,7 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
+using MoneyApp.Services;
 using MoneyApp.ViewModels;
 using MoneyApp.Views;
 
@@ -21,6 +22,8 @@ namespace MoneyApp
                 {
                     DataContext = new MainWindowViewModel(),
                 };
+                // установка родительского окна 
+                DialogService.SetOwner(desktop.MainWindow);
             }
 
             base.OnFrameworkInitializationCompleted();
