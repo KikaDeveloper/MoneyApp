@@ -2,7 +2,10 @@ using System.Linq;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ReactiveUI;
+using MoneyApp.ViewModels;
+using MoneyApp.Dialog;
 using MoneyApp.Models;
+using MoneyApp.Services;
 
 namespace MoneyApp.ViewModels
 {
@@ -28,6 +31,13 @@ namespace MoneyApp.ViewModels
         public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
             WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
             SelectedAdapter = WalletAdapters.First();
+            AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
+                var result = await DialogService.ShowDialogAsync<Wallet>(
+                    new AddWalletWindow(){
+                        DataContext = new AddWalletViewModel()
+                    }
+                );
+            });
         }
     }
 }
