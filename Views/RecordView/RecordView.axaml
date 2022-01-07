@@ -5,19 +5,14 @@
              mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
              x:Class="MoneyApp.RecordView">
 
-  <Border CornerRadius="10"
-          Background="#F2F2F2"
-          Padding="5 8">
+  <Border Classes="record_box">
     <Grid ColumnDefinitions="4*, 4*, 2*">
       <TextBlock Text="{Binding Record.Name}" 
                   Grid.Column="0"
-                  FontSize="16"
-                  HorizontalAlignment="Left"
-                  Margin="5 0 0 0"/>
+                  Classes="record_box left"/>
       <TextBlock Text="{Binding Record.Amount}" 
                   Grid.Column="1"
-                  FontSize="16"
-                  HorizontalAlignment="Right"/>
+                  Classes="record_box right"/>
       <Button Grid.Column="2"
               Height="20"
               Width="20"
