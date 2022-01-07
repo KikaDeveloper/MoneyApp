@@ -21,5 +21,6 @@
         <StyleInclude Source="/Styles/Header.axaml"/>
         <StyleInclude Source="/Styles/TabControl.axaml"/>
         <StyleInclude Source="/Styles/RecordView.axaml"/>
+        <StyleInclude Source="/Styles/CategoryManagerView.axaml"/>
     </Application.Styles>
 </Application>

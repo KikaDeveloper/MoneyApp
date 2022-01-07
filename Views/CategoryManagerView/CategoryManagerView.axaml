@@ -16,15 +16,11 @@
                               <TextBlock Text="{Binding Category.Name}"
                                     Grid.Column="0"
                                     Grid.Row="0" 
-                                    VerticalAlignment="Center"
-                                    FontSize="18"
-                                    Margin="5"/>
+                                    Classes="category_box left"/>
                               <TextBlock Text="{Binding Category.Amount}"
                                     Grid.Column="1"
                                     Grid.Row="0"
-                                    HorizontalAlignment="Right"
-                                    VerticalAlignment="Center"
-                                    FontSize="18"/>
+                                    Classes="category_box right"/>
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
                                     Height="20"
@@ -66,49 +62,7 @@
 
       <ListBox.Styles>
 
-            <Style Selector="ListBoxItem">
-                  <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-                  <Setter Property="Background" Value="#DCDCDC"/>
-                  <Setter Property="CornerRadius" Value="10"/>
-            </Style>
-
-            <!-- скрытие и открытие панели с записями -->
-            <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel">
-                  <Setter Property="IsVisible" Value="true"/>
-            </Style>
-
-            <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel">
-                  <Setter Property="IsVisible" Value="false"/>
-            </Style>
-
-            <!-- Триггеры для ListBoxItem-ов -->
-            <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-                  <Setter Property="Background" Value="#C4C4C4" />
-            </Style>
-
-            <!-- Pressed state -->
-             <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
-                  <Setter Property="Background" Value="#DCDCDC" />
-            </Style>
-
-            <!-- Selected state -->
-            <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
-                  <Setter Property="Background" Value="#DCDCDC" />
-                  <Setter Property="RenderTransform" Value="scale(0.98)"/>
-            </Style>
-
-            <!--  Selected PointerOver State  -->
-            <Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-                  <Setter Property="Background" Value="#C4C4C4" />
-            </Style>
-
-            <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
-                  <Setter Property="Transitions">
-                  <Transitions>
-                        <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-                  </Transitions>
-                  </Setter>
-            </Style>
+            
 
             </ListBox.Styles>
       </ListBox>
