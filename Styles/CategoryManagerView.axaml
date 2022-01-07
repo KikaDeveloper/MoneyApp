@@ -11,7 +11,7 @@
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
         <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
         <Setter Property="CornerRadius" Value="10"/>
-        <Setter Property="Padding" Value="12"/>
+        <Setter Property="Padding" Value="14"/>
     </Style>
 
     <!-- скрытие и открытие панели с записями -->
