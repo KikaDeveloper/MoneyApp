@@ -9,7 +9,7 @@
     <!-- ListBoxItem -->
     <Style Selector="ListBoxItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Padding" Value="14"/>
     </Style>
