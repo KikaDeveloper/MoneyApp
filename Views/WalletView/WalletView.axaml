@@ -8,40 +8,28 @@
   <Grid RowDefinitions="0.7*, 8*">
     <!-- Header -->
     <ContentControl Grid.Row="0"
-          Background="#DCDCDC"
-          HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch"
-          HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center">
+                    Classes="header">
 
           <StackPanel Orientation="Horizontal" 
                       Spacing="20">
 
               <!-- Wallet amount -->
-              <Border CornerRadius="15"
-                      Background="#F2F2F2"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Padding="20 3">
+              <Border Classes="header_wallet">
                 <StackPanel Orientation="Horizontal"
                             Spacing="8">
                   <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
-                              FontSize="20"/>
+                              Classes="header"/>
                   <TextBlock Text="out of"
-                              FontSize="20"/>
+                              Classes="header"/>
                   <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
-                              FontSize="20"/>
+                              Classes="header"/>
                 </StackPanel>
               </Border>
 
               <!-- Period or Ratio -->
-              <Border CornerRadius="15"
-                      Background="#F2F2F2"
-                      HorizontalAlignment="Center"
-                      VerticalAlignment="Center"
-                      Padding="20 3">
+              <Border Classes="header_wallet">
                   <TextBlock Text="{Binding SelectedAdapter.Wallet.AmountRatio}"
-                              FontSize="20"/>
+                              Classes="header"/>
               </Border>
           </StackPanel>
     </ContentControl>

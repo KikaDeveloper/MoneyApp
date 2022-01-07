@@ -18,5 +18,6 @@
         <FluentTheme Mode="Light"/>
         <StyleInclude Source="/Styles/ComboBox.axaml"/>
         <StyleInclude Source="/Styles/ComboBoxItem.axaml"/>
+        <StyleInclude Source="/Styles/Header.axaml"/>
     </Application.Styles>
 </Application>
