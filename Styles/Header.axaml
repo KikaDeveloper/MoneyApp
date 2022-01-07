@@ -1,0 +1,25 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="ContentControl.header">
+      <Setter Property="Background" Value="{DynamicResource HeaderBackground}"/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
+      <Setter Property="VerticalAlignment" Value="Stretch"/>
+      <Setter Property="HorizontalContentAlignment" Value="Center"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+    </Style>
+
+    <!-- Wallet Amount and Ratio -->
+    <Style Selector="Border.header_wallet">
+      <Setter Property="CornerRadius" Value="15"/>
+      <Setter Property="Background" Value="{DynamicResource HeaderElementsBackground}"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="Padding" Value="20 3"/>
+    </Style>
+
+    <Style Selector="TextBlock.header">
+      <Setter Property="FontSize" Value="20"/>
+    </Style>
+
+</Styles>

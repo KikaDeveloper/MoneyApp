@@ -1,0 +1,36 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Base colors -->
+    <Color x:Key="Color1">#F2F2F2</Color>
+    <Color x:Key="Color2">#DCDCDC</Color>
+    <Color x:Key="Color3">#C4C4C4</Color>
+    <Color x:Key="Color4">#757575</Color>
+
+    <Color x:Key="Foreground">Black</Color>
+    <Color x:Key="HighlightColor">DarkGray</Color> 
+
+    <!-- Header resources -->
+    <SolidColorBrush x:Key="HeaderBackground" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="HeaderElementsBackground" Color="{StaticResource Color1}"/>
+
+    <!-- TabControl resources -->
+    <SolidColorBrush x:Key="TabItemPanelBackground" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="TabItemBackground" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="TabItemHighlighting" Color="{StaticResource HighlightColor}"/>
+
+    <!-- Category resources -->
+    <SolidColorBrush x:Key="CategoryItemBackgorund" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="CategoryItemHighlighting" Color="{StaticResource Color3}"/>
+
+    <!-- Record resources -->
+    <SolidColorBrush x:Key="RecordItemBackground" Color="{StaticResource Color1}"/>
+
+    <!-- Delete button resources -->
+    <SolidColorBrush x:Key="DeleteButtonBackground" Color="#E4DEDE"/>
+    <SolidColorBrush x:Key="DeleteButtonIconColor" Color="{StaticResource Color4}"/>
+    <x:Double x:Key="DeleteIconSize">10</x:Double>
+    <x:Double x:Key="DeleteButtonSize">20</x:Double>
+    <StreamGeometry x:Key="DeleteButtonIcon">M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z</StreamGeometry>
+
+</ResourceDictionary>

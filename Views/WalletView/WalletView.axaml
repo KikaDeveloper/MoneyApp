@@ -8,38 +8,30 @@
   <Grid RowDefinitions="0.7*, 8*">
     <!-- Header -->
     <ContentControl Grid.Row="0"
-          Background="#DCDCDC"
-          HorizontalAlignment="Stretch"
-          VerticalAlignment="Stretch"
-          HorizontalContentAlignment="Center"
-          VerticalContentAlignment="Center">
+                    Classes="header">
 
-        <StackPanel Orientation="Horizontal"
-                    Spacing="30">
+          <StackPanel Orientation="Horizontal" 
+                      Spacing="20">
 
-          <!-- Wallet amount -->
-          <Border CornerRadius="15"
-                  Background="#F2F2F2"
-                  HorizontalAlignment="Center"
-                  VerticalAlignment="Center"
-                  Padding="20 3">
-            <StackPanel Orientation="Horizontal"
-                        Spacing="8">
-              <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
-                          FontSize="20"/>
-              <TextBlock Text="out of"
-                          FontSize="20"/>
-              <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
-                          FontSize="20"/>
-            </StackPanel>
-          </Border>
+              <!-- Wallet amount -->
+              <Border Classes="header_wallet">
+                <StackPanel Orientation="Horizontal"
+                            Spacing="8">
+                  <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                              Classes="header"/>
+                  <TextBlock Text="out of"
+                              Classes="header"/>
+                  <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                              Classes="header"/>
+                </StackPanel>
+              </Border>
 
-          <!-- ComboBox -->
-          <ComboBox HorizontalAlignment="Center"
-                    VerticalAlignment="Center"
-                    Items="{Binding AmountRatios}"
-                    SelectedItem="{Binding SelectedRatio}"/>
-        </StackPanel>
+              <!-- Period or Ratio -->
+              <Border Classes="header_wallet">
+                  <TextBlock Text="{Binding SelectedAdapter.Wallet.AmountRatio}"
+                              Classes="header"/>
+              </Border>
+          </StackPanel>
     </ContentControl>
 
     <DockPanel Grid.Row="1"
@@ -54,22 +46,13 @@
               <Grid ColumnDefinitions="8*, 2*"
                     Height="50"
                     Classes="item">
-                <TextBlock FontSize="20" 
-                          Text="{Binding Wallet.Name}" 
-                          Margin="10 0 0 0"
-                          VerticalAlignment="Center"
-                          HorizontalAlignment="Center"
-                          Grid.Column="0"/>
-                <Button Width="20"
-                        Height="20" 
-                        Margin="0 0 17 0"
-                        Background="#E4DEDE"
-                        Grid.Column="1"
+                <TextBlock Text="{Binding Wallet.Name}" 
+                            Grid.Column="0"
+                            Classes="wallet_tab"/>
+                <Button Grid.Column="1"
                         Classes="delete">
-                  <Path Data="M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z" 
-                        Fill="#757575"
-                        Height="10"
-                        Width="10"/>
+                  <Path Data="{StaticResource DeleteButtonIcon}" 
+                       Classes="delete_icon"/>
                 </Button>
               </Grid>
             </DataTemplate>
@@ -78,68 +61,21 @@
           <TabControl.ContentTemplate>
             <DataTemplate>
               <Grid ColumnDefinitions="5*, 5*">
-                <v:CategoryManagerView Grid.Column="0" DataContext="{Binding ViewModel}"/>
+                <v:CategoryManagerView Grid.Column="0" 
+                                        DataContext="{Binding ViewModel}"/>
               </Grid>
             </DataTemplate>
           </TabControl.ContentTemplate>
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Orientation="Vertical" Background="#DCDCDC" Width="150" Spacing="0">
-                <Button Content="Add" Command="{Binding AddWalletCommand}"/>
+              <StackPanel Classes="wallet_tab_panel">
+                <Button Content="Add" 
+                        Command="{Binding AddWalletCommand}"/>
               </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
-
-        <TabControl.Styles>
-
-        <Style Selector="TabItem">
-          <Setter Property="Background" Value="#C4C4C4"/>
-          <Setter Property="Foreground" Value="Black"/>
-          <Setter Property="Template">
-            <ControlTemplate>
-              <Panel Background="{TemplateBinding Background}">
-                <ContentPresenter Name="PART_ContentPresenter"
-                                ContentTemplate="{TemplateBinding HeaderTemplate}"
-                                Content="{TemplateBinding Header}"
-                                HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
-                                VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
-                                Margin="0"/>
-              </Panel>
-            </ControlTemplate>
-          </Setter>
-        </Style>
-
-        <!-- Selected state -->
-        <Style Selector="TabItem:selected /template/ Panel">
-          <Setter Property="Background" Value="DarkGray"/>
-        </Style>
-
-        <Style Selector="TabItem /template/ Panel">
-            <Setter Property="Transitions">
-                <Transitions>
-                      <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
-                </Transitions>
-            </Setter>
-        </Style>
-
-        <!-- PointerOver state -->
-        <Style Selector="TabItem:pointerover /template/ Panel">
-          <Setter Property="Background" Value="DarkGray"/>
-          <Setter Property="RenderTransform" Value="scale(0.9)"/>
-        </Style>
-
-        <!-- убирает вн. отступы(для иконки)  -->
-        <Style Selector="Button.delete /template/ ContentPresenter#PART_ContentPresenter">
-          <Setter Property="Padding" Value="0"/>
-        </Style>
-
-        </TabControl.Styles>
-
       </TabControl>
-
     </DockPanel>
-
   </Grid>
-
 </UserControl>

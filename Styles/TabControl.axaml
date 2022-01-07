@@ -1,0 +1,47 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="TextBlock.wallet_tab">
+      <Setter Property="FontSize" Value="20"/>
+      <Setter Property="Margin" Value="10 0 0 0"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+    </Style>
+
+    <!-- TabItemsPanel  -->
+    <Style Selector="StackPanel.wallet_tab_panel">
+      <Setter Property="Orientation" Value="Vertical"/>
+      <Setter Property="Background" Value="{DynamicResource TabItemPanelBackground}"/>
+      <Setter Property="Width" Value="150"/>
+      <Setter Property="Spacing" Value="0"/>
+    </Style>
+
+    <!-- TabItem -->
+    <Style Selector="TabItem">
+        <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+        <Setter Property="Foreground" Value="Black"/>
+        <Setter Property="Template">
+            <ControlTemplate>
+                <Panel Background="{TemplateBinding Background}">
+                  <ContentPresenter Name="PART_ContentPresenter"
+                                    ContentTemplate="{TemplateBinding HeaderTemplate}"
+                                    Content="{TemplateBinding Header}"
+                                    HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Margin="0"/>
+                </Panel>
+            </ControlTemplate>
+        </Setter>
+    </Style>
+
+    <!-- Selected state -->
+    <Style Selector="TabItem:selected /template/ Panel">
+        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+    </Style>
+
+    <!-- PointerOver state -->
+    <Style Selector="TabItem:pointerover /template/ Panel">
+        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+    </Style>
+
+</Styles>

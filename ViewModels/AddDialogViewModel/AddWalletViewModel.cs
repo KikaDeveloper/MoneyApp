@@ -10,7 +10,7 @@ namespace MoneyApp.ViewModels
 
         private string? _name;
         private int _amount;
-        private AmountRatio? _selectedRatio;
+        private AmountRatio _selectedRatio;
 
         private ReadOnlyCollection<AmountRatio>? _amountRatios;
 
@@ -46,7 +46,7 @@ namespace MoneyApp.ViewModels
                 return new Wallet(){
                     Name = InputName,
                     Amount = InputAmount,
-                    AmountRatioId = SelectedRatio.Id
+                    AmountRatio = SelectedRatio
                 };
             });
 

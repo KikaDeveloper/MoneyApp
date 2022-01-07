@@ -1,0 +1,56 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <Style Selector="TextBlock.category_box">
+        <Setter Property="VerticalAlignment" Value="Center"/>
+        <Setter Property="FontSize" Value="18"/>
+    </Style>
+
+    <!-- ListBoxItem -->
+    <Style Selector="ListBoxItem">
+        <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="14"/>
+    </Style>
+
+    <!-- скрытие и открытие панели с записями -->
+    <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel">
+        <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel">
+        <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
+    <!-- Триггеры для ListBoxItem-ов -->
+    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#C4C4C4" />
+    </Style>
+
+    <!-- Pressed state -->
+    <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#DCDCDC" />
+    </Style>
+
+    <!-- Selected state -->
+    <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#DCDCDC" />
+        <Setter Property="RenderTransform" Value="scale(0.98)"/>
+    </Style>
+
+    <!--  Selected PointerOver State  -->
+    <Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Background" Value="#C4C4C4" />
+    </Style>
+
+    <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
+        <Setter Property="Transitions">
+            <Transitions>
+                <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
+            </Transitions>
+        </Setter>
+    </Style>
+
+
+</Styles>

@@ -26,7 +26,7 @@ namespace MoneyApp.ViewModels
         public AddRecordViewModel(){
             AddCommand = ReactiveCommand.Create<Record>(()=>{
                 return new Record(){
-                    Name = InputText,
+                    Text = InputText,
                     Amount = InputAmount
                 };
             });
