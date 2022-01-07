@@ -51,7 +51,7 @@
                             Classes="wallet_tab"/>
                 <Button Grid.Column="1"
                         Classes="delete">
-                  <Path Data="{StaticResource DeleteButtonIcon}" 
+                  <Path Data="{StaticResource ButtonIcon}" 
                        Classes="delete_icon"/>
                 </Button>
               </Grid>
@@ -70,8 +70,11 @@
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
               <StackPanel Classes="wallet_tab_panel">
-                <Button Content="Add" 
-                        Command="{Binding AddWalletCommand}"/>
+                <Button Command="{Binding AddWalletCommand}"
+                        Classes="open_dialog">
+                        <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                              Classes="open_dialog_icon"/>
+                </Button>
               </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>

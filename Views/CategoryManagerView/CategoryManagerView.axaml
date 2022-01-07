@@ -24,7 +24,7 @@
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
                                     Classes="delete right">
-                                    <Path Data="{StaticResource DeleteButtonIcon}" 
+                                    <Path Data="{StaticResource ButtonIcon}" 
                                           Classes="delete_icon"/>
                               </Button>
 
@@ -43,6 +43,11 @@
                                                 </ItemsPanelTemplate>
                                           </ItemsControl.ItemsPanel>
                                     </ItemsControl>
+                                     <Button Command="{Binding AddRecordCommand}"
+                                          Classes="open_dialog">
+                                          <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                                Classes="open_dialog_icon"/>
+                                    </Button>
                               </StackPanel>
                         </Grid>
                   </DataTemplate>
@@ -50,7 +55,13 @@
 
       <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                  <StackPanel Orientation="Vertical" Spacing="13"/> 
+                  <StackPanel Orientation="Vertical" Spacing="13">
+                        <Button Command="{Binding AddCategoryCommand}"
+                              Classes="open_dialog">
+                              <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                    Classes="open_dialog_icon"/>
+                        </Button>
+                  </StackPanel>  
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
       
