@@ -20,13 +20,16 @@
       <StackPanel Orientation="Horizontal"
                   Spacing="20"
                   HorizontalAlignment="Stretch">
-              <TextBlock Text="Ratio"/>
-             <ComboBox Items="{Binding AmountRatios}"
+              <TextBlock Text="Ratio:"
+                          FontSize="18"
+                          VerticalAlignment="Center"/>
+              <ComboBox Items="{Binding AmountRatios}"
                       SelectedItem="{Binding SelectedRatio}"/>
       </StackPanel>
  
       <Button Content="Add" 
-              Command="{Binding AddCommand}"/>
+              Command="{Binding AddCommand}"
+              HorizontalAlignment="Stretch"/>
     </StackPanel>
   </DockPanel>
  

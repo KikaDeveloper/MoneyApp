@@ -17,7 +17,8 @@
       <TextBox Watermark="Amount"
                 Text="{Binding InputAmount}" />
       <Button Content="Add" 
-              Command="{Binding AddCommand}"/>
+              Command="{Binding AddCommand}"
+              HorizontalAlignment="Stretch"/>
     </StackPanel>
   </DockPanel>
 
