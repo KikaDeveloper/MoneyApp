@@ -1,4 +1,7 @@
 using System.Reactive;
+using System;
+using System.Linq;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ReactiveUI;
 using MoneyApp.Models;
@@ -12,9 +15,9 @@ namespace MoneyApp.ViewModels
         private int _amount;
         private AmountRatio _selectedRatio;
 
-        private ReadOnlyCollection<AmountRatio>? _amountRatios;
+        private List<string>? _amountRatios;
 
-        public ReadOnlyCollection<AmountRatio> AmountRatios
+        public List<string> AmountRatios
         {
             get => _amountRatios!;
             set => this.RaiseAndSetIfChanged(ref _amountRatios, value);
@@ -42,6 +45,8 @@ namespace MoneyApp.ViewModels
 
         public AddWalletViewModel(){
             
+            AmountRatios = Enum.GetNames(typeof(AmountRatio)).ToList();
+
             AddCommand = ReactiveCommand.Create<Wallet?>(() => {
                 return new Wallet(){
                     Name = InputName,

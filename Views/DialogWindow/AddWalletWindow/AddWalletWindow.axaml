@@ -5,7 +5,8 @@
         x:Class="MoneyApp.Dialog.AddWalletWindow"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
-        MaxWidth="310" MaxHeight="150"
+        MaxWidth="310"
+        SizeToContent="Height"
         Title="New Wallet">
   
   <DockPanel>
@@ -16,9 +17,17 @@
                 Text="{Binding InputName}"/>
       <TextBox Watermark="Amount" 
                 Text="{Binding InputAmount}"/>
+      <StackPanel Orientation="Horizontal"
+                  Spacing="20"
+                  HorizontalAlignment="Stretch">
+              <TextBlock Text="Ratio"/>
+             <ComboBox Items="{Binding AmountRatios}"
+                      SelectedItem="{Binding SelectedRatio}"/>
+      </StackPanel>
+ 
       <Button Content="Add" 
               Command="{Binding AddCommand}"/>
     </StackPanel>
   </DockPanel>
-
+ 
 </Window>
