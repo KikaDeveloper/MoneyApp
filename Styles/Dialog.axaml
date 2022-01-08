@@ -1,0 +1,20 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- <Style Selector="DockPanel.dialog">
+      <Setter Property="Background" Value=""/>
+    </Style>
+
+    <Style Selector="TextBox.dialog_input">
+      <Setter Property="" Value=""/>
+    </Style>
+
+    <Style Selector="Button.dialog_add">
+      <Setter Property="" Value=""/>
+    </Style>
+
+    <Style Selector="">
+      <Setter Property="" Value=""/>
+    </Style> -->
+
+</Styles>
