@@ -5,7 +5,7 @@
           <Setter Property="Background" Value="#F2F2F2"/>
           <Setter Property="HorizontalAlignment" Value="Center"/>
           <Setter Property="VerticalAlignment" Value="Center"/>
-          <Setter Property="FontSize" Value="20"/>
+          <Setter Property="FontSize" Value="18"/>
           <Setter Property="Padding" Value="20 3"/>
           <Setter Property="Margin" Value="0" />
           <Setter Property="Template">
