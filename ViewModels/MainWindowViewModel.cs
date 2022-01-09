@@ -1,7 +1,9 @@
 ﻿using ReactiveUI;
 using System.Collections.ObjectModel;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyApp.Models;
+using MoneyApp.Services;
 
 namespace MoneyApp.ViewModels
 {
@@ -16,67 +18,42 @@ namespace MoneyApp.ViewModels
         }
 
         public MainWindowViewModel(){
+            Task.Run(async() => await GetWalletAdapters());
+        }
 
-            WalletViewModel = new WalletViewModel(new List<WalletAdapter>(){
-                new WalletAdapter(){
-                    Wallet = new Wallet(){
-                        Id = 1,
-                        Name = "Wallet1",
-                        Amount = 10000,
-                        AmountRatio = AmountRatio.Day
-                    },
-                    ViewModel = new CategoryManagerViewModel(){
-                        CategoryViewModels = new ObservableCollection<CategoryViewModel>(){
-                            new CategoryViewModel(){
-                                Category = new Category(){
-                                    Id = 1,
-                                    Name = "Home",
-                                    Amount = 1000,
-                                    WalletId = 1,
-                                },
-                                RecordViewModels = new ObservableCollection<RecordViewModel>(){
-                                    new RecordViewModel(){
-                                        Record = new Record(){
-                                            Id = 1,
-                                            Text = "food",
-                                            Amount = 400,
-                                            CategoryId = 1
-                                        }
-                                    }
-                                }
-                            },
-                            new CategoryViewModel(){
-                                Category = new Category(){
-                                    Id = 2,
-                                    Name = "Shop",
-                                    Amount = 1000,
-                                    WalletId = 1
-                                },
-                                RecordViewModels = new ObservableCollection<RecordViewModel>(){
-                                    new RecordViewModel(){
-                                        Record = new Record(){
-                                            Id = 2,
-                                            Text = "Car",
-                                            Amount = 1500,
-                                            CategoryId = 2
-                                        }
-                                    }
-                                }
-                            }
+        private async Task GetWalletAdapters(){
+            MoneyRepository repo = MoneyRepository.Instance;
+
+            var adapters = new List<WalletAdapter>();
+            var wallets = await repo.GetWalletsAsync();
+
+            foreach(var wallet in wallets)
+            {   
+                var categories = await repo.GetCategoriesAsync(wallet.Id);
+                var categories_vm = new List<CategoryViewModel>();
+                    foreach(var category in categories)
+                    {
+                        var records = await repo.GetRecordsAsync(category.Id);
+                        var records_vm = new List<RecordViewModel>();
+                        foreach(var record in records){
+                            records_vm.Add(new RecordViewModel(){
+                                Record = record
+                            });
                         }
+                        categories_vm.Add(new CategoryViewModel(){
+                            Category = category,
+                            RecordViewModels = new ObservableCollection<RecordViewModel>(records_vm)
+                        });
                     }
-                },
-                new WalletAdapter(){
-                    Wallet = new Wallet(){
-                        Id = 2,
-                        Name = "Wallet2",
-                        Amount = 10500,
-                        AmountRatio = AmountRatio.Day
-                    },
-                    ViewModel = new CategoryManagerViewModel()
-                }
-            });
-            
+                adapters.Add(new WalletAdapter(){
+                    Wallet = wallet,
+                    ViewModel = new CategoryManagerViewModel(){
+                        CategoryViewModels = new ObservableCollection<CategoryViewModel>(categories_vm)
+                    }
+                });
+            }
+
+            WalletViewModel = new WalletViewModel(adapters);
         }
     }
 }

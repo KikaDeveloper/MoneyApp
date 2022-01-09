@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -28,10 +29,10 @@ namespace MoneyApp.Services
         public async Task<IEnumerable<Wallet>> GetWalletsAsync()
             => await _db.Wallets.ToListAsync();
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
-            => await _db.Categories.ToListAsync();
+        public async Task<IEnumerable<Category>> GetCategoriesAsync(int walletId)
+            => await _db.Categories.Where(c => c.WalletId == walletId).ToListAsync();
 
-        public async Task<IEnumerable<Record>> GetRecordsAsync()
+        public async Task<IEnumerable<Record>> GetRecordsAsync(int categoryId)
             => await _db.Records.ToListAsync();
 
         #endregion
