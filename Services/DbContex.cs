@@ -27,12 +27,18 @@ namespace MoneyApp.Services{
                         Name = "wallet",
                         Amount = 15000, 
                         AmountRatio = AmountRatio.Day
-                    },
-                    new Wallet(){
-                        Id = 2,
-                        Name = "wallet2",
-                        Amount = 1300,
-                        AmountRatio = AmountRatio.Day
+                    }
+                }
+            );
+
+            modelBuilder.Entity<Category>().HasData(
+                new Category[]{
+                    new Category(){
+                        Id = 1,
+                        Name = "Shop",
+                        Amount = 1500,
+                        IconPath = "sklfk",
+                        WalletId = 1
                     }
                 }
             );
