@@ -8,9 +8,19 @@ namespace MoneyApp.Services
     public class MoneyRepository
     {
         private readonly AppContext _db;
+        private static string _path = "money.db";
+        private static MoneyRepository? _instance;
+        public static MoneyRepository Instance 
+        { 
+            get {
+                if(_instance == null)
+                    _instance = new MoneyRepository();
+                return _instance;
+            }
+        }
 
-        public MoneyRepository(string path){
-            _db = new AppContext(path);
+        protected MoneyRepository(){
+            _db = new AppContext(_path);
             _db.Database.EnsureCreated();
         }
 
