@@ -23,7 +23,7 @@ namespace MoneyApp
                     DataContext = new MainWindowViewModel(),
                 };
                 // установка родительского окна 
-                DialogService.SetOwner(desktop.MainWindow);
+                DialogService.SetOwner(ref desktop);
             }
 
             base.OnFrameworkInitializationCompleted();
