@@ -49,6 +49,7 @@ namespace MoneyApp.ViewModels
                 () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
         }
 
+        // добавление записи и RecordVM в бд
         public async Task InsertRecord(Record record)
         {
             MoneyRepository repo = MoneyRepository.Instance;
@@ -59,6 +60,7 @@ namespace MoneyApp.ViewModels
             RecordViewModels.Add(vm);
         }
 
+        // удаление записи и RecordVM в бд
         private void DeleteRecordEventHandler(object? sender, EventArgs e)
         {
             var vm = (RecordViewModel)sender!;
