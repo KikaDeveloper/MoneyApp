@@ -47,7 +47,7 @@ namespace MoneyApp.ViewModels
                     }
                 adapters.Add(new WalletAdapter(){
                     Wallet = wallet,
-                    ViewModel = new CategoryManagerViewModel(){
+                    ViewModel = new CategoryManagerViewModel(wallet.Id){
                         CategoryViewModels = new ObservableCollection<CategoryViewModel>(categories_vm)
                     }
                 });
