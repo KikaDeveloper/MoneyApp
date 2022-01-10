@@ -50,7 +50,8 @@
                             Grid.Column="0"
                             Classes="wallet_tab"/>
                 <Button Grid.Column="1"
-                        Classes="delete">
+                        Classes="delete"
+                        Command="{Binding DeleteWalletCommand}">
                   <Path Data="{StaticResource ButtonIcon}" 
                        Classes="delete_icon"/>
                 </Button>
@@ -62,7 +63,7 @@
             <DataTemplate>
               <Grid ColumnDefinitions="5*, 5*">
                 <v:CategoryManagerView Grid.Column="0" 
-                                        DataContext="{Binding ViewModel}"/>
+                                        DataContext="{Binding CategoryManagerViewModel}"/>
               </Grid>
             </DataTemplate>
           </TabControl.ContentTemplate>

@@ -11,16 +11,16 @@ namespace MoneyApp.ViewModels
 {
     public class WalletManagerViewModel : ViewModelBase
     {
-        private ObservableCollection<WalletAdapter>? _walletAdpters;
-        private WalletAdapter? _selectedAdapter;
+        private ObservableCollection<WalletViewModel>? _walletAdpters;
+        private WalletViewModel? _selectedAdapter;
 
-        public ObservableCollection<WalletAdapter> WalletAdapters 
+        public ObservableCollection<WalletViewModel> WalletViewModels 
         {
             get => _walletAdpters!;
             set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
         }
 
-        public WalletAdapter SelectedAdapter
+        public WalletViewModel SelectedAdapter
         {
             get => _selectedAdapter!;
             set => this.RaiseAndSetIfChanged(ref _selectedAdapter, value);
@@ -28,9 +28,10 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand? AddWalletCommand { get; set; }
 
-        public WalletManagerViewModel(IEnumerable<WalletAdapter> walletAdapters){
-            WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
-            SelectedAdapter = WalletAdapters.First();
+        public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
+        {
+            WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
+            SelectedAdapter = WalletViewModels.First();
 
             AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Wallet>(
@@ -38,8 +39,8 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddWalletViewModel()
                     }
                 );
-
-                await InsertWallet(result);
+                if(result != null)
+                    await InsertWallet(result);
             });
         }
 
@@ -47,9 +48,9 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertWalletAsync(wallet);
             
-            WalletAdapters.Add(new WalletAdapter(){
+            WalletViewModels.Add(new WalletViewModel(){
                 Wallet = wallet,
-                ViewModel = new CategoryManagerViewModel(wallet.Id)
+                CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id)
             });
         }
     }

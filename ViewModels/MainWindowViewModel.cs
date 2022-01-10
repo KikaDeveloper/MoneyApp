@@ -17,14 +17,16 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
         }
 
-        public MainWindowViewModel(){
+        public MainWindowViewModel()
+        {
             Task.Run(async() => await GetWalletAdapters());
         }
 
-        private async Task GetWalletAdapters(){
+        private async Task GetWalletAdapters()
+        {
             MoneyRepository repo = MoneyRepository.Instance;
 
-            var adapters = new List<WalletAdapter>();
+            var adapters = new List<WalletViewModel>();
             var wallets = await repo.GetWalletsAsync();
 
             foreach(var wallet in wallets)
@@ -46,9 +48,9 @@ namespace MoneyApp.ViewModels
                         });
                     }
                 // добавление адаптера в коллецию
-                adapters.Add(new WalletAdapter(){
+                adapters.Add(new WalletViewModel(){
                     Wallet = wallet,
-                    ViewModel = new CategoryManagerViewModel(wallet.Id){
+                    CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id){
                         CategoryViewModels = new ObservableCollection<CategoryViewModel>(categories_vm)
                     }
                 });
