@@ -1,4 +1,5 @@
 using System.Linq;
+using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using ReactiveUI;
@@ -37,6 +38,18 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddWalletViewModel()
                     }
                 );
+
+                await InsertWallet(result);
+            });
+        }
+
+        public async Task InsertWallet(Wallet wallet){
+            MoneyRepository repo = MoneyRepository.Instance;
+            await repo.InsertWalletAsync(wallet);
+            
+            WalletAdapters.Add(new WalletAdapter(){
+                Wallet = wallet,
+                ViewModel = new CategoryManagerViewModel(wallet.Id)
             });
         }
     }
