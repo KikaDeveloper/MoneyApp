@@ -7,7 +7,7 @@ namespace MoneyApp.ViewModels
     public class WalletViewModel : ViewModelBase
     {
         private Wallet? _wallet;
-        private CategoryManagerViewModel? _categoryMangerViewModel;
+        private CategoryManagerViewModel? _categoryManagerViewModel;
 
         public event EventHandler? DeleteWalletEvent;
 
@@ -19,8 +19,8 @@ namespace MoneyApp.ViewModels
 
         public CategoryManagerViewModel CategoryManagerViewModel
         {
-            get => _categoryMangerViewModel!;
-            set => this.RaiseAndSetIfChanged(ref _categoryMangerViewModel, value);
+            get => _categoryManagerViewModel!;
+            set => this.RaiseAndSetIfChanged(ref _categoryManagerViewModel, value);
         }
 
         public IReactiveCommand? DeleteWalletCommand { get; }

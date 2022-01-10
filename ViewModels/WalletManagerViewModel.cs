@@ -12,7 +12,7 @@ namespace MoneyApp.ViewModels
     public class WalletManagerViewModel : ViewModelBase
     {
         private ObservableCollection<WalletViewModel>? _walletAdpters;
-        private WalletViewModel? _selectedAdapter;
+        private WalletViewModel? _selectedWalletViewModel;
 
         public ObservableCollection<WalletViewModel> WalletViewModels 
         {
@@ -20,10 +20,10 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
         }
 
-        public WalletViewModel SelectedAdapter
+        public WalletViewModel SelectedWalletViewModel
         {
-            get => _selectedAdapter!;
-            set => this.RaiseAndSetIfChanged(ref _selectedAdapter, value);
+            get => _selectedWalletViewModel!;
+            set => this.RaiseAndSetIfChanged(ref _selectedWalletViewModel, value);
         }
 
         public IReactiveCommand? AddWalletCommand { get; set; }
@@ -31,7 +31,7 @@ namespace MoneyApp.ViewModels
         public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
         {
             WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
-            SelectedAdapter = WalletViewModels.First();
+            SelectedWalletViewModel = WalletViewModels.First();
 
             AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Wallet>(
