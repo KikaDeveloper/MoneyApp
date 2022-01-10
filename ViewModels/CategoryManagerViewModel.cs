@@ -1,3 +1,4 @@
+using System;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using ReactiveUI;
@@ -45,9 +46,21 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertCategoryAsync(category);
 
-            CategoryViewModels.Add(new CategoryViewModel(){
+            var vm = new CategoryViewModel(){
                 Category = category,
                 RecordViewModels = new ObservableCollection<RecordViewModel>()
+            };
+            vm.DeleteCategoryEvent += DeleteCategoryEventHandler;
+
+            CategoryViewModels.Add(vm);
+        }
+
+        private void DeleteCategoryEventHandler(object? sender, EventArgs e){
+            var vm = (CategoryViewModel)sender!;
+            CategoryViewModels.Remove(vm);
+            Task.Run(async()=>{
+                MoneyRepository repo = MoneyRepository.Instance;
+                await repo.DeleteCategoryAsync(vm.Category);
             });
         }
     }
