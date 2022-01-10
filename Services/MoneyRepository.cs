@@ -33,7 +33,7 @@ namespace MoneyApp.Services
             => await _db.Categories.Where(c => c.WalletId == walletId).ToListAsync();
 
         public async Task<IEnumerable<Record>> GetRecordsAsync(int categoryId)
-            => await _db.Records.ToListAsync();
+            => await _db.Records.Where(r => r.CategoryId == categoryId).ToListAsync();
 
         #endregion
         
