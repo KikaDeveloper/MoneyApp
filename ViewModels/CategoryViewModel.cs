@@ -27,6 +27,7 @@ namespace MoneyApp.ViewModels
         }
 
         public IReactiveCommand AddRecordCommand { get; }
+        public IReactiveCommand DeleteCategoryCommand { get; }
 
         public CategoryViewModel(){
             AddRecordCommand = ReactiveCommand.CreateFromTask(async()=>{
@@ -39,6 +40,9 @@ namespace MoneyApp.ViewModels
                 result.CategoryId = Category.Id;
                 await InsertRecord(result);
             });
+
+            DeleteCategoryCommand = ReactiveCommand.Create(
+                () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
         }
 
         public async Task InsertRecord(Record record){
