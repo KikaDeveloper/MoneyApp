@@ -1,4 +1,5 @@
 using ReactiveUI;
+using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MoneyApp.Models;
 using MoneyApp.Services;
@@ -33,6 +34,16 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddRecordViewModel()
                     }
                 );
+                await InsertRecord(result);
+            });
+        }
+
+        public async Task InsertRecord(Record record){
+            MoneyRepository repo = MoneyRepository.Instance;
+            await repo.InsertRecordAsync(record);
+
+            RecordViewModels.Add(new RecordViewModel(){
+                Record = record
             });
         }
 
