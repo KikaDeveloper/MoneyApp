@@ -1,4 +1,5 @@
 using ReactiveUI;
+using System;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using MoneyApp.Models;
@@ -11,6 +12,7 @@ namespace MoneyApp.ViewModels
     {
         private Category? _category;
         private ObservableCollection<RecordViewModel>? _recordViewModels;
+        public event EventHandler? DeleteCategoryEvent;
 
         public Category Category
         {
@@ -43,10 +45,18 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertRecordAsync(record);
 
-            RecordViewModels.Add(new RecordViewModel(){
-                Record = record
-            });
+            var vm = new RecordViewModel(record);
+            vm.DeleteRecordEvent += DeleteRecordEventHandler;
+            RecordViewModels.Add(vm);
         }
 
+        private void DeleteRecordEventHandler(object? sender, EventArgs e){
+            var vm = (RecordViewModel)sender!;
+            RecordViewModels.Remove(vm);
+            Task.Run(async()=>{
+                MoneyRepository repo = MoneyRepository.Instance;
+                await repo.DeleteRecordAsync(vm.Record);
+            });
+        }
     }
 }
