@@ -29,10 +29,12 @@ namespace MoneyApp.ViewModels
 
             foreach(var wallet in wallets)
             {   
+                // получение категорий кошелька
                 var categories = await repo.GetCategoriesAsync(wallet.Id);
                 var categories_vm = new List<CategoryViewModel>();
                     foreach(var category in categories)
                     {
+                        // получение записей конкретной категории
                         var records = await repo.GetRecordsAsync(category.Id);
                         var records_vm = new List<RecordViewModel>();
                         foreach(var record in records){
@@ -45,6 +47,7 @@ namespace MoneyApp.ViewModels
                             RecordViewModels = new ObservableCollection<RecordViewModel>(records_vm)
                         });
                     }
+                // добавление адаптера в коллецию
                 adapters.Add(new WalletAdapter(){
                     Wallet = wallet,
                     ViewModel = new CategoryManagerViewModel(wallet.Id){
