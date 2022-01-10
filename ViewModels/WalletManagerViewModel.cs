@@ -1,3 +1,4 @@
+using System;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Collections.Generic;
@@ -11,13 +12,13 @@ namespace MoneyApp.ViewModels
 {
     public class WalletManagerViewModel : ViewModelBase
     {
-        private ObservableCollection<WalletViewModel>? _walletAdpters;
+        private ObservableCollection<WalletViewModel>? _walletViewModels;
         private WalletViewModel? _selectedWalletViewModel;
 
         public ObservableCollection<WalletViewModel> WalletViewModels 
         {
-            get => _walletAdpters!;
-            set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
+            get => _walletViewModels!;
+            set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
         }
 
         public WalletViewModel SelectedWalletViewModel
@@ -30,7 +31,14 @@ namespace MoneyApp.ViewModels
 
         public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
         {
-            WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
+            this.WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
+            
+            // подписка на событие удаления кошелька
+            foreach(var walletVM in this.WalletViewModels)
+            {
+                walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
+            }
+
             SelectedWalletViewModel = WalletViewModels.First();
 
             AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
@@ -44,6 +52,7 @@ namespace MoneyApp.ViewModels
             });
         }
 
+        // добавление кошелька и его viewmodel
         public async Task InsertWallet(Wallet wallet){
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertWalletAsync(wallet);
@@ -51,6 +60,17 @@ namespace MoneyApp.ViewModels
             WalletViewModels.Add(new WalletViewModel(){
                 Wallet = wallet,
                 CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id)
+            });
+        }
+
+        // удаление кошелька и его viewmodel из бд
+        public void DeleteWalletEventHandler(object? sender, EventArgs e){
+            var vm = (WalletViewModel)sender!;
+            WalletViewModels.Remove(vm);
+    
+            Task.Run(async()=>{
+                MoneyRepository repo = MoneyRepository.Instance;
+                await repo.DeleteWalletAsync(vm.Wallet);
             });
         }
     }
