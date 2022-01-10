@@ -37,8 +37,11 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddCategoryViewModel()
                     }
                 );
-                result.WalletId = _walletId;
-                await InsertCategory(result);
+                if(result != null)
+                {
+                    result.WalletId = _walletId;
+                    await InsertCategory(result);
+                }
             });
         }
 

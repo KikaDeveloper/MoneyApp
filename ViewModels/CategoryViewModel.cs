@@ -29,7 +29,8 @@ namespace MoneyApp.ViewModels
         public IReactiveCommand AddRecordCommand { get; }
         public IReactiveCommand DeleteCategoryCommand { get; }
 
-        public CategoryViewModel(){
+        public CategoryViewModel()
+        {
             AddRecordCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Record>(
                     new AddRecordWindow()
@@ -37,15 +38,19 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddRecordViewModel()
                     }
                 );
-                result.CategoryId = Category.Id;
-                await InsertRecord(result);
+                if(result != null)
+                {
+                    result.CategoryId = Category.Id;
+                    await InsertRecord(result);
+                }
             });
 
             DeleteCategoryCommand = ReactiveCommand.Create(
                 () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
         }
 
-        public async Task InsertRecord(Record record){
+        public async Task InsertRecord(Record record)
+        {
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertRecordAsync(record);
 
@@ -54,7 +59,8 @@ namespace MoneyApp.ViewModels
             RecordViewModels.Add(vm);
         }
 
-        private void DeleteRecordEventHandler(object? sender, EventArgs e){
+        private void DeleteRecordEventHandler(object? sender, EventArgs e)
+        {
             var vm = (RecordViewModel)sender!;
             RecordViewModels.Remove(vm);
             Task.Run(async()=>{
