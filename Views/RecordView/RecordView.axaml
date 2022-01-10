@@ -7,7 +7,7 @@
 
   <Border Classes="record_box">
     <Grid ColumnDefinitions="4*, 4*, 2*">
-      <TextBlock Text="{Binding Record.Name}" 
+      <TextBlock Text="{Binding Record.Text}" 
                   Grid.Column="0"
                   Classes="record_box left"/>
       <TextBlock Text="{Binding Record.Amount}" 
