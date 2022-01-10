@@ -8,7 +8,7 @@
              
       <ListBox Items="{Binding CategoryViewModels}"
                SelectionMode="Toggle"
-               SelectedItem="{Binding SelectedCategory}">
+               SelectedItem="{Binding SelectedCategoryViewModel}">
             <ListBox.ItemTemplate>
                   <DataTemplate>
                       <Grid ColumnDefinitions="4*, 4*, 2*"
