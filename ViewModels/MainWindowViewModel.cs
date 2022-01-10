@@ -38,9 +38,7 @@ namespace MoneyApp.ViewModels
                         var records = await repo.GetRecordsAsync(category.Id);
                         var records_vm = new List<RecordViewModel>();
                         foreach(var record in records){
-                            records_vm.Add(new RecordViewModel(){
-                                Record = record
-                            });
+                            records_vm.Add(new RecordViewModel(record));
                         }
                         categories_vm.Add(new CategoryViewModel(){
                             Category = category,
