@@ -34,6 +34,7 @@ namespace MoneyApp.ViewModels
                         DataContext = new AddRecordViewModel()
                     }
                 );
+                result.CategoryId = Category.Id;
                 await InsertRecord(result);
             });
         }
