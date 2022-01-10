@@ -26,7 +26,7 @@ namespace MoneyApp.ViewModels
         {
             MoneyRepository repo = MoneyRepository.Instance;
 
-            var adapters = new List<WalletViewModel>();
+            var walletViewModels = new List<WalletViewModel>();
             var wallets = await repo.GetWalletsAsync();
 
             foreach(var wallet in wallets)
@@ -48,7 +48,7 @@ namespace MoneyApp.ViewModels
                         });
                     }
                 // добавление адаптера в коллецию
-                adapters.Add(new WalletViewModel(){
+                walletViewModels.Add(new WalletViewModel(){
                     Wallet = wallet,
                     CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id){
                         CategoryViewModels = new ObservableCollection<CategoryViewModel>(categories_vm)
@@ -56,7 +56,7 @@ namespace MoneyApp.ViewModels
                 });
             }
 
-            WalletViewModel = new WalletManagerViewModel(adapters);
+            WalletViewModel = new WalletManagerViewModel(walletViewModels);
         }
     }
 }
