@@ -37,7 +37,6 @@ namespace MoneyApp.Services{
                         Id = 1,
                         Name = "Shop",
                         Amount = 1500,
-                        IconPath = "sklfk",
                         WalletId = 1
                     }
                 }
