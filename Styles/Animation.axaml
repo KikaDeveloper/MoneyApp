@@ -2,6 +2,30 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
       <!-- Wallet tab animation -->
+      <Style Selector="TabItem:pointerover /template/ Panel">
+        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+        <Style.Animations>
+          <Animation Duration="0:0:0.15" PlaybackDirection="Alternate">
+            <KeyFrame Cue="0%">
+              <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+            </KeyFrame>
+            <KeyFrame Cue="100%">
+              <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+            </KeyFrame>
+          </Animation>
+        </Style.Animations>
+      </Style>
+
+      <Style Selector="TabItem:selected:pointerover /template/ Panel">
+        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+        <Style.Animations>
+          <Animation Duration="0:0:0.15">
+            <KeyFrame Cue="100%">
+              <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+            </KeyFrame>
+          </Animation>
+        </Style.Animations>
+      </Style>
 
       <!-- Category box animation -->
 
