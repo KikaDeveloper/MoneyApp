@@ -45,6 +45,7 @@ namespace MoneyApp.ViewModels
             });
         }
 
+        // добавление категории и categoryVM в бд
         public async Task InsertCategory(Category category){
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertCategoryAsync(category);
@@ -58,6 +59,7 @@ namespace MoneyApp.ViewModels
             CategoryViewModels.Add(vm);
         }
 
+        // удаление категории и categoryVM в бд
         private void DeleteCategoryEventHandler(object? sender, EventArgs e){
             var vm = (CategoryViewModel)sender!;
             CategoryViewModels.Remove(vm);
