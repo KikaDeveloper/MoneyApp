@@ -9,9 +9,9 @@ namespace MoneyApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private WalletViewModel? _walletViewModels;
+        private WalletManagerViewModel? _walletViewModels;
 
-        public WalletViewModel WalletViewModel
+        public WalletManagerViewModel WalletViewModel
         {
             get => _walletViewModels!;
             set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
@@ -54,7 +54,7 @@ namespace MoneyApp.ViewModels
                 });
             }
 
-            WalletViewModel = new WalletViewModel(adapters);
+            WalletViewModel = new WalletManagerViewModel(adapters);
         }
     }
 }

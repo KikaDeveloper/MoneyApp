@@ -9,7 +9,7 @@ using MoneyApp.Services;
 
 namespace MoneyApp.ViewModels
 {
-    public class WalletViewModel : ViewModelBase
+    public class WalletManagerViewModel : ViewModelBase
     {
         private ObservableCollection<WalletAdapter>? _walletAdpters;
         private WalletAdapter? _selectedAdapter;
@@ -28,7 +28,7 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand? AddWalletCommand { get; set; }
 
-        public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
+        public WalletManagerViewModel(IEnumerable<WalletAdapter> walletAdapters){
             WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
             SelectedAdapter = WalletAdapters.First();
 
