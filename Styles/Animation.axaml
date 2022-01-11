@@ -34,4 +34,36 @@
       <!-- Delete button animation -->
 
       <!-- Open dialog button animation -->
+
+      <!-- анимация пропадания и появления кнопки открытия диалог. окна -->
+      <Style Selector="StackPanel.open_dialog_button_fade[IsPointerOver=true] > Button.open_dialog">
+         <Setter Property="Opacity" Value="1.0"/>
+        <!-- Анимация появления кнопки -->
+        <Style.Animations>
+            <Animation Duration="0:0:0.1">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0.0"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1.0"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+      </Style>
+
+      <Style Selector="StackPanel.open_dialog_button_fade[IsPointerOver=false] > Button.open_dialog">
+          <Setter Property="Opacity" Value="0.0"/>
+          <!-- Анимация пропадания кнопки -->
+          <Style.Animations>
+              <Animation Duration="0:0:0.1" PlaybackDirection="Reverse">
+                  <KeyFrame Cue="0%">
+                      <Setter Property="Opacity" Value="0.0"/>
+                  </KeyFrame>
+                  <KeyFrame Cue="100%">
+                      <Setter Property="Opacity" Value="1.0"/>
+                  </KeyFrame>
+              </Animation>
+          </Style.Animations>
+      </Style>
+
 </Styles>

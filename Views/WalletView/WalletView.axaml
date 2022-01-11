@@ -70,9 +70,8 @@
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Classes="wallet_tab_panel">
+              <StackPanel Classes="wallet_tab_panel open_dialog_button_fade">
                 <Button Command="{Binding AddWalletCommand}"
-                        Name="addWallet"
                         Classes="open_dialog"
                         Margin="0 13 0 0">
                         <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"

@@ -66,13 +66,13 @@
 
       <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                  <StackPanel Orientation="Vertical" Spacing="13">
+                  <StackPanel Classes="list_box_item_panel open_dialog_button_fade">
                         <Button Command="{Binding AddCategoryCommand}"
                               Classes="open_dialog">
                               <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
                                     Classes="open_dialog_icon"/>
                         </Button>
-                  </StackPanel>  
+                  </StackPanel>
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
 
