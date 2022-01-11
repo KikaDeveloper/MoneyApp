@@ -36,8 +36,9 @@ namespace MoneyApp.ViewModels
             RecordViewModels = new ObservableCollection<RecordViewModel>(recordViewModels);
 
             // подписка на событие удаления записи
-            foreach(var recordVM in RecordViewModels)
-                recordVM.DeleteRecordEvent += DeleteRecordEventHandler;
+            if(RecordViewModels.Count > 0)
+                foreach(var recordVM in RecordViewModels)
+                    recordVM.DeleteRecordEvent += DeleteRecordEventHandler;
 
             AddRecordCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Record>(

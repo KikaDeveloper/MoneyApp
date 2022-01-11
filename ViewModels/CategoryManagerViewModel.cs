@@ -35,10 +35,9 @@ namespace MoneyApp.ViewModels
             CategoryViewModels = new ObservableCollection<CategoryViewModel>(categoryViewModels);
 
             // подписка на событие удаления категории
-            foreach(var categoryVM in CategoryViewModels)
-            {
-                categoryVM.DeleteCategoryEvent += DeleteCategoryEventHandler;
-            }
+            if(CategoryViewModels.Count > 0)
+                foreach(var categoryVM in CategoryViewModels)
+                    categoryVM.DeleteCategoryEvent += DeleteCategoryEventHandler;
 
             AddCategoryCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Category>(

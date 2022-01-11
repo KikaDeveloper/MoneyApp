@@ -34,10 +34,9 @@ namespace MoneyApp.ViewModels
             this.WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
             
             // подписка на событие удаления кошелька
-            foreach(var walletVM in this.WalletViewModels)
-            {
-                walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
-            }
+            if(this.WalletViewModels.Count > 0)
+                foreach(var walletVM in this.WalletViewModels)
+                    walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
 
             SelectedWalletViewModel = WalletViewModels.First();
 
