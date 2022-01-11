@@ -72,6 +72,7 @@
             <ItemsPanelTemplate>
               <StackPanel Classes="wallet_tab_panel">
                 <Button Command="{Binding AddWalletCommand}"
+                        Name="addWallet"
                         Classes="open_dialog"
                         Margin="0 13 0 0">
                         <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
