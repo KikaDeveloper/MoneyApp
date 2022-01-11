@@ -17,18 +17,18 @@
               <Border Classes="header_wallet">
                 <StackPanel Orientation="Horizontal"
                             Spacing="8">
-                  <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount}"
                               Classes="header"/>
                   <TextBlock Text="out of"
                               Classes="header"/>
-                  <TextBlock Text="{Binding SelectedAdapter.Wallet.Amount}"
+                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount}"
                               Classes="header"/>
                 </StackPanel>
               </Border>
 
               <!-- Period or Ratio -->
               <Border Classes="header_wallet">
-                  <TextBlock Text="{Binding SelectedAdapter.Wallet.AmountRatio}"
+                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.AmountRatio}"
                               Classes="header"/>
               </Border>
           </StackPanel>
@@ -37,8 +37,8 @@
     <DockPanel Grid.Row="1"
                 Background="#F2F2F2">
 
-      <TabControl Items="{Binding WalletAdapters}"
-                  SelectedItem="{Binding SelectedAdapter}"
+      <TabControl Items="{Binding WalletViewModels}"
+                  SelectedItem="{Binding SelectedWalletViewModel}"
                   TabStripPlacement="Left">
 
           <TabControl.ItemTemplate>
@@ -50,8 +50,9 @@
                             Grid.Column="0"
                             Classes="wallet_tab"/>
                 <Button Grid.Column="1"
-                        Classes="delete">
-                  <Path Data="{StaticResource DeleteButtonIcon}" 
+                        Classes="delete"
+                        Command="{Binding DeleteWalletCommand}">
+                  <Path Data="{StaticResource ButtonIcon}" 
                        Classes="delete_icon"/>
                 </Button>
               </Grid>
@@ -62,7 +63,7 @@
             <DataTemplate>
               <Grid ColumnDefinitions="5*, 5*">
                 <v:CategoryManagerView Grid.Column="0" 
-                                        DataContext="{Binding ViewModel}"/>
+                                        DataContext="{Binding CategoryManagerViewModel}"/>
               </Grid>
             </DataTemplate>
           </TabControl.ContentTemplate>
@@ -70,8 +71,13 @@
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
               <StackPanel Classes="wallet_tab_panel">
-                <Button Content="Add" 
-                        Command="{Binding AddWalletCommand}"/>
+                <Button Command="{Binding AddWalletCommand}"
+                        Name="addWallet"
+                        Classes="open_dialog"
+                        Margin="0 13 0 0">
+                        <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                              Classes="open_dialog_icon"/>
+                </Button>
               </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>

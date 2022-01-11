@@ -6,6 +6,7 @@
     <Color x:Key="Color2">#DCDCDC</Color>
     <Color x:Key="Color3">#C4C4C4</Color>
     <Color x:Key="Color4">#757575</Color>
+    <Color x:Key="Color5">#E4DEDE</Color>
 
     <Color x:Key="Foreground">Black</Color>
     <Color x:Key="HighlightColor">DarkGray</Color> 
@@ -27,10 +28,19 @@
     <SolidColorBrush x:Key="RecordItemBackground" Color="{StaticResource Color1}"/>
 
     <!-- Delete button resources -->
-    <SolidColorBrush x:Key="DeleteButtonBackground" Color="#E4DEDE"/>
+    <SolidColorBrush x:Key="DeleteButtonBackground" Color="{StaticResource Color5}"/>
     <SolidColorBrush x:Key="DeleteButtonIconColor" Color="{StaticResource Color4}"/>
     <x:Double x:Key="DeleteIconSize">10</x:Double>
     <x:Double x:Key="DeleteButtonSize">20</x:Double>
-    <StreamGeometry x:Key="DeleteButtonIcon">M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z</StreamGeometry>
+
+    <!-- Open dialog button resources -->
+    <SolidColorBrush x:Key="OpenDialogButtonBackground" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="OpenDialogButtonIconColor" Color="{StaticResource Color4}"/>
+    <x:Double x:Key="OpenDialogIconSize">14</x:Double>
+    <x:Double x:Key="OpenDialogButtonSize">32</x:Double>
+    <StreamGeometry x:Key="OpenDialogButtonIcon">M4 0C4.13261 0 4.25979 0.0526785 4.35355 0.146447C4.44732 0.240215 4.5 0.367392 4.5 0.5V3.5H7.5C7.63261 3.5 7.75979 3.55268 7.85355 3.64645C7.94732 3.74021 8 3.86739 8 4C8 4.13261 7.94732 4.25979 7.85355 4.35355C7.75979 4.44732 7.63261 4.5 7.5 4.5H4.5V7.5C4.5 7.63261 4.44732 7.75979 4.35355 7.85355C4.25979 7.94732 4.13261 8 4 8C3.86739 8 3.74021 7.94732 3.64645 7.85355C3.55268 7.75979 3.5 7.63261 3.5 7.5V4.5H0.5C0.367392 4.5 0.240215 4.44732 0.146447 4.35355C0.0526785 4.25979 0 4.13261 0 4C0 3.86739 0.0526785 3.74021 0.146447 3.64645C0.240215 3.55268 0.367392 3.5 0.5 3.5H3.5V0.5C3.5 0.367392 3.55268 0.240215 3.64645 0.146447C3.74021 0.0526785 3.86739 0 4 0V0Z</StreamGeometry>
+
+    <!-- Delete and open dialog buttons icon -->
+    <StreamGeometry x:Key="ButtonIcon">M8.59 0L5 3.59L1.41 0L0 1.41L3.59 5L0 8.59L1.41 10L5 6.41L8.59 10L10 8.59L6.41 5L10 1.41L8.59 0Z</StreamGeometry>
 
 </ResourceDictionary>

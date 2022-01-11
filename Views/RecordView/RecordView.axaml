@@ -7,15 +7,16 @@
 
   <Border Classes="record_box">
     <Grid ColumnDefinitions="4*, 4*, 2*">
-      <TextBlock Text="{Binding Record.Name}" 
+      <TextBlock Text="{Binding Record.Text}" 
                   Grid.Column="0"
                   Classes="record_box left"/>
       <TextBlock Text="{Binding Record.Amount}" 
                   Grid.Column="1"
                   Classes="record_box right"/>
       <Button Grid.Column="2"
-              Classes="delete right">
-          <Path Data="{StaticResource DeleteButtonIcon}" 
+              Classes="delete right"
+              Command="{Binding DeleteRecordCommand}">
+          <Path Data="{StaticResource ButtonIcon}" 
                 Classes="delete_icon"/>
       </Button>
     </Grid>

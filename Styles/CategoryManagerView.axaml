@@ -52,5 +52,21 @@
         </Setter>
     </Style>
 
+    <!-- стили переключающие видимость Amount категории -->
+    <Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#Amount">
+        <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#Amount">
+        <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#RemainingAmount">
+        <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#RemainingAmount">
+        <Setter Property="IsVisible" Value="false"/>
+    </Style>
 
 </Styles>

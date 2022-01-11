@@ -24,5 +24,6 @@
         <StyleInclude Source="/Styles/CategoryManagerView.axaml"/>
         <StyleInclude Source="/Styles/Buttons.axaml"/>
         <StyleInclude Source="/Styles/Animation.axaml"/>
+        <StyleInclude Source="/Styles/Dialog.axaml"/>
     </Application.Styles>
 </Application>

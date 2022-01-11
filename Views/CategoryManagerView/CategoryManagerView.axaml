@@ -8,7 +8,7 @@
              
       <ListBox Items="{Binding CategoryViewModels}"
                SelectionMode="Toggle"
-               SelectedItem="{Binding SelectedCategory}">
+               SelectedItem="{Binding SelectedCategoryViewModel}">
             <ListBox.ItemTemplate>
                   <DataTemplate>
                       <Grid ColumnDefinitions="4*, 4*, 2*"
@@ -17,19 +17,30 @@
                                     Grid.Column="0"
                                     Grid.Row="0" 
                                     Classes="category_box left"/>
+                              <!-- Amount -->
                               <TextBlock Text="{Binding Category.Amount}"
+                                    Name="Amount"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Classes="category_box right"/>
+                              <!-- RemainingAmount -->
+                              <TextBlock Text="{Binding RemainingAmount}"
+                                    Name="RemainingAmount"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     Classes="category_box right"/>
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
-                                    Classes="delete right">
-                                    <Path Data="{StaticResource DeleteButtonIcon}" 
+                                    Classes="delete right"
+                                    Command="{Binding DeleteCategoryCommand}">
+                                    <Path Data="{StaticResource ButtonIcon}" 
                                           Classes="delete_icon"/>
                               </Button>
 
+                              <!-- Отображение списка записей -->
                               <StackPanel Grid.ColumnSpan="3"
                                           Grid.Row="1"
+                                          Spacing="13"
                                           Margin="0 10 0 0">
                                     <ItemsControl Items="{Binding RecordViewModels}">
                                           <ItemsControl.ItemTemplate>
@@ -43,6 +54,11 @@
                                                 </ItemsPanelTemplate>
                                           </ItemsControl.ItemsPanel>
                                     </ItemsControl>
+                                     <Button Command="{Binding AddRecordCommand}"
+                                          Classes="open_dialog">
+                                          <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                                Classes="open_dialog_icon"/>
+                                    </Button>
                               </StackPanel>
                         </Grid>
                   </DataTemplate>
@@ -50,7 +66,13 @@
 
       <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                  <StackPanel Orientation="Vertical" Spacing="13"/> 
+                  <StackPanel Orientation="Vertical" Spacing="13">
+                        <Button Command="{Binding AddCategoryCommand}"
+                              Classes="open_dialog">
+                              <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                    Classes="open_dialog_icon"/>
+                        </Button>
+                  </StackPanel>  
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
 
