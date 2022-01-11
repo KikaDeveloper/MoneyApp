@@ -19,10 +19,10 @@ namespace MoneyApp.ViewModels
 
         public MainWindowViewModel()
         {
-            Task.Run(async() => await GetWalletAdapters());
+            Task.Run(async() => await GetWalletViewModels());
         }
 
-        private async Task GetWalletAdapters()
+        private async Task GetWalletViewModels()
         {
             MoneyRepository repo = MoneyRepository.Instance;
 
@@ -59,7 +59,7 @@ namespace MoneyApp.ViewModels
                     CategoryManagerViewModel = new CategoryManagerViewModel
                     (
                         wallet.Id,
-                        new List<CategoryViewModel>()
+                        categories_vm
                     )
                 });
             }
