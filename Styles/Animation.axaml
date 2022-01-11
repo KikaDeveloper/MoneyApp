@@ -1,7 +1,7 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-      <!-- Wallet tab animation -->
+          <!-- Wallet tab animation -->
       <Style Selector="TabItem:pointerover /template/ Panel">
         <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
         <Style.Animations>
@@ -27,16 +27,21 @@
         </Style.Animations>
       </Style>
 
-      <!-- Category box animation -->
+          <!-- Category box animation -->
 
-      <!-- Record box animation -->
+          <!-- Record box animation -->
 
-      <!-- Delete button animation -->
+          <!-- Delete button animation -->
 
-      <!-- Open dialog button animation -->
+          <!-- Open dialog button animation -->
+
+      <Style Selector="Panel.open_dialog_button_fade">
+        <Setter Property="HorizontalAlignment" Value="Stretch"/>
+        <Setter Property="Background" Value="Transparent"/>
+      </Style>
 
       <!-- анимация пропадания и появления кнопки открытия диалог. окна -->
-      <Style Selector="StackPanel.open_dialog_button_fade[IsPointerOver=true] > Button.open_dialog">
+      <Style Selector="Panel.open_dialog_button_fade[IsPointerOver=true] > Button.open_dialog">
          <Setter Property="Opacity" Value="1.0"/>
         <!-- Анимация появления кнопки -->
         <Style.Animations>
@@ -51,7 +56,7 @@
         </Style.Animations>
       </Style>
 
-      <Style Selector="StackPanel.open_dialog_button_fade[IsPointerOver=false] > Button.open_dialog">
+      <Style Selector="Panel.open_dialog_button_fade[IsPointerOver=false] > Button.open_dialog">
           <Setter Property="Opacity" Value="0.0"/>
           <!-- Анимация пропадания кнопки -->
           <Style.Animations>
