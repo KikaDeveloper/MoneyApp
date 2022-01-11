@@ -32,13 +32,13 @@ namespace MoneyApp.ViewModels
         public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
         {
             this.WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
-            
+     
             // подписка на событие удаления кошелька
             if(this.WalletViewModels.Count > 0)
                 foreach(var walletVM in this.WalletViewModels)
                     walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
 
-            SelectedWalletViewModel = WalletViewModels.First();
+            SelectedWalletViewModel = this.WalletViewModels.FirstOrDefault()!;
 
             AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Wallet>(

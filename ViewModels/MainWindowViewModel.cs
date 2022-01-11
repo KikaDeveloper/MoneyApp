@@ -1,5 +1,5 @@
 ﻿using ReactiveUI;
-using System.Collections.ObjectModel;
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using MoneyApp.Models;
@@ -9,12 +9,12 @@ namespace MoneyApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private WalletManagerViewModel? _walletViewModels;
+        private WalletManagerViewModel? _walletManagerViewModel;
 
-        public WalletManagerViewModel WalletViewModel
+        public WalletManagerViewModel WalletManagerViewModel
         {
-            get => _walletViewModels!;
-            set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
+            get => _walletManagerViewModel!;
+            set => this.RaiseAndSetIfChanged(ref _walletManagerViewModel, value);
         }
 
         public MainWindowViewModel()
@@ -28,43 +28,44 @@ namespace MoneyApp.ViewModels
 
             var walletViewModels = new List<WalletViewModel>();
             var wallets = await repo.GetWalletsAsync();
+            
+            if(wallets.ToList().Count > 0)
+                foreach(var wallet in wallets)
+                {   
+                    // получение категорий кошелька
+                    var categories = await repo.GetCategoriesAsync(wallet.Id);
+                    var categories_vm = new List<CategoryViewModel>();
 
-            foreach(var wallet in wallets)
-            {   
-                // получение категорий кошелька
-                var categories = await repo.GetCategoriesAsync(wallet.Id);
-                var categories_vm = new List<CategoryViewModel>();
-
-                foreach(var category in categories)
-                {
-                    // получение записей конкретной категории
-                    var records = await repo.GetRecordsAsync(category.Id);
-                    var records_vm = new List<RecordViewModel>();
-
-                    foreach(var record in records)
+                    foreach(var category in categories)
                     {
-                        records_vm.Add(new RecordViewModel(record));
+                        // получение записей конкретной категории
+                        var records = await repo.GetRecordsAsync(category.Id);
+                        var records_vm = new List<RecordViewModel>();
+
+                        foreach(var record in records)
+                        {
+                            records_vm.Add(new RecordViewModel(record));
+                        }
+
+                        categories_vm.Add(new CategoryViewModel
+                        (
+                            category, 
+                            new List<RecordViewModel>(records_vm)
+                        ));
                     }
-
-                    categories_vm.Add(new CategoryViewModel
-                    (
-                        category, 
-                        new List<RecordViewModel>(records_vm)
-                    ));
+                    
+                    // добавление walletVM в коллецию
+                    walletViewModels.Add(new WalletViewModel(){
+                        Wallet = wallet,
+                        CategoryManagerViewModel = new CategoryManagerViewModel
+                        (
+                            wallet.Id,
+                            categories_vm
+                        )
+                    });
                 }
-                 
-                // добавление адаптера в коллецию
-                walletViewModels.Add(new WalletViewModel(){
-                    Wallet = wallet,
-                    CategoryManagerViewModel = new CategoryManagerViewModel
-                    (
-                        wallet.Id,
-                        categories_vm
-                    )
-                });
-            }
 
-            WalletViewModel = new WalletManagerViewModel(walletViewModels);
+            WalletManagerViewModel = new WalletManagerViewModel(walletViewModels);
         }
     }
 }
