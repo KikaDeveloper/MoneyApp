@@ -34,25 +34,33 @@ namespace MoneyApp.ViewModels
                 // получение категорий кошелька
                 var categories = await repo.GetCategoriesAsync(wallet.Id);
                 var categories_vm = new List<CategoryViewModel>();
-                    foreach(var category in categories)
+
+                foreach(var category in categories)
+                {
+                    // получение записей конкретной категории
+                    var records = await repo.GetRecordsAsync(category.Id);
+                    var records_vm = new List<RecordViewModel>();
+
+                    foreach(var record in records)
                     {
-                        // получение записей конкретной категории
-                        var records = await repo.GetRecordsAsync(category.Id);
-                        var records_vm = new List<RecordViewModel>();
-                        foreach(var record in records){
-                            records_vm.Add(new RecordViewModel(record));
-                        }
-                        categories_vm.Add(new CategoryViewModel(){
-                            Category = category,
-                            RecordViewModels = new ObservableCollection<RecordViewModel>(records_vm)
-                        });
+                        records_vm.Add(new RecordViewModel(record));
                     }
+
+                    categories_vm.Add(new CategoryViewModel
+                    (
+                        category, 
+                        new List<RecordViewModel>(records_vm)
+                    ));
+                }
+                 
                 // добавление адаптера в коллецию
                 walletViewModels.Add(new WalletViewModel(){
                     Wallet = wallet,
-                    CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id){
-                        CategoryViewModels = new ObservableCollection<CategoryViewModel>(categories_vm)
-                    }
+                    CategoryManagerViewModel = new CategoryManagerViewModel
+                    (
+                        wallet.Id,
+                        new List<CategoryViewModel>()
+                    )
                 });
             }
 

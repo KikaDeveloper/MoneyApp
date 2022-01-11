@@ -15,11 +15,11 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _record, value);
         }
 
-        public IReactiveCommand DeleteCommand { get; }
+        public IReactiveCommand DeleteRecordCommand { get; }
 
         public RecordViewModel(Record record){
             Record = record;
-            DeleteCommand = ReactiveCommand.Create(()=>{
+            DeleteRecordCommand = ReactiveCommand.Create(()=>{
                 DeleteRecordEvent?.Invoke(this, new EventArgs());
             });
         }

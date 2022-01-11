@@ -59,7 +59,11 @@ namespace MoneyApp.ViewModels
             
             WalletViewModels.Add(new WalletViewModel(){
                 Wallet = wallet,
-                CategoryManagerViewModel = new CategoryManagerViewModel(wallet.Id)
+                CategoryManagerViewModel = new CategoryManagerViewModel
+                (
+                    wallet.Id,
+                    new List<CategoryViewModel>()
+                )
             });
         }
 

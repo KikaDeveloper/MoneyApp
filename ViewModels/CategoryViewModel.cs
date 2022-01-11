@@ -1,6 +1,7 @@
 using ReactiveUI;
 using System;
 using System.Threading.Tasks;
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using MoneyApp.Models;
 using MoneyApp.Services;
@@ -29,8 +30,15 @@ namespace MoneyApp.ViewModels
         public IReactiveCommand AddRecordCommand { get; }
         public IReactiveCommand DeleteCategoryCommand { get; }
 
-        public CategoryViewModel()
+        public CategoryViewModel(Category category,IEnumerable<RecordViewModel> recordViewModels)
         {
+            Category = category;
+            RecordViewModels = new ObservableCollection<RecordViewModel>(recordViewModels);
+
+            // подписка на событие удаления записи
+            foreach(var recordVM in RecordViewModels)
+                recordVM.DeleteRecordEvent += DeleteRecordEventHandler;
+
             AddRecordCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Record>(
                     new AddRecordWindow()

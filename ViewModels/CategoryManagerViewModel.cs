@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Collections.ObjectModel;
 using ReactiveUI;
@@ -28,8 +29,16 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand AddCategoryCommand { get; }
 
-        public CategoryManagerViewModel(int walletId){
+        public CategoryManagerViewModel(int walletId, IEnumerable<CategoryViewModel> categoryViewModels){
             _walletId = walletId;
+            
+            CategoryViewModels = new ObservableCollection<CategoryViewModel>(categoryViewModels);
+
+            // подписка на событие удаления категории
+            foreach(var categoryVM in CategoryViewModels)
+            {
+                categoryVM.DeleteCategoryEvent += DeleteCategoryEventHandler;
+            }
 
             AddCategoryCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Category>(
@@ -50,12 +59,13 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertCategoryAsync(category);
 
-            var vm = new CategoryViewModel(){
-                Category = category,
-                RecordViewModels = new ObservableCollection<RecordViewModel>()
-            };
+            var vm = new CategoryViewModel
+            (
+                category,
+                new List<RecordViewModel>()
+            );
+            
             vm.DeleteCategoryEvent += DeleteCategoryEventHandler;
-
             CategoryViewModels.Add(vm);
         }
 

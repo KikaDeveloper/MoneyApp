@@ -14,7 +14,8 @@
                   Grid.Column="1"
                   Classes="record_box right"/>
       <Button Grid.Column="2"
-              Classes="delete right">
+              Classes="delete right"
+              Command="{Binding DeleteRecordCommand}">
           <Path Data="{StaticResource ButtonIcon}" 
                 Classes="delete_icon"/>
       </Button>
