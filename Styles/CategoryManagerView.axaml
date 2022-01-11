@@ -69,4 +69,10 @@
         <Setter Property="IsVisible" Value="false"/>
     </Style>
 
+    <!-- ListBoxItem panel template -->
+    <Style Selector="StackPanel.list_box_item_panel">
+        <Setter Property="Orientation" Value="Vertical"/>
+        <Setter Property="Spacing" Value="13"/>
+    </Style>
+
 </Styles>
