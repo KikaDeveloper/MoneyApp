@@ -17,7 +17,15 @@
                                     Grid.Column="0"
                                     Grid.Row="0" 
                                     Classes="category_box left"/>
+                              <!-- Amount -->
                               <TextBlock Text="{Binding Category.Amount}"
+                                    Name="Amount"
+                                    Grid.Column="1"
+                                    Grid.Row="0"
+                                    Classes="category_box right"/>
+                              <!-- RemainingAmount -->
+                              <TextBlock Text="{Binding RemainingAmount}"
+                                    Name="RemainingAmount"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     Classes="category_box right"/>
@@ -29,6 +37,7 @@
                                           Classes="delete_icon"/>
                               </Button>
 
+                              <!-- Отображение списка записей -->
                               <StackPanel Grid.ColumnSpan="3"
                                           Grid.Row="1"
                                           Spacing="13"

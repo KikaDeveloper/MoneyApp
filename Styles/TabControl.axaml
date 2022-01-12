@@ -17,6 +17,37 @@
       <Setter Property="Spacing" Value="0"/>
     </Style>
 
+    <!-- переключение видимости кнопки добавления кошелька(Wallet) -->
+    <Style Selector="StackPanel.wallet_tab_panel[IsPointerOver=true] > Button#addWallet">
+        <Setter Property="Opacity" Value="1.0"/>
+        <!-- Анимация появления кнопки -->
+        <Style.Animations>
+            <Animation Duration="0:0:0.1">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0.0"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1.0"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+    </Style>
+
+    <Style Selector="StackPanel.wallet_tab_panel[IsPointerOver=false] > Button#addWallet">
+        <!-- Анимация пропадания кнопки -->
+        <Style.Animations>
+            <Animation Duration="0:0:0.1" PlaybackDirection="Reverse">
+                <KeyFrame Cue="0%">
+                    <Setter Property="Opacity" Value="0.0"/>
+                </KeyFrame>
+                <KeyFrame Cue="100%">
+                    <Setter Property="Opacity" Value="1.0"/>
+                </KeyFrame>
+            </Animation>
+        </Style.Animations>
+        <Setter Property="Opacity" Value="0.0"/>
+    </Style>
+
     <!-- TabItem -->
     <Style Selector="TabItem">
         <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
