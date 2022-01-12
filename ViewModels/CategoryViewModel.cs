@@ -54,7 +54,7 @@ namespace MoneyApp.ViewModels
                 var result = await DialogService.ShowDialogAsync<Record>(
                     new AddRecordWindow()
                     {
-                        DataContext = new AddRecordViewModel()
+                        DataContext = new AddRecordViewModel(RemainingAmount)
                     }
                 );
                 if(result != null)

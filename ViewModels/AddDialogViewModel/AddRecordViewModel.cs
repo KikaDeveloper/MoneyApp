@@ -1,5 +1,7 @@
 using ReactiveUI;
 using ReactiveUI.Validation.Contexts;
+using Avalonia.Input;
+using System;
 using System.Reactive;
 using MoneyApp.Models;
 
@@ -9,6 +11,9 @@ namespace MoneyApp.ViewModels
     {
         private string? _text;
         private int _amount;
+        private string? _maxAmount;
+        private IObservable<bool>? _dialogValid;
+        private int _categoryRemainingAmount;
 
         public string InputText 
         {
@@ -22,17 +27,26 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _amount, value);
         }
 
-        public ReactiveCommand<Unit, Record?> AddCommand { get; }
+        public string MaxAmount
+        {
+            get => _maxAmount!;
+            set => this.RaiseAndSetIfChanged(ref _maxAmount, value);
+        }
+
+        public ReactiveCommand<Unit, Record?> AddCommand { get; set; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddRecordViewModel(){
+        public AddRecordViewModel(int categoryRemainingAmount){
+            _categoryRemainingAmount = categoryRemainingAmount;
+            MaxAmount = $"Max amount: {categoryRemainingAmount}";
 
-             // валидация полей ввода
-            var dialogValid = this.WhenAnyValue(
+            _dialogValid = this.WhenAnyValue(
                 x => x.InputText,
                 x => x.InputAmount,
                 (name, amount) => {
-                    if(!string.IsNullOrEmpty(name) && amount > 0)
+                    var nameV = !string.IsNullOrEmpty(name);
+                    var amountV = amount > 0 && _categoryRemainingAmount >= amount; 
+                    if(nameV && amountV)
                         return true;
                     else return false;
                 }
@@ -43,7 +57,16 @@ namespace MoneyApp.ViewModels
                     Text = InputText,
                     Amount = InputAmount
                 };
-            }, dialogValid);
+            }, _dialogValid);
+        
+        }
+
+        //обработчик ввода в InputAmount
+        public void TextInputAmount(object? sender, TextInputEventArgs e)
+        {   
+            // удаление текста в input
+            if(!char.IsDigit(e.Text![0]))
+                e.Handled = true;
         }
     }
 }
