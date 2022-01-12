@@ -1,42 +1,39 @@
-using System.Linq;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using ReactiveUI;
-using MoneyApp.Dialog;
+using System;
 using MoneyApp.Models;
-using MoneyApp.Services;
 
 namespace MoneyApp.ViewModels
 {
     public class WalletViewModel : ViewModelBase
     {
-        private ObservableCollection<WalletAdapter>? _walletAdpters;
-        private WalletAdapter? _selectedAdapter;
+        private Wallet? _wallet;
+        private CategoryManagerViewModel? _categoryManagerViewModel;
 
-        public ObservableCollection<WalletAdapter> WalletAdapters 
+        public event EventHandler? DeleteWalletEvent;
+
+        public Wallet Wallet
         {
-            get => _walletAdpters!;
-            set => this.RaiseAndSetIfChanged(ref _walletAdpters, value);
+            get => _wallet!;
+            set => this.RaiseAndSetIfChanged(ref _wallet, value);
         }
 
-        public WalletAdapter SelectedAdapter
+        public CategoryManagerViewModel CategoryManagerViewModel
         {
-            get => _selectedAdapter!;
-            set => this.RaiseAndSetIfChanged(ref _selectedAdapter, value);
+            get => _categoryManagerViewModel!;
+            set => this.RaiseAndSetIfChanged(ref _categoryManagerViewModel, value);
         }
 
-        public IReactiveCommand? AddWalletCommand { get; set; }
+        public IReactiveCommand? DeleteWalletCommand { get; }
 
-        public WalletViewModel(IEnumerable<WalletAdapter> walletAdapters){
-            WalletAdapters = new ObservableCollection<WalletAdapter>(walletAdapters);
-            SelectedAdapter = WalletAdapters.First();
+        public WalletViewModel(Wallet wallet):base()
+        {
+            Wallet = wallet;
+        }
 
-            AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var result = await DialogService.ShowDialogAsync<Wallet>(
-                    new AddWalletWindow(){
-                        DataContext = new AddWalletViewModel()
-                    }
-                );
+        public WalletViewModel()
+        {
+            DeleteWalletCommand = ReactiveCommand.Create(()=>{
+                DeleteWalletEvent?.Invoke(this, new EventArgs());
             });
         }
     }

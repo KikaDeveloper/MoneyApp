@@ -1,3 +1,4 @@
+using System.Linq;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
@@ -8,9 +9,19 @@ namespace MoneyApp.Services
     public class MoneyRepository
     {
         private readonly AppContext _db;
+        private static string _path = "money.db";
+        private static MoneyRepository? _instance;
+        public static MoneyRepository Instance 
+        { 
+            get {
+                if(_instance == null)
+                    _instance = new MoneyRepository();
+                return _instance;
+            }
+        }
 
-        public MoneyRepository(string path){
-            _db = new AppContext(path);
+        protected MoneyRepository(){
+            _db = new AppContext(_path);
             _db.Database.EnsureCreated();
         }
 
@@ -18,11 +29,11 @@ namespace MoneyApp.Services
         public async Task<IEnumerable<Wallet>> GetWalletsAsync()
             => await _db.Wallets.ToListAsync();
 
-        public async Task<IEnumerable<Category>> GetCategoriesAsync()
-            => await _db.Categories.ToListAsync();
+        public async Task<IEnumerable<Category>> GetCategoriesAsync(int walletId)
+            => await _db.Categories.Where(c => c.WalletId == walletId).ToListAsync();
 
-        public async Task<IEnumerable<Record>> GetRecordsAsync()
-            => await _db.Records.ToListAsync();
+        public async Task<IEnumerable<Record>> GetRecordsAsync(int categoryId)
+            => await _db.Records.Where(r => r.CategoryId == categoryId).ToListAsync();
 
         #endregion
         

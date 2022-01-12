@@ -8,7 +8,7 @@
              
       <ListBox Items="{Binding CategoryViewModels}"
                SelectionMode="Toggle"
-               SelectedItem="{Binding SelectedCategory}">
+               SelectedItem="{Binding SelectedCategoryViewModel}">
             <ListBox.ItemTemplate>
                   <DataTemplate>
                       <Grid ColumnDefinitions="4*, 4*, 2*"
@@ -23,7 +23,8 @@
                                     Classes="category_box right"/>
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
-                                    Classes="delete right">
+                                    Classes="delete right"
+                                    Command="{Binding DeleteCategoryCommand}">
                                     <Path Data="{StaticResource ButtonIcon}" 
                                           Classes="delete_icon"/>
                               </Button>

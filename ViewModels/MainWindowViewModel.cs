@@ -1,82 +1,71 @@
 ﻿using ReactiveUI;
-using System.Collections.ObjectModel;
+using System.Linq;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using MoneyApp.Models;
+using MoneyApp.Services;
 
 namespace MoneyApp.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {
-        private WalletViewModel? _walletViewModels;
+        private WalletManagerViewModel? _walletManagerViewModel;
 
-        public WalletViewModel WalletViewModel
+        public WalletManagerViewModel WalletManagerViewModel
         {
-            get => _walletViewModels!;
-            set => this.RaiseAndSetIfChanged(ref _walletViewModels, value);
+            get => _walletManagerViewModel!;
+            set => this.RaiseAndSetIfChanged(ref _walletManagerViewModel, value);
         }
 
-        public MainWindowViewModel(){
+        public MainWindowViewModel()
+        {
+            Task.Run(async() => await GetWalletViewModels());
+        }
 
-            WalletViewModel = new WalletViewModel(new List<WalletAdapter>(){
-                new WalletAdapter(){
-                    Wallet = new Wallet(){
-                        Id = 1,
-                        Name = "Wallet1",
-                        Amount = 10000,
-                        AmountRatio = AmountRatio.Day
-                    },
-                    ViewModel = new CategoryManagerViewModel(){
-                        CategoryViewModels = new ObservableCollection<CategoryViewModel>(){
-                            new CategoryViewModel(){
-                                Category = new Category(){
-                                    Id = 1,
-                                    Name = "Home",
-                                    Amount = 1000,
-                                    WalletId = 1,
-                                },
-                                RecordViewModels = new ObservableCollection<RecordViewModel>(){
-                                    new RecordViewModel(){
-                                        Record = new Record(){
-                                            Id = 1,
-                                            Text = "food",
-                                            Amount = 400,
-                                            CategoryId = 1
-                                        }
-                                    }
-                                }
-                            },
-                            new CategoryViewModel(){
-                                Category = new Category(){
-                                    Id = 2,
-                                    Name = "Shop",
-                                    Amount = 1000,
-                                    WalletId = 1
-                                },
-                                RecordViewModels = new ObservableCollection<RecordViewModel>(){
-                                    new RecordViewModel(){
-                                        Record = new Record(){
-                                            Id = 2,
-                                            Text = "Car",
-                                            Amount = 1500,
-                                            CategoryId = 2
-                                        }
-                                    }
-                                }
-                            }
-                        }
-                    }
-                },
-                new WalletAdapter(){
-                    Wallet = new Wallet(){
-                        Id = 2,
-                        Name = "Wallet2",
-                        Amount = 10500,
-                        AmountRatio = AmountRatio.Day
-                    },
-                    ViewModel = new CategoryManagerViewModel()
-                }
-            });
+        private async Task GetWalletViewModels()
+        {
+            MoneyRepository repo = MoneyRepository.Instance;
+
+            var walletViewModels = new List<WalletViewModel>();
+            var wallets = await repo.GetWalletsAsync();
             
+            if(wallets.ToList().Count > 0)
+                foreach(var wallet in wallets)
+                {   
+                    // получение категорий кошелька
+                    var categories = await repo.GetCategoriesAsync(wallet.Id);
+                    var categories_vm = new List<CategoryViewModel>();
+
+                    foreach(var category in categories)
+                    {
+                        // получение записей конкретной категории
+                        var records = await repo.GetRecordsAsync(category.Id);
+                        var records_vm = new List<RecordViewModel>();
+
+                        foreach(var record in records)
+                        {
+                            records_vm.Add(new RecordViewModel(record));
+                        }
+
+                        categories_vm.Add(new CategoryViewModel
+                        (
+                            category, 
+                            new List<RecordViewModel>(records_vm)
+                        ));
+                    }
+                    
+                    // добавление walletVM в коллецию
+                    walletViewModels.Add(new WalletViewModel(){
+                        Wallet = wallet,
+                        CategoryManagerViewModel = new CategoryManagerViewModel
+                        (
+                            wallet.Id,
+                            categories_vm
+                        )
+                    });
+                }
+
+            WalletManagerViewModel = new WalletManagerViewModel(walletViewModels);
         }
     }
 }
