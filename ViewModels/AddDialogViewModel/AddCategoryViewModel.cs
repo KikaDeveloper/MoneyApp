@@ -1,11 +1,12 @@
 using System.Reactive;
 using ReactiveUI;
+using ReactiveUI.Validation.Contexts;
 using MoneyApp.Models;
 
 
 namespace MoneyApp.ViewModels{
 
-    public class  AddCategoryViewModel:ViewModelBase
+    public class  AddCategoryViewModel : ViewModelBase, IDailogWindowViewModel<Category>
     {
         private string? _name;
         private int _amount;
@@ -22,15 +23,28 @@ namespace MoneyApp.ViewModels{
             set => this.RaiseAndSetIfChanged(ref _amount, value);
         }
 
-        public ReactiveCommand<Unit, Category> AddCommand { get; }
+        public ReactiveCommand<Unit, Category?> AddCommand { get; }
+        public ValidationContext ValidationContext { get; } = new ValidationContext();
 
         public AddCategoryViewModel(){
-            AddCommand = ReactiveCommand.Create<Category>(()=>{
+            
+            // валидация полей ввода
+            var dialogValid = this.WhenAnyValue(
+                x => x.InputName,
+                x => x.InputAmount,
+                (name, amount) => {
+                    if(!string.IsNullOrEmpty(name) && amount > 0)
+                        return true;
+                    else return false;
+                }
+            );
+            
+            AddCommand = ReactiveCommand.Create<Category?>(()=>{
                 return new Category(){
                     Name = InputName,
                     Amount = InputAmount
                 };
-            });
+            }, dialogValid);
         }
     }
 }

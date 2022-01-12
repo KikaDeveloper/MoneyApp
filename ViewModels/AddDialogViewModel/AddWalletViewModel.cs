@@ -1,13 +1,14 @@
-using System.Reactive;
 using System;
 using System.Linq;
+using System.Reactive;
 using System.Collections.Generic;
 using ReactiveUI;
+using ReactiveUI.Validation.Contexts;
 using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
 {
-    public class AddWalletViewModel : ViewModelBase
+    public class AddWalletViewModel : ViewModelBase, IDailogWindowViewModel<Wallet>
     {
 
         private string? _name;
@@ -41,10 +42,24 @@ namespace MoneyApp.ViewModels
 
         public ReactiveCommand<Unit, Wallet?> AddCommand { get; }
 
-        public AddWalletViewModel(){
+        public ValidationContext ValidationContext { get; } = new ValidationContext();
+
+        public AddWalletViewModel(){ 
             
             AmountRatios = Enum.GetNames(typeof(AmountRatio)).ToList();
             SelectedRatio = AmountRatios.First();
+
+            // валидация полей ввода
+            var dialogValid = this.WhenAnyValue(
+                x => x.InputName,
+                x => x.InputAmount,
+                x => x.SelectedRatio,
+                (name, amount, ratio) => {
+                    if(!string.IsNullOrEmpty(name) && amount > 0 && ratio != null)
+                        return true;
+                    else return false;
+                }
+            );
 
             AddCommand = ReactiveCommand.Create<Wallet?>(() => {
                 return new Wallet(){
@@ -52,7 +67,7 @@ namespace MoneyApp.ViewModels
                     Amount = InputAmount,
                     AmountRatio = (AmountRatio)Enum.Parse(typeof(AmountRatio), SelectedRatio)
                 };
-            });
+            }, dialogValid);
 
         }
     }
