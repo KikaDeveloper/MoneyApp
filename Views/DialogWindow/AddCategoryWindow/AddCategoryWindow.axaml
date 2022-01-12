@@ -15,7 +15,8 @@
       <TextBox Watermark="Name"
                 Text="{Binding InputName}"/>
       <TextBox Watermark="Amount" 
-                Text="{Binding InputAmount}"/>
+                Text="{Binding InputAmount}"
+                Name="Amount"/>
       <Button Content="Add" 
               Command="{Binding AddCommand}"
               HorizontalAlignment="Stretch"/>
