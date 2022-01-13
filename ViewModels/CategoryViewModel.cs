@@ -13,14 +13,14 @@ namespace MoneyApp.ViewModels
     public class CategoryViewModel:ViewModelBase
     {
         private Category? _category;
-        private int _remainingAmount;
+        private int _availableAmount;
         private ObservableCollection<RecordViewModel>? _recordViewModels;
         public event EventHandler? DeleteCategoryEvent;
 
         public int AvailableAmount
         {
-            get => _remainingAmount;
-            set => this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+            get => _availableAmount;
+            set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
         }
 
         public Category Category

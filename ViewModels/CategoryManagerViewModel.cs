@@ -14,6 +14,8 @@ namespace MoneyApp.ViewModels
         private int _walletId;
         private CategoryViewModel? _selectedCategoryViewModel;
         private ObservableCollection<CategoryViewModel>?  _categoryViewModels;
+        
+        public int WalletAvailableAmount { get; set; }
 
         public ObservableCollection<CategoryViewModel> CategoryViewModels
         {
@@ -42,7 +44,11 @@ namespace MoneyApp.ViewModels
             AddCategoryCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Category>(
                     new AddCategoryWindow(){
-                        DataContext = new AddCategoryViewModel()
+                        DataContext = new AddCategoryViewModel
+                        (
+                            WalletAvailableAmount,
+                            "New Category"
+                        )
                     }
                 );
                 if(result != null)

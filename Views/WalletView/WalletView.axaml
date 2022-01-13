@@ -28,7 +28,7 @@
 							Name="Amount"/>
 							
 				<!-- Remaining Amount-->							
-				<TextBlock Text="{Binding SelectedWalletViewModel.RemainingAmount, Converter={StaticResource AmountConverter}}"
+				<TextBlock Text="{Binding SelectedWalletViewModel.AvailableAmount, Converter={StaticResource AmountConverter}}"
 							Classes="header"
 							Name="RemainingAmount"/>
 				</StackPanel>

@@ -15,7 +15,10 @@ namespace MoneyApp.ViewModels
         public int AvailableAmount
         {
             get => _remainingAmount;
-            set => this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+            set {
+                this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+                CategoryManagerViewModel.WalletAvailableAmount = value;
+            }
         }
 
         public Wallet Wallet
