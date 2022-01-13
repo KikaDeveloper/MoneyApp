@@ -12,7 +12,7 @@ namespace MoneyApp.ViewModels
         private int _remainingAmount;
         public event EventHandler? DeleteWalletEvent;
 
-        public int RemainingAmount
+        public int AvailableAmount
         {
             get => _remainingAmount;
             set => this.RaiseAndSetIfChanged(ref _remainingAmount, value);
@@ -50,7 +50,7 @@ namespace MoneyApp.ViewModels
             int remainingAmount = Wallet.Amount;
             foreach(var categoryVM in CategoryManagerViewModel.CategoryViewModels)
                 remainingAmount -= categoryVM.Category.Amount;
-            RemainingAmount = remainingAmount;
+            AvailableAmount = remainingAmount;
         }
 
         private void CategoryViewModelsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
