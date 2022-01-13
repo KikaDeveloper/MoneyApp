@@ -10,6 +10,7 @@ namespace MoneyApp.ViewModels{
     {
         private string? _name;
         private int _amount;
+        private int _availableAmount;
 
         public string InputName
         {
@@ -23,17 +24,26 @@ namespace MoneyApp.ViewModels{
             set => this.RaiseAndSetIfChanged(ref _amount, value);
         }
 
+        public int AvailableAmount
+        {
+            get => _availableAmount;
+            set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
+        }
+
         public ReactiveCommand<Unit, Category?> AddCommand { get; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddCategoryViewModel(){
-            
+        public AddCategoryViewModel(int availableWalletAmount){
+            AvailableAmount = availableWalletAmount;
+
             // валидация полей ввода
             var dialogValid = this.WhenAnyValue(
                 x => x.InputName,
                 x => x.InputAmount,
                 (name, amount) => {
-                    if(!string.IsNullOrEmpty(name) && amount > 0)
+                    var nameV = !string.IsNullOrEmpty(name);
+                    var amountV = amount > 0 && AvailableAmount >= amount; 
+                    if(nameV && amountV)
                         return true;
                     else return false;
                 }

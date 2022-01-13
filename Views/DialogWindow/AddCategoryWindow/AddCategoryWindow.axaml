@@ -8,19 +8,27 @@
         MaxWidth="310" MaxHeight="150"
         Title="New Category">
   
-  <DockPanel>
-    <StackPanel Orientation="Vertical"
-                Margin="20 15"
-                Spacing="15">
-      <TextBox Watermark="Name"
-                Text="{Binding InputName}"/>
-      <TextBox Watermark="Amount" 
-                Text="{Binding InputAmount}"
-                Name="Amount"/>
-      <Button Content="Add" 
-              Command="{Binding AddCommand}"
-              HorizontalAlignment="Stretch"/>
-    </StackPanel>
-  </DockPanel>
+	<DockPanel>
+		<StackPanel Orientation="Vertical"
+					Margin="20 15"
+					Spacing="15">
+		<!-- Input для текста -->
+		<TextBox Watermark="Name"
+					Text="{Binding InputName}"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="10">
+			<!-- Input для суммы -->
+			<TextBox Watermark="Amount"
+				Text="{Binding InputAmount}"
+				Name="Amount"/>
+			<!-- достпуная для ввода сумма -->
+			<TextBlock Text="{Binding AvailableAmount}" />
+		</StackPanel>
+		
+		<Button Content="Add" 
+				Command="{Binding AddCommand}"
+				HorizontalAlignment="Stretch"/>
+		</StackPanel>
+	</DockPanel>
 
 </Window>
