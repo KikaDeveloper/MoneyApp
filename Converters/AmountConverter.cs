@@ -10,12 +10,14 @@ namespace MoneyApp.Converters
             if(parameter != null && parameter.ToString() == "RU")
                 return ((int)value).ToString("# ### ### ###", culture) + "р.";
             else if((int)value == 0) 
-                return ((int)value).ToString(culture);
+                return "0";
             else return ((int)value).ToString("# ### ### ###", culture);
         }
 
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture){
-            throw new NotSupportedException("Two way bindings are not supported with a string format");
+            if(string.IsNullOrEmpty((string)value))
+                return 0;
+            else return value;
         }
     }
 }
