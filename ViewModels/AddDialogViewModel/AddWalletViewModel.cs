@@ -8,7 +8,7 @@ using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
 {
-    public class AddWalletViewModel : ViewModelBase, IDailogWindowViewModel<Wallet>
+    public class AddWalletViewModel : ViewModelBase
     {
 
         private string? _name;
