@@ -9,6 +9,8 @@ namespace MoneyApp.Converters
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture){
             if(parameter != null && parameter.ToString() == "RU")
                 return ((int)value).ToString("# ### ### ###", culture) + "р.";
+            else if((int)value == 0) 
+                return ((int)value).ToString(culture);
             else return ((int)value).ToString("# ### ### ###", culture);
         }
 
