@@ -22,4 +22,21 @@
       <Setter Property="FontSize" Value="20"/>
     </Style>
 
+    <!-- стили переключающие видимость Amount категории -->
+    <Style Selector="Border.header_wallet[IsPointerOver=true] > StackPanel > TextBlock#Amount">
+      <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
+    <Style Selector="Border.header_wallet[IsPointerOver=false] > StackPanel > TextBlock#Amount">
+      <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="Border.header_wallet[IsPointerOver=true] > StackPanel > TextBlock#RemainingAmount">
+      <Setter Property="IsVisible" Value="true"/>
+    </Style>
+
+    <Style Selector="Border.header_wallet[IsPointerOver=false] > StackPanel > TextBlock#RemainingAmount">
+      <Setter Property="IsVisible" Value="false"/>
+    </Style>
+
 </Styles>

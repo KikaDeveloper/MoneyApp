@@ -55,14 +55,14 @@ namespace MoneyApp.ViewModels
                     }
                     
                     // добавление walletVM в коллецию
-                    walletViewModels.Add(new WalletViewModel(){
-                        Wallet = wallet,
-                        CategoryManagerViewModel = new CategoryManagerViewModel
+                    walletViewModels.Add(new WalletViewModel(
+                        wallet, 
+                        new CategoryManagerViewModel
                         (
                             wallet.Id,
                             categories_vm
                         )
-                    });
+                    ));
                 }
 
             WalletManagerViewModel = new WalletManagerViewModel(walletViewModels);
