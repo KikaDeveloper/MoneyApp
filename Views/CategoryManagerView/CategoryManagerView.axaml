@@ -29,7 +29,7 @@
                                     Grid.Row="0"
                                     Classes="category_box right"/>
                               <!-- RemainingAmount -->
-                              <TextBlock Text="{Binding RemainingAmount, Converter={StaticResource AmountConverter}}"
+                              <TextBlock Text="{Binding AvailableAmount, Converter={StaticResource AmountConverter}}"
                                     Name="RemainingAmount"
                                     Grid.Column="1"
                                     Grid.Row="0"
