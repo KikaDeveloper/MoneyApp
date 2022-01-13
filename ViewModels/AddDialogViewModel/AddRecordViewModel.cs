@@ -5,11 +5,18 @@ using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
 {
-    public class  AddRecordViewModel : ViewModelBase, IDailogWindowViewModel<Record>
+    public class AddRecordViewModel : ViewModelBase
     {
         private string? _text;
         private int _amount;
         private int _availableAmount;
+        private string? _title;
+
+        public string Title
+        {
+            get => _title!;
+            set => this.RaiseAndSetIfChanged(ref _title, value);
+        }
 
         public string InputText 
         {
@@ -32,8 +39,9 @@ namespace MoneyApp.ViewModels
         public ReactiveCommand<Unit, Record?> AddCommand { get; set; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddRecordViewModel(int availableCategoryAmount){
-            AvailableAmount = availableCategoryAmount;
+        public AddRecordViewModel(int availableAmount, string title){
+            AvailableAmount = availableAmount;
+            Title = title;
 
             // валидация полей ввода
             var _dialogValid = this.WhenAnyValue(
@@ -56,6 +64,5 @@ namespace MoneyApp.ViewModels
             }, _dialogValid);
         
         }
-
     }
 }
