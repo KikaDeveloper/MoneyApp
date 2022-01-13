@@ -55,31 +55,36 @@
                                           </ItemsControl.ItemTemplate>
                                           <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                      <StackPanel Orientation="Vertical" Spacing="12"/>
+                                                      <StackPanel Classes="record_item_panel open_dialog_button_fade">
+                                                            <Panel Classes="open_dialog_button_fade">
+                                                                  <Button Command="{Binding AddRecordCommand}"
+                                                                        Classes="open_dialog">
+                                                                        <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                                                              Classes="open_dialog_icon"/>
+                                                                  </Button>
+                                                            </Panel>
+                                                      </StackPanel>
                                                 </ItemsPanelTemplate>
                                           </ItemsControl.ItemsPanel>
                                     </ItemsControl>
-                                     <Button Command="{Binding AddRecordCommand}"
-                                          Classes="open_dialog">
-                                          <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
-                                                Classes="open_dialog_icon"/>
-                                    </Button>
                               </StackPanel>
                         </Grid>
-                  </DataTemplate>
-      </ListBox.ItemTemplate>
+                  	</DataTemplate>
+      	</ListBox.ItemTemplate>
 
-      <ListBox.ItemsPanel>
+      	<ListBox.ItemsPanel>
             <ItemsPanelTemplate>
-                  <StackPanel Orientation="Vertical" Spacing="13">
-                        <Button Command="{Binding AddCategoryCommand}"
-                              Classes="open_dialog">
-                              <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
-                                    Classes="open_dialog_icon"/>
-                        </Button>
-                  </StackPanel>  
+                  <StackPanel Classes="list_box_item_panel">
+                        <Panel Classes="open_dialog_button_fade">
+                              <Button Command="{Binding AddCategoryCommand}"
+                                    Classes="open_dialog">
+                                    <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                          Classes="open_dialog_icon"/>
+                              </Button>
+                        </Panel>
+                  </StackPanel>
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
-      
+
       </ListBox>
 </UserControl>

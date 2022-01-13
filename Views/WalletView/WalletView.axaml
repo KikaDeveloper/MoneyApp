@@ -78,18 +78,18 @@
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Classes="wallet_tab_panel">
-                <Button Command="{Binding AddWalletCommand}"
-                        Name="addWallet"
-                        Classes="open_dialog"
-                        Margin="0 13 0 0">
-                        <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
-                              Classes="open_dialog_icon"/>
-                </Button>
+              <StackPanel Classes="wallet_tab_panel open_dialog_button_fade">
+                <Panel Classes="open_dialog_button_fade">
+                  <Button Command="{Binding AddWalletCommand}"
+                          Classes="open_dialog"
+                          Margin="0 13 0 0">
+                          <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
+                                Classes="open_dialog_icon"/>
+                  </Button>
+                </Panel>
               </StackPanel>
             </ItemsPanelTemplate>
           </TabControl.ItemsPanel>
-
       </TabControl>
     </DockPanel>
   </Grid>
