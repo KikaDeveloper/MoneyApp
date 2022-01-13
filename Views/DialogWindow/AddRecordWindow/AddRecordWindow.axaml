@@ -13,12 +13,19 @@
     	<StackPanel Orientation="Vertical"
                 Margin="20 15"
                 Spacing="15">
+			<!-- Input для текста -->
 			<TextBox Watermark="Text"
 				Text="{Binding InputText}"/>
-			<TextBox Watermark="Amount"
-					Name="Amount"
-					Text="{Binding InputAmount}"/>
-			<Label Content="{Binding MaxAmount}"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="10">
+				<!-- Input для суммы -->
+				<TextBox Watermark="Amount"
+					Text="{Binding InputAmount}"
+					Name="Amount"/>
+				<!-- достпуная для ввода сумма -->
+				<TextBlock Text="{Binding AvailableAmount}" />
+			</StackPanel>
+			
 			<Button Content="Add" 
 				Command="{Binding AddCommand}"
 				HorizontalAlignment="Stretch"/>

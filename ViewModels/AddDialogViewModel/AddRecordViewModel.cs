@@ -1,7 +1,5 @@
 using ReactiveUI;
 using ReactiveUI.Validation.Contexts;
-using Avalonia.Input;
-using System;
 using System.Reactive;
 using MoneyApp.Models;
 
@@ -11,9 +9,7 @@ namespace MoneyApp.ViewModels
     {
         private string? _text;
         private int _amount;
-        private string? _maxAmount;
-        private IObservable<bool>? _dialogValid;
-        private int _categoryRemainingAmount;
+        private int _availableAmount;
 
         public string InputText 
         {
@@ -27,25 +23,25 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _amount, value);
         }
 
-        public string MaxAmount
+        public int AvailableAmount
         {
-            get => _maxAmount!;
-            set => this.RaiseAndSetIfChanged(ref _maxAmount, value);
+            get => _availableAmount;
+            set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
         }
 
         public ReactiveCommand<Unit, Record?> AddCommand { get; set; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddRecordViewModel(int categoryRemainingAmount){
-            _categoryRemainingAmount = categoryRemainingAmount;
-            MaxAmount = $"Max amount: {categoryRemainingAmount}";
+        public AddRecordViewModel(int availableCategoryAmount){
+            AvailableAmount = availableCategoryAmount;
 
-            _dialogValid = this.WhenAnyValue(
+            // валидация полей ввода
+            var _dialogValid = this.WhenAnyValue(
                 x => x.InputText,
                 x => x.InputAmount,
                 (name, amount) => {
                     var nameV = !string.IsNullOrEmpty(name);
-                    var amountV = amount > 0 && _categoryRemainingAmount >= amount; 
+                    var amountV = amount > 0 && AvailableAmount >= amount; 
                     if(nameV && amountV)
                         return true;
                     else return false;
@@ -61,12 +57,5 @@ namespace MoneyApp.ViewModels
         
         }
 
-        //обработчик ввода в InputAmount
-        public void TextInputAmount(object? sender, TextInputEventArgs e)
-        {   
-            // удаление текста в input
-            if(!char.IsDigit(e.Text![0]))
-                e.Handled = true;
-        }
     }
 }
