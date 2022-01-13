@@ -3,9 +3,14 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
+             xmlns:converters="using:MoneyApp.Converters"
              Margin="3 15"
              x:Class="MoneyApp.CategoryManagerView">
              
+      <UserControl.Resources>
+            <converters:AmountConverter x:Key="AmountConverter"/>
+      </UserControl.Resources>
+      
       <ListBox Items="{Binding CategoryViewModels}"
                SelectionMode="Toggle"
                SelectedItem="{Binding SelectedCategoryViewModel}">
@@ -18,13 +23,13 @@
                                     Grid.Row="0" 
                                     Classes="category_box left"/>
                               <!-- Amount -->
-                              <TextBlock Text="{Binding Category.Amount}"
+                              <TextBlock Text="{Binding Category.Amount, Converter={StaticResource AmountConverter}}"
                                     Name="Amount"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     Classes="category_box right"/>
                               <!-- RemainingAmount -->
-                              <TextBlock Text="{Binding RemainingAmount}"
+                              <TextBlock Text="{Binding RemainingAmount, Converter={StaticResource AmountConverter}}"
                                     Name="RemainingAmount"
                                     Grid.Column="1"
                                     Grid.Row="0"

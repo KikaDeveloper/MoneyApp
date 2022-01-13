@@ -2,15 +2,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
+             xmlns:converters="using:MoneyApp.Converters"
              x:Class="MoneyApp.RecordView">
+
+	<UserControl.Resources>
+    	<converters:AmountConverter x:Key="AmountConverter"/>
+    </UserControl.Resources>
 
   <Border Classes="record_box">
     <Grid ColumnDefinitions="4*, 4*, 2*">
       <TextBlock Text="{Binding Record.Text}" 
                   Grid.Column="0"
                   Classes="record_box left"/>
-      <TextBlock Text="{Binding Record.Amount}" 
+      <TextBlock Text="{Binding Record.Amount, Converter={StaticResource AmountConverter}}" 
                   Grid.Column="1"
                   Classes="record_box right"/>
       <Button Grid.Column="2"
