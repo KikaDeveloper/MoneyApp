@@ -5,21 +5,31 @@
         x:Class="MoneyApp.Dialog.AddRecordWindow"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
-        MaxWidth="310" MaxHeight="150"
+        MaxWidth="310"
+		SizeToContent="Height"
         Title="New Record">
   
-  <DockPanel>
-    <StackPanel Orientation="Vertical"
+  	<DockPanel>
+    	<StackPanel Orientation="Vertical"
                 Margin="20 15"
                 Spacing="15">
-      <TextBox Watermark="Text"
-               Text="{Binding InputText}"/>
-      <TextBox Watermark="Amount"
-                Text="{Binding InputAmount}" />
-      <Button Content="Add" 
-              Command="{Binding AddCommand}"
-              HorizontalAlignment="Stretch"/>
-    </StackPanel>
-  </DockPanel>
+			<!-- Input для текста -->
+			<TextBox Watermark="Text"
+				Text="{Binding InputText}"/>
+			<StackPanel Orientation="Horizontal"
+						Spacing="10">
+				<!-- Input для суммы -->
+				<TextBox Watermark="Amount"
+					Text="{Binding InputAmount}"
+					Name="Amount"/>
+				<!-- достпуная для ввода сумма -->
+				<TextBlock Text="{Binding AvailableAmount}" />
+			</StackPanel>
+			
+			<Button Content="Add" 
+				Command="{Binding AddCommand}"
+				HorizontalAlignment="Stretch"/>
+    	</StackPanel>
+  	</DockPanel>
 
 </Window>

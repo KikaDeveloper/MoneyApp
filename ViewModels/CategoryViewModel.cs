@@ -13,14 +13,14 @@ namespace MoneyApp.ViewModels
     public class CategoryViewModel:ViewModelBase
     {
         private Category? _category;
-        private int _remainingAmount;
+        private int _availableAmount;
         private ObservableCollection<RecordViewModel>? _recordViewModels;
         public event EventHandler? DeleteCategoryEvent;
 
-        public int RemainingAmount
+        public int AvailableAmount
         {
-            get => _remainingAmount;
-            set => this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+            get => _availableAmount;
+            set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
         }
 
         public Category Category
@@ -54,7 +54,7 @@ namespace MoneyApp.ViewModels
                 var result = await DialogService.ShowDialogAsync<Record>(
                     new AddRecordWindow()
                     {
-                        DataContext = new AddRecordViewModel()
+                        DataContext = new AddRecordViewModel(AvailableAmount, "New Record")
                     }
                 );
                 if(result != null)
@@ -95,7 +95,7 @@ namespace MoneyApp.ViewModels
             int remainingAmount = Category.Amount;
             foreach(var recordVM in RecordViewModels)
                 remainingAmount -= recordVM.Record.Amount;
-            RemainingAmount = remainingAmount;
+            AvailableAmount = remainingAmount;
         }
 
         private void RecordViewModelsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)

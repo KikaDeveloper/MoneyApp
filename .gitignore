@@ -453,5 +453,5 @@ $RECYCLE.BIN/
 .vscode/launch.json
 .vscode/extensions.json
 
-#sqlite fiels
+# sqlite .db fiels
 *.db

@@ -3,35 +3,43 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
+			 xmlns:converters="using:MoneyApp.Converters"
              x:Class="MoneyApp.WalletView">
   
+	<UserControl.Resources>
+		<converters:AmountConverter x:Key="AmountConverter"/>
+	</UserControl.Resources>
+
   <Grid RowDefinitions="0.7*, 8*">
     <!-- Header -->
     <ContentControl Grid.Row="0"
                     Classes="header">
 
-          <StackPanel Orientation="Horizontal" 
+        <StackPanel Orientation="Horizontal" 
                       Spacing="20">
 
-              <!-- Wallet amount -->
-              <Border Classes="header_wallet">
-                <StackPanel Orientation="Horizontal"
-                            Spacing="8">
-                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount}"
-                              Classes="header"/>
-                  <TextBlock Text="out of"
-                              Classes="header"/>
-                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount}"
-                              Classes="header"/>
-                </StackPanel>
-              </Border>
+			<!-- Wallet amount -->
+			<Border Classes="header_wallet">
+				<StackPanel Orientation="Horizontal"
+								Spacing="0">
+				<!-- Amount -->
+				<TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount, Converter={StaticResource AmountConverter}}"
+							Classes="header"
+							Name="Amount"/>
+							
+				<!-- Remaining Amount-->							
+				<TextBlock Text="{Binding SelectedWalletViewModel.AvailableAmount, Converter={StaticResource AmountConverter}}"
+							Classes="header"
+							Name="RemainingAmount"/>
+				</StackPanel>
+			</Border>
 
-              <!-- Period or Ratio -->
-              <Border Classes="header_wallet">
-                  <TextBlock Text="{Binding SelectedWalletViewModel.Wallet.AmountRatio}"
-                              Classes="header"/>
-              </Border>
-          </StackPanel>
+            <!-- Period or Ratio -->
+			<Border Classes="header_wallet">
+				<TextBlock Text="{Binding SelectedWalletViewModel.Wallet.AmountRatio}"
+							Classes="header"/>
+			</Border>
+        </StackPanel>
     </ContentControl>
 
     <DockPanel Grid.Row="1"

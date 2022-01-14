@@ -1,5 +1,6 @@
 using ReactiveUI;
 using System;
+using System.Collections.Specialized;
 using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
@@ -8,8 +9,17 @@ namespace MoneyApp.ViewModels
     {
         private Wallet? _wallet;
         private CategoryManagerViewModel? _categoryManagerViewModel;
-
+        private int _remainingAmount;
         public event EventHandler? DeleteWalletEvent;
+
+        public int AvailableAmount
+        {
+            get => _remainingAmount;
+            set {
+                this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+                CategoryManagerViewModel.WalletAvailableAmount = value;
+            }
+        }
 
         public Wallet Wallet
         {
@@ -25,16 +35,28 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand? DeleteWalletCommand { get; }
 
-        public WalletViewModel(Wallet wallet):base()
+        public WalletViewModel(Wallet wallet ,CategoryManagerViewModel categoryManagerViewModel)
         {
             Wallet = wallet;
-        }
+            CategoryManagerViewModel = categoryManagerViewModel;
+            CategoryManagerViewModel.CategoryViewModels.CollectionChanged += CategoryViewModelsCollectionChanged;
 
-        public WalletViewModel()
-        {
+            UpdateRemainingAmount();
+
             DeleteWalletCommand = ReactiveCommand.Create(()=>{
                 DeleteWalletEvent?.Invoke(this, new EventArgs());
             });
         }
+
+        private void UpdateRemainingAmount()
+        {
+            int remainingAmount = Wallet.Amount;
+            foreach(var categoryVM in CategoryManagerViewModel.CategoryViewModels)
+                remainingAmount -= categoryVM.Category.Amount;
+            AvailableAmount = remainingAmount;
+        }
+
+        private void CategoryViewModelsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
+            => UpdateRemainingAmount();
     }
 }
