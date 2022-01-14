@@ -16,9 +16,12 @@
       <Setter Property="HorizontalAlignment" Value="Center"/>
       <Setter Property="VerticalAlignment" Value="Center"/>
       <Setter Property="Padding" Value="20 3"/>
+      <Setter Property="MinWidth" Value="105"/>
     </Style>
 
     <Style Selector="TextBlock.header">
+      <Setter Property="HorizontalAlignment" Value="Center"/>
+      <Setter Property="VerticalAlignment" Value="Stretch"/>
       <Setter Property="FontSize" Value="20"/>
     </Style>
 
