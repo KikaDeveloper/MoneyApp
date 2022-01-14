@@ -3,7 +3,7 @@
 
     <Style Selector="ComboBoxItem">
             <Setter Property="Foreground" Value="Black"/>
-            <Setter Property="Background" Value="#DCDCDC"/>
+            <Setter Property="Background" Value="{DynamicResource ComboBoxItemBackground}"/>
             <Setter Property="Padding" Value="18 4"/>
             <Setter Property="HorizontalAlignment" Value="Stretch"/>
             <Setter Property="HorizontalContentAlignment" Value="Center"/>
@@ -21,11 +21,11 @@
     </Style>
 
     <Style Selector="ComboBoxItem:pointerover /template/ ContentPresenter">
-      <Setter Property="Background" Value="DarkGray"/>
+      <Setter Property="Background" Value="{DynamicResource ComboBoxItemPointerOver}"/>
     </Style>
             
     <Style Selector="ComboBoxItem:selected /template/ ContentPresenter">
-      <Setter Property="Background" Value="#C4C4C4"/>
+      <Setter Property="Background" Value="{DynamicResource ComboBoxItemSelected}"/>
     </Style>
 
 </Styles>
