@@ -15,6 +15,13 @@ namespace MoneyApp.ViewModels
         private int _amount;
         private string? _selectedRatio;
         private List<string>? _amountRatios;
+        private string? _title;
+
+        public string Title
+        {
+            get => _title!;
+            set => this.RaiseAndSetIfChanged(ref _title, value);
+        }
 
         public List<string> AmountRatios
         {
@@ -44,8 +51,8 @@ namespace MoneyApp.ViewModels
 
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddWalletViewModel(){ 
-            
+        public AddWalletViewModel(string title){ 
+            Title = title;
             AmountRatios = Enum.GetNames(typeof(AmountRatio)).ToList();
             SelectedRatio = AmountRatios.First();
 

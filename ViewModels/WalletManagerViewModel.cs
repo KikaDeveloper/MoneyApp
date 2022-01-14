@@ -43,7 +43,7 @@ namespace MoneyApp.ViewModels
             AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Wallet>(
                     new AddWalletWindow(){
-                        DataContext = new AddWalletViewModel()
+                        DataContext = new AddWalletViewModel("New Wallet")
                     }
                 );
                 if(result != null)

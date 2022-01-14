@@ -2,32 +2,39 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        x:Class="MoneyApp.Dialog.AddCategoryWindow"
+        xmlns:converters="using:MoneyApp.Converters"
+		x:Class="MoneyApp.Dialog.AddCategoryWindow"
         WindowStartupLocation="CenterOwner"
         CanResize="False"
         MaxWidth="310" MaxHeight="150"
-        Title="New Category">
+        Title="{Binding Title}">
   
+		<Window.Resources>
+			<converters:AmountConverter x:Key="AmountConverter"/>
+		</Window.Resources>
+
 	<DockPanel>
-		<StackPanel Orientation="Vertical"
-					Margin="20 15"
-					Spacing="15">
+		<StackPanel Classes="dialog">
 		<!-- Input для текста -->
 		<TextBox Watermark="Name"
-					Text="{Binding InputName}"/>
-			<StackPanel Orientation="Horizontal"
-						Spacing="10">
-			<!-- Input для суммы -->
-			<TextBox Watermark="Amount"
-				Text="{Binding InputAmount}"
-				Name="Amount"/>
-			<!-- достпуная для ввода сумма -->
-			<TextBlock Text="{Binding AvailableAmount}" />
-		</StackPanel>
+				Text="{Binding InputName}"
+				Classes="dialog_input"/>
+			<Grid ColumnDefinitions="0.6*, 0.4*">
+				<!-- Input для суммы -->
+				<TextBox Grid.Column="0" 
+						Watermark="Amount"
+						Text="{Binding InputAmount}"
+						Name="Amount"
+						Classes="dialog_input"/>
+				<!-- достпуная для ввода сумма -->
+				<TextBlock Grid.Column="1"
+						Text="{Binding AvailableAmount, Converter={StaticResource AmountConverter}}"
+						Classes="available_amount"/>
+			</Grid>
 		
 		<Button Content="Add" 
 				Command="{Binding AddCommand}"
-				HorizontalAlignment="Stretch"/>
+				Classes="dialog_add"/>
 		</StackPanel>
 	</DockPanel>
 

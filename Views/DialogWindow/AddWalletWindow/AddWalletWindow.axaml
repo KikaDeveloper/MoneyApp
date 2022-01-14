@@ -7,22 +7,22 @@
         CanResize="False"
         MaxWidth="310"
         SizeToContent="Height"
-        Title="New Wallet">
+        Title="{Binding Title}">
   
   <DockPanel>
-    <StackPanel Orientation="Vertical"
-                Margin="20 15"
-                Spacing="15">
+    <StackPanel Classes="dialog">
       <TextBox Watermark="Name"
-                Text="{Binding InputName}"/>
+                Text="{Binding InputName}"
+                Classes="dialog_input"/>
       <TextBox Watermark="Amount" 
                 Text="{Binding InputAmount}"
-                Name="Amount"/>
+                Name="Amount"
+                Classes="dialog_input"/>
       <StackPanel Orientation="Horizontal"
                   Spacing="20"
                   HorizontalAlignment="Stretch">
               <TextBlock Text="Ratio:"
-                          FontSize="18"
+                          FontSize="16"
                           VerticalAlignment="Center"/>
               <ComboBox Items="{Binding AmountRatios}"
                       SelectedItem="{Binding SelectedRatio}"/>
@@ -30,7 +30,7 @@
  
       <Button Content="Add" 
               Command="{Binding AddCommand}"
-              HorizontalAlignment="Stretch"/>
+              Classes="dialog_add"/>
     </StackPanel>
   </DockPanel>
  

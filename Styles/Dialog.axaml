@@ -1,20 +1,25 @@
 <Styles xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
 
-    <!-- <Style Selector="DockPanel.dialog">
-      <Setter Property="Background" Value=""/>
+    <Style Selector="StackPanel.dialog">
+      <Setter Property="Background" Value="Transparent"/>
+      <Setter Property="Margin" Value="20 15"/>
+      <Setter Property="Orientation" Value="Vertical"/>
+      <Setter Property="Spacing" Value="15"/> 
     </Style>
 
     <Style Selector="TextBox.dialog_input">
-      <Setter Property="" Value=""/>
+      <Setter Property="FontSize" Value="16"/>
+    </Style>
+
+    <Style Selector="TextBlock.available_amount">
+      <Setter Property="FontSize" Value="16"/>
+      <Setter Property="VerticalAlignment" Value="Center"/>
+      <Setter Property="HorizontalAlignment" Value="Center"/>
     </Style>
 
     <Style Selector="Button.dialog_add">
-      <Setter Property="" Value=""/>
+      <Setter Property="HorizontalAlignment" Value="Stretch"/>
     </Style>
-
-    <Style Selector="">
-      <Setter Property="" Value=""/>
-    </Style> -->
 
 </Styles>
