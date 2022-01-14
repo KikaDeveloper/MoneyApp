@@ -25,23 +25,23 @@
 
     <!-- Триггеры для ListBoxItem-ов -->
     <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#C4C4C4" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemHighlighting}" />
     </Style>
 
     <!-- Pressed state -->
     <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#DCDCDC" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
     </Style>
 
     <!-- Selected state -->
     <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#DCDCDC" />
-        <Setter Property="RenderTransform" Value="scale(0.98)"/>
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
+        <Setter Property="RenderTransform" Value="scale(0.97)"/>
     </Style>
 
     <!--  Selected PointerOver State  -->
     <Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="#C4C4C4" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
     </Style>
 
     <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
