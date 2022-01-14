@@ -78,7 +78,7 @@
 
           <TabControl.ItemsPanel>
             <ItemsPanelTemplate>
-              <StackPanel Classes="wallet_tab_panel open_dialog_button_fade">
+              <StackPanel Classes="wallet_tab_panel">
                 <Panel Classes="open_dialog_button_fade">
                   <Button Command="{Binding AddWalletCommand}"
                           Classes="open_dialog"
