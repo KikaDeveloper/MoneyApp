@@ -72,6 +72,11 @@
               <Grid ColumnDefinitions="5*, 5*">
                 <v:CategoryManagerView Grid.Column="0" 
                                         DataContext="{Binding CategoryManagerViewModel}"/>
+				<TextBlock 	Grid.Column="1"
+							Text="Charts"
+							FontSize="25"
+							HorizontalAlignment="Center"
+							VerticalAlignment="Center"/>
               </Grid>
             </DataTemplate>
           </TabControl.ContentTemplate>
