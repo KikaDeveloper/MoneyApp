@@ -26,8 +26,8 @@
         <StyleInclude Source="/Styles/Buttons.axaml"/>
         <StyleInclude Source="/Styles/Dialog.axaml"/>
         <!-- Animations -->
-        <StyleInclude Source="/Styles/WalletViewAnimations.axaml"/>
-        <StyleInclude Source="/Styles/AddDialogAnimations.axaml"/>
-        <StyleInclude Source="/Styles/CategoryManagerViewAnimations.axaml"/>
+        <StyleInclude Source="/Animations/WalletViewAnimations.axaml"/>
+        <StyleInclude Source="/Animations/AddDialogAnimations.axaml"/>
+        <StyleInclude Source="/Animations/CategoryManagerViewAnimations.axaml"/>
     </Application.Styles>
 </Application>
