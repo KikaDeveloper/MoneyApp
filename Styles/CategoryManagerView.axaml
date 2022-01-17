@@ -15,11 +15,11 @@
     </Style>
 
     <!-- скрытие и открытие панели с записями -->
-    <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel">
+    <Style Selector="ListBoxItem[IsSelected=true] > Grid > StackPanel#record_panel">
         <Setter Property="IsVisible" Value="true"/>
     </Style>
 
-    <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel">
+    <Style Selector="ListBoxItem[IsSelected=false] > Grid > StackPanel#record_panel">
         <Setter Property="IsVisible" Value="false"/>
     </Style>
 
@@ -50,23 +50,6 @@
                 <TransformOperationsTransition Property="RenderTransform" Duration="0:0:0.1" />
             </Transitions>
         </Setter>
-    </Style>
-
-    <!-- стили переключающие видимость Amount категории -->
-    <Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#Amount">
-        <Setter Property="IsVisible" Value="false"/>
-    </Style>
-
-    <Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#Amount">
-        <Setter Property="IsVisible" Value="true"/>
-    </Style>
-
-    <Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#RemainingAmount">
-        <Setter Property="IsVisible" Value="true"/>
-    </Style>
-
-    <Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#RemainingAmount">
-        <Setter Property="IsVisible" Value="false"/>
     </Style>
 
     <!-- ListBoxItem template panel -->

@@ -2,11 +2,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
   
 	<!-- Amount fade switch -->
+
+	<!-- Анимация скрытия Amount -->
 	<Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#Amount">
 		<Setter Property="Opacity" Value="0.0"/>
-		<!-- Анимация скрытия кнопки -->
 		<Style.Animations>
-			<Animation Duration="0:0:0.1">
+			<Animation Duration="0:0:0.15">
 				<KeyFrame Cue="0%">
 					<Setter Property="Opacity" Value="1.0"/>
 				</KeyFrame>
@@ -17,11 +18,41 @@
 		</Style.Animations>
 	</Style>
 
+	<!-- Анимация появления Amount -->
 	<Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#Amount">
 		<Setter Property="Opacity" Value="1.0"/>
-		<!-- Анимация появления кнопки -->
 		<Style.Animations>
-			<Animation Duration="0:0:0.1">
+			<Animation Duration="0:0:0.15">
+				<KeyFrame Cue="0%">
+					<Setter Property="Opacity" Value="0.0"/>
+				</KeyFrame>
+				<KeyFrame Cue="100%">
+					<Setter Property="Opacity" Value="1.0"/>
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+
+	<!-- Анимация скрытия RemainingAmount -->
+	<Style Selector="ListBoxItem[IsPointerOver=false] > Grid > TextBlock#RemainingAmount">
+		<Setter Property="Opacity" Value="0.0"/>
+		<Style.Animations>
+			<Animation Duration="0:0:0.15">
+				<KeyFrame Cue="0%">
+					<Setter Property="Opacity" Value="1.0"/>
+				</KeyFrame>
+				<KeyFrame Cue="100%">
+					<Setter Property="Opacity" Value="0.0"/>
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+
+	<!-- Анимация появления RemainingAmount -->
+	<Style Selector="ListBoxItem[IsPointerOver=true] > Grid > TextBlock#RemainingAmount">
+		<Setter Property="Opacity" Value="1.0"/>
+		<Style.Animations>
+			<Animation Duration="0:0:0.15">
 				<KeyFrame Cue="0%">
 					<Setter Property="Opacity" Value="0.0"/>
 				</KeyFrame>

@@ -43,7 +43,8 @@
                               </Button>
 
                               <!-- Отображение списка записей -->
-                              <StackPanel Grid.ColumnSpan="3"
+                              <StackPanel Name="record_panel"
+                                          Grid.ColumnSpan="3"
                                           Grid.Row="1"
                                           Spacing="13"
                                           Margin="0 20 0 0">
