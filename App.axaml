@@ -16,6 +16,7 @@
 
     <Application.Styles>
         <FluentTheme Mode="Light"/>
+        <!-- Styles -->
         <StyleInclude Source="/Styles/ComboBox.axaml"/>
         <StyleInclude Source="/Styles/ComboBoxItem.axaml"/>
         <StyleInclude Source="/Styles/Header.axaml"/>
@@ -23,7 +24,10 @@
         <StyleInclude Source="/Styles/RecordView.axaml"/>
         <StyleInclude Source="/Styles/CategoryManagerView.axaml"/>
         <StyleInclude Source="/Styles/Buttons.axaml"/>
-        <StyleInclude Source="/Styles/Animation.axaml"/>
         <StyleInclude Source="/Styles/Dialog.axaml"/>
+        <!-- Animations -->
+        <StyleInclude Source="/Styles/WalletViewAnimations.axaml"/>
+        <StyleInclude Source="/Styles/AddDialogAnimations.axaml"/>
+        <StyleInclude Source="/Styles/CategoryManagerViewAnimations.axaml"/>
     </Application.Styles>
 </Application>
