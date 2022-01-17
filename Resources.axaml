@@ -16,9 +16,11 @@
     <SolidColorBrush x:Key="HeaderElementsBackground" Color="{StaticResource Color1}"/>
 
     <!-- TabControl resources -->
-    <SolidColorBrush x:Key="TabItemPanelBackground" Color="{StaticResource Color2}"/>
-    <SolidColorBrush x:Key="TabItemBackground" Color="{StaticResource Color3}"/>
-    <SolidColorBrush x:Key="TabItemHighlighting" Color="{StaticResource HighlightColor}"/>
+    <SolidColorBrush x:Key="TabItemsPanelBackground" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="TabItemBackground" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="TabItemPointerOver" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="TabItemSelected" Color="{StaticResource Color1}"/>
+    <SolidColorBrush x:Key="TabItemSelectedPointerOver" Color="{StaticResource Color3}"/>
 
     <!-- Category resources -->
     <SolidColorBrush x:Key="CategoryItemBackgorund" Color="{StaticResource Color2}"/>

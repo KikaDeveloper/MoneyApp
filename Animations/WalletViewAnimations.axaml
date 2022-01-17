@@ -3,25 +3,25 @@
 		
 	<!-- Wallet tab animation -->
 	<Style Selector="TabItem:pointerover /template/ Panel">
-		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 		<Style.Animations>
 			<Animation Duration="0:0:0.1" PlaybackDirection="Alternate">
 				<KeyFrame Cue="0%">
 					<Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
 				</KeyFrame>
 				<KeyFrame Cue="100%">
-					<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+					<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 				</KeyFrame>
 			</Animation>
 		</Style.Animations>
 	</Style>
 
 	<Style Selector="TabItem:selected:pointerover /template/ Panel">
-		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 		<Style.Animations>
 			<Animation Duration="0:0:0.1">
 				<KeyFrame Cue="100%">
-					<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+					<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 				</KeyFrame>
 			</Animation>
 		</Style.Animations>
