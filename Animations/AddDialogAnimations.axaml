@@ -13,7 +13,7 @@
 			<Setter Property="Opacity" Value="1.0"/>
 			<!-- Анимация появления кнопки -->
 			<Style.Animations>
-				<Animation Duration="0:0:0.1">
+				<Animation Duration="0:0:0.13">
 					<KeyFrame Cue="0%">
 						<Setter Property="Opacity" Value="0.0"/>
 					</KeyFrame>
@@ -28,7 +28,7 @@
 			<Setter Property="Opacity" Value="0.0"/>
 			<!-- Анимация пропадания кнопки -->
 			<Style.Animations>
-				<Animation Duration="0:0:0.1" PlaybackDirection="Reverse">
+				<Animation Duration="0:0:0.13" PlaybackDirection="Reverse">
 					<KeyFrame Cue="0%">
 						<Setter Property="Opacity" Value="0.0"/>
 					</KeyFrame>

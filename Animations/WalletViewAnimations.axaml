@@ -5,7 +5,7 @@
 	<Style Selector="TabItem:pointerover /template/ Panel">
 		<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 		<Style.Animations>
-			<Animation Duration="0:0:0.1" PlaybackDirection="Alternate">
+			<Animation Duration="0:0:0.13" PlaybackDirection="Alternate">
 				<KeyFrame Cue="0%">
 					<Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
 				</KeyFrame>
@@ -19,7 +19,10 @@
 	<Style Selector="TabItem:selected:pointerover /template/ Panel">
 		<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 		<Style.Animations>
-			<Animation Duration="0:0:0.1">
+			<Animation Duration="0:0:0.13">
+				<KeyFrame Cue="0%">
+					<Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+				</KeyFrame>
 				<KeyFrame Cue="100%">
 					<Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
 				</KeyFrame>
@@ -32,7 +35,7 @@
 		<Setter Property="Opacity" Value="1.0"/>
 		<!-- Анимация появления кнопки -->
 		<Style.Animations>
-			<Animation Duration="0:0:0.1">
+			<Animation Duration="0:0:0.13">
 				<KeyFrame Cue="0%">
 					<Setter Property="Opacity" Value="0.0"/>
 				</KeyFrame>
@@ -47,7 +50,7 @@
 		<Setter Property="Opacity" Value="0.0"/>
 		<!-- Анимация пропадания кнопки -->
 		<Style.Animations>
-			<Animation Duration="0:0:0.1" PlaybackDirection="Reverse">
+			<Animation Duration="0:0:0.13" PlaybackDirection="Reverse">
 				<KeyFrame Cue="0%">
 					<Setter Property="Opacity" Value="0.0"/>
 				</KeyFrame>
