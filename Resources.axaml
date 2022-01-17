@@ -23,8 +23,8 @@
     <SolidColorBrush x:Key="TabItemSelectedPointerOver" Color="{StaticResource Color3}"/>
 
     <!-- Category resources -->
-    <SolidColorBrush x:Key="CategoryItemBackgorund" Color="{StaticResource Color2}"/>
-    <SolidColorBrush x:Key="CategoryItemHighlighting" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="CategoryItemBackground" Color="{StaticResource Color2}"/>
+    <SolidColorBrush x:Key="CategoryItemPointerOver" Color="{StaticResource Color3}"/>
 
     <!-- Record resources -->
     <SolidColorBrush x:Key="RecordItemBackground" Color="{StaticResource Color1}"/>

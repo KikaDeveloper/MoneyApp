@@ -63,4 +63,19 @@
 		</Style.Animations>
 	</Style>
 
+	<!-- Animation for category item -->
+	<Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+		<Setter Property="Background" Value="{DynamicResource CategoryItemPointerOver}"/>
+		<Style.Animations>
+			<Animation Duration="0:0:0.15">
+				<KeyFrame Cue="0%">
+					<Setter Property="Background" Value="{DynamicResource CategoryItemBackground}"/>
+				</KeyFrame>
+				<KeyFrame Cue="100%">
+					<Setter Property="Background" Value="{DynamicResource CategoryItemPointerOver}"/>
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+
 </Styles>

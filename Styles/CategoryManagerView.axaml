@@ -9,7 +9,7 @@
     <!-- ListBoxItem -->
     <Style Selector="ListBoxItem">
         <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}"/>
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackground}"/>
         <Setter Property="CornerRadius" Value="10"/>
         <Setter Property="Padding" Value="14"/>
     </Style>
@@ -24,24 +24,21 @@
     </Style>
 
     <!-- Триггеры для ListBoxItem-ов -->
-    <Style Selector="ListBoxItem:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource CategoryItemHighlighting}" />
-    </Style>
 
     <!-- Pressed state -->
     <Style Selector="ListBoxItem:pressed /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackground}" />
     </Style>
 
     <!-- Selected state -->
     <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackground}" />
         <Setter Property="RenderTransform" Value="scale(0.97)"/>
     </Style>
 
     <!--  Selected PointerOver State  -->
     <Style Selector="ListBoxItem:selected:pointerover /template/ ContentPresenter#PART_ContentPresenter">
-        <Setter Property="Background" Value="{DynamicResource CategoryItemBackgorund}" />
+        <Setter Property="Background" Value="{DynamicResource CategoryItemBackground}" />
     </Style>
 
     <Style Selector="ListBoxItem /template/ ContentPresenter#PART_ContentPresenter">
