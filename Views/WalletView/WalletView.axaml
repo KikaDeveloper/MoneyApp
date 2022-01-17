@@ -11,6 +11,7 @@
 	</UserControl.Resources>
 
   <Grid RowDefinitions="0.7*, 8*">
+
     <!-- Header -->
     <ContentControl Grid.Row="0"
                     Classes="header">
@@ -21,7 +22,9 @@
 			<!-- Wallet amount -->
 			<Border Classes="header_wallet">
 				<StackPanel Orientation="Horizontal"
-								Spacing="0">
+							Spacing="0"
+							HorizontalAlignment="Center">
+
 				<!-- Amount -->
 				<TextBlock Text="{Binding SelectedWalletViewModel.Wallet.Amount, Converter={StaticResource AmountConverter}}"
 							Classes="header"
@@ -39,6 +42,7 @@
 				<TextBlock Text="{Binding SelectedWalletViewModel.Wallet.AmountRatio}"
 							Classes="header"/>
 			</Border>
+
         </StackPanel>
     </ContentControl>
 
