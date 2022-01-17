@@ -1,0 +1,60 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+		
+	<!-- Wallet tab animation -->
+	<Style Selector="TabItem:pointerover /template/ Panel">
+		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		<Style.Animations>
+		<Animation Duration="0:0:0.1" PlaybackDirection="Alternate">
+		<KeyFrame Cue="0%">
+		<Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>
+		</KeyFrame>
+		<KeyFrame Cue="100%">
+		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		</KeyFrame>
+		</Animation>
+		</Style.Animations>
+	</Style>
+
+	<Style Selector="TabItem:selected:pointerover /template/ Panel">
+		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		<Style.Animations>
+		<Animation Duration="0:0:0.1">
+		<KeyFrame Cue="100%">
+		<Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+		</KeyFrame>
+		</Animation>
+		</Style.Animations>
+	</Style>
+
+	<!-- Кнопка delete в Wallet tab -->
+	<Style Selector="TabItem[IsPointerOver=true] > Grid > Button">
+		<Setter Property="Opacity" Value="1.0"/>
+		<!-- Анимация появления кнопки -->
+		<Style.Animations>
+		<Animation Duration="0:0:0.1">
+			<KeyFrame Cue="0%">
+			<Setter Property="Opacity" Value="0.0"/>
+			</KeyFrame>
+			<KeyFrame Cue="100%">
+			<Setter Property="Opacity" Value="1.0"/>
+			</KeyFrame>
+		</Animation>
+		</Style.Animations>
+	</Style>
+
+	<Style Selector="TabItem[IsPointerOver=false] > Grid > Button">
+		<Setter Property="Opacity" Value="0.0"/>
+		<!-- Анимация пропадания кнопки -->
+		<Style.Animations>
+		<Animation Duration="0:0:0.1" PlaybackDirection="Reverse">
+			<KeyFrame Cue="0%">
+			<Setter Property="Opacity" Value="0.0"/>
+			</KeyFrame>
+			<KeyFrame Cue="100%">
+			<Setter Property="Opacity" Value="1.0"/>
+			</KeyFrame>
+		</Animation>
+		</Style.Animations>
+	</Style>
+</Styles>
