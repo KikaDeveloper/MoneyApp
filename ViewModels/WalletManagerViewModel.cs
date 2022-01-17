@@ -56,14 +56,16 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertWalletAsync(wallet);
             
-            WalletViewModels.Add(new WalletViewModel(
-                        wallet, 
-                        new CategoryManagerViewModel
-                        (
-                            wallet.Id,
-                            new ObservableCollection<CategoryViewModel>()
-                        )
-                    ));
+            var newWallet = new WalletViewModel(
+                wallet, 
+                new CategoryManagerViewModel
+                (
+                    wallet.Id,
+                    new ObservableCollection<CategoryViewModel>()
+                )
+            );
+            newWallet.DeleteWalletEvent += DeleteWalletEventHandler;
+            WalletViewModels.Add(newWallet);
         }
 
         // удаление кошелька и его viewmodel из бд
