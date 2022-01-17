@@ -12,7 +12,7 @@
     <!-- TabItemsPanel  -->
     <Style Selector="StackPanel.wallet_tab_panel">
       <Setter Property="Orientation" Value="Vertical"/>
-      <Setter Property="Background" Value="{DynamicResource TabItemPanelBackground}"/>
+      <Setter Property="Background" Value="{DynamicResource TabItemsPanelBackground}"/>
       <Setter Property="Width" Value="150"/>
       <Setter Property="Spacing" Value="0"/>
     </Style>
@@ -37,12 +37,17 @@
 
     <!-- Selected state -->
     <Style Selector="TabItem:selected /template/ Panel">
-        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+        <Setter Property="Background" Value="{DynamicResource TabItemSelected}"/>
     </Style>
 
     <!-- PointerOver state -->
     <Style Selector="TabItem:pointerover /template/ Panel">
-        <Setter Property="Background" Value="{DynamicResource TabItemHighlighting}"/>
+        <Setter Property="Background" Value="{DynamicResource TabItemPointerOver}"/>
+    </Style>
+
+    <!-- Selected:PointerOver state -->
+    <Style Selector="TabItem:selected:pointerover /template/ Panel">
+        <Setter Property="Background" Value="{DynamicResource TabItemSelectedPointerOver}"/>
     </Style>
 
 </Styles>

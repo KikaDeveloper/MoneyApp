@@ -20,7 +20,7 @@
         <StyleInclude Source="/Styles/ComboBox.axaml"/>
         <StyleInclude Source="/Styles/ComboBoxItem.axaml"/>
         <StyleInclude Source="/Styles/Header.axaml"/>
-        <StyleInclude Source="/Styles/TabControl.axaml"/>
+        <StyleInclude Source="/Styles/WalletView.axaml"/>
         <StyleInclude Source="/Styles/RecordView.axaml"/>
         <StyleInclude Source="/Styles/CategoryManagerView.axaml"/>
         <StyleInclude Source="/Styles/Buttons.axaml"/>
