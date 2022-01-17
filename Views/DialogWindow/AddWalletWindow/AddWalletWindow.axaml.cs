@@ -6,7 +6,9 @@ using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
 using MoneyApp.ViewModels;
+using MoneyApp.Converters;
 using ReactiveUI;
+
 
 namespace MoneyApp.Dialog
 {
@@ -34,6 +36,10 @@ namespace MoneyApp.Dialog
             // удаление текста в input
             if(!char.IsDigit(e.Text![0]))
                 e.Handled = true;
+
+            // var converter = new AmountConverter(); 
+            // e.Text = converter.ConvertToString(e.Text);
+            // e.Handled = true;
         }
     }
 }
