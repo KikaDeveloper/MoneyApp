@@ -1,0 +1,64 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+
+    <!-- Анимация скрытия Amount -->
+	<Style Selector="Border.header_wallet[IsPointerOver=true] > StackPanel > TextBlock#Amount">
+		<Setter Property="Opacity" Value="0.0"/>
+		<Style.Animations>
+			<Animation Duration="0:0:0.15">
+				<KeyFrame Cue="0%">
+					<Setter Property="Opacity" Value="1.0"/>
+				</KeyFrame>
+				<KeyFrame Cue="100%">
+					<Setter Property="Opacity" Value="0.0"/>
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+
+	<!-- Анимация появления Amount -->
+	<Style Selector="Border.header_wallet[IsPointerOver=false] > StackPanel > TextBlock#Amount">
+		<Setter Property="Opacity" Value="1.0"/>
+		<Style.Animations>
+			<Animation Duration="0:0:0.15">
+				<KeyFrame Cue="0%">
+					<Setter Property="Opacity" Value="0.0"/>
+				</KeyFrame>
+				<KeyFrame Cue="100%">
+					<Setter Property="Opacity" Value="1.0"/>
+				</KeyFrame>
+			</Animation>
+		</Style.Animations>
+	</Style>
+
+		<!-- Анимация скрытия RemainingAmount -->
+		<Style Selector="Border.header_wallet[IsPointerOver=false] > StackPanel > TextBlock#RemainingAmount">
+			<Setter Property="Opacity" Value="0.0"/>
+			<Style.Animations>
+				<Animation Duration="0:0:0.15">
+					<KeyFrame Cue="0%">
+						<Setter Property="Opacity" Value="1.0"/>
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="Opacity" Value="0.0"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+	
+		<!-- Анимация появления RemainingAmount -->
+		<Style Selector="Border.header_wallet[IsPointerOver=true] > StackPanel > TextBlock#RemainingAmount">
+			<Setter Property="Opacity" Value="1.0"/>
+			<Style.Animations>
+				<Animation Duration="0:0:0.15">
+					<KeyFrame Cue="0%">
+						<Setter Property="Opacity" Value="0.0"/>
+					</KeyFrame>
+					<KeyFrame Cue="100%">
+						<Setter Property="Opacity" Value="1.0"/>
+					</KeyFrame>
+				</Animation>
+			</Style.Animations>
+		</Style>
+
+</Styles>
