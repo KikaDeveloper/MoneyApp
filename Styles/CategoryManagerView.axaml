@@ -52,7 +52,7 @@
     <!-- ListBoxItem template panel -->
     <Style Selector="StackPanel.list_box_item_panel">
         <Setter Property="Orientation" Value="Vertical"/>
-        <Setter Property="Spacing" Value="13"/>
+        <Setter Property="Spacing" Value="18"/>
         <Setter Property="VerticalAlignment" Value="Stretch"/>
     </Style>
 
