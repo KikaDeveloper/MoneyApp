@@ -37,6 +37,8 @@
 
     <!-- Open dialog button resources -->
     <SolidColorBrush x:Key="OpenDialogButtonBackground" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="OpenDialogButtonPointerOver" Color="{StaticResource Color3}"/>
+    <SolidColorBrush x:Key="OpenDialogButtonPressed" Color="{StaticResource Color1}"/>
     <SolidColorBrush x:Key="OpenDialogButtonIconColor" Color="{StaticResource Color4}"/>
     <x:Double x:Key="OpenDialogIconSize">14</x:Double>
     <x:Double x:Key="OpenDialogButtonSize">32</x:Double>
