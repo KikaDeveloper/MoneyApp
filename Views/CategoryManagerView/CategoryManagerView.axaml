@@ -73,7 +73,7 @@
                   	</DataTemplate>
       	</ListBox.ItemTemplate>
 
-      	<ListBox.ItemsPanel>
+      <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                   <StackPanel Classes="list_box_item_panel">
                         <Panel Classes="open_dialog_button_fade">
