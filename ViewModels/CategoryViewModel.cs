@@ -35,7 +35,7 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _recordViewModels, value);
         }
 
-        public IReactiveCommand AddRecordCommand { get; }
+        public IReactiveCommand OpenDialogCommand { get; }
         public IReactiveCommand DeleteCategoryCommand { get; }
 
         public CategoryViewModel(Category category,IEnumerable<RecordViewModel> recordViewModels)
@@ -50,7 +50,7 @@ namespace MoneyApp.ViewModels
             // подписка на событие удаления записи
             SubscribeToDeleteRecordEvent();
 
-            AddRecordCommand = ReactiveCommand.CreateFromTask(async()=>{
+            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Record>(
                     new AddRecordWindow()
                     {

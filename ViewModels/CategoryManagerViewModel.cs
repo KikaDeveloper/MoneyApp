@@ -29,7 +29,7 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedCategoryViewModel, value);
         }
 
-        public IReactiveCommand AddCategoryCommand { get; }
+        public IReactiveCommand OpenDialogCommand { get; }
 
         public CategoryManagerViewModel(int walletId, IEnumerable<CategoryViewModel> categoryViewModels){
             _walletId = walletId;
@@ -41,7 +41,7 @@ namespace MoneyApp.ViewModels
                 foreach(var categoryVM in CategoryViewModels)
                     categoryVM.DeleteCategoryEvent += DeleteCategoryEventHandler;
 
-            AddCategoryCommand = ReactiveCommand.CreateFromTask(async()=>{
+            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Category>(
                     new AddCategoryWindow(){
                         DataContext = new AddCategoryViewModel

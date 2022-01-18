@@ -3,6 +3,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:v="using:MoneyApp"
+             xmlns:controls="using:MoneyApp.Controls"
              xmlns:converters="using:MoneyApp.Converters"
              Margin="3 15"
              x:Class="MoneyApp.CategoryManagerView">
@@ -56,14 +57,8 @@
                                           </ItemsControl.ItemTemplate>
                                           <ItemsControl.ItemsPanel>
                                                 <ItemsPanelTemplate>
-                                                      <StackPanel Classes="record_item_panel open_dialog_button_fade">
-                                                            <Panel Classes="open_dialog_button_fade">
-                                                                  <Button Command="{Binding AddRecordCommand}"
-                                                                        Classes="open_dialog">
-                                                                        <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
-                                                                              Classes="open_dialog_icon"/>
-                                                                  </Button>
-                                                            </Panel>
+                                                      <StackPanel Classes="record_item_panel">
+                                                            <controls:OpenDialogButton/>
                                                       </StackPanel>
                                                 </ItemsPanelTemplate>
                                           </ItemsControl.ItemsPanel>
@@ -76,13 +71,7 @@
       <ListBox.ItemsPanel>
             <ItemsPanelTemplate>
                   <StackPanel Classes="list_box_item_panel">
-                        <Panel Classes="open_dialog_button_fade">
-                              <Button Command="{Binding AddCategoryCommand}"
-                                    Classes="open_dialog">
-                                    <PathIcon Data="{DynamicResource OpenDialogButtonIcon}"
-                                          Classes="open_dialog_icon"/>
-                              </Button>
-                        </Panel>
+                        <controls:OpenDialogButton/>
                   </StackPanel>
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>

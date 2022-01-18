@@ -27,7 +27,7 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedWalletViewModel, value);
         }
 
-        public IReactiveCommand? AddWalletCommand { get; set; }
+        public IReactiveCommand? OpenDialogCommand { get; set; }
 
         public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
         {
@@ -40,7 +40,7 @@ namespace MoneyApp.ViewModels
 
             SelectedWalletViewModel = this.WalletViewModels.FirstOrDefault()!;
 
-            AddWalletCommand = ReactiveCommand.CreateFromTask(async()=>{
+            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
                 var result = await DialogService.ShowDialogAsync<Wallet>(
                     new AddWalletWindow(){
                         DataContext = new AddWalletViewModel("New Wallet")
