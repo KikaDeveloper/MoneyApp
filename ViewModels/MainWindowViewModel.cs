@@ -19,10 +19,16 @@ namespace MoneyApp.ViewModels
 
         public MainWindowViewModel()
         {
-            Task.Run(async() => await GetWalletViewModels());
+            Task.Run(async() => 
+                {
+                   var walletViewModels = await GetWalletViewModelsAsync();
+                   WalletManagerViewModel = new WalletManagerViewModel(walletViewModels);
+                }
+            );
         }
 
-        private async Task GetWalletViewModels()
+        // получение кошельков
+        private async Task<IEnumerable<WalletViewModel>> GetWalletViewModelsAsync()
         {
             MoneyRepository repo = MoneyRepository.Instance;
 
@@ -32,40 +38,51 @@ namespace MoneyApp.ViewModels
             if(wallets.ToList().Count > 0)
                 foreach(var wallet in wallets)
                 {   
-                    // получение категорий кошелька
-                    var categories = await repo.GetCategoriesAsync(wallet.Id);
-                    var categories_vm = new List<CategoryViewModel>();
-
-                    foreach(var category in categories)
-                    {
-                        // получение записей конкретной категории
-                        var records = await repo.GetRecordsAsync(category.Id);
-                        var records_vm = new List<RecordViewModel>();
-
-                        foreach(var record in records)
-                        {
-                            records_vm.Add(new RecordViewModel(record));
-                        }
-
-                        categories_vm.Add(new CategoryViewModel
-                        (
-                            category, 
-                            new List<RecordViewModel>(records_vm)
-                        ));
-                    }
-                    
+                    var categoryViewModels = await GetCategoryViewModelsAsync(repo, wallet.Id);
                     // добавление walletVM в коллецию
-                    walletViewModels.Add(new WalletViewModel(
-                        wallet, 
-                        new CategoryManagerViewModel
-                        (
-                            wallet.Id,
-                            categories_vm
+                    walletViewModels.Add(
+                        new WalletViewModel(
+                            wallet, 
+                            new CategoryManagerViewModel
+                            (
+                                wallet.Id,
+                                categoryViewModels
+                            )
                         )
-                    ));
+                    );
                 }
 
-            WalletManagerViewModel = new WalletManagerViewModel(walletViewModels);
+            return walletViewModels;
         }
+
+        // получение категорий кошелька
+        private async Task<IEnumerable<CategoryViewModel>> GetCategoryViewModelsAsync(MoneyRepository repo, int walletId)
+        {
+            IEnumerable<Category> categories = await repo.GetCategoriesAsync(walletId);
+            var categoryViewModels = new List<CategoryViewModel>();
+
+            foreach(var category in categories)
+            {
+                IEnumerable<RecordViewModel> recordViewModels = await GetRecordViewModelsAsync(repo, category.Id);
+                categoryViewModels.Add( new CategoryViewModel(category, recordViewModels) );
+            }
+
+            return categoryViewModels;
+        }
+
+        // получение записей конкретной категории
+        private async Task<IEnumerable<RecordViewModel>> GetRecordViewModelsAsync(MoneyRepository repo, int categoryId)
+        {   
+            IEnumerable<Record> records = await repo.GetRecordsAsync(categoryId);
+            var recordViewModels = new List<RecordViewModel>();
+
+            foreach(var record in records)
+            {
+                recordViewModels.Add(new RecordViewModel(record));
+            }
+
+            return recordViewModels;
+        }
+
     }
 }

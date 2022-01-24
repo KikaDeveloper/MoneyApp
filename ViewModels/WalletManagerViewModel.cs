@@ -29,30 +29,20 @@ namespace MoneyApp.ViewModels
 
         public IReactiveCommand? OpenDialogCommand { get; set; }
 
-        public WalletManagerViewModel(IEnumerable<WalletViewModel> WalletViewModels)
+        public WalletManagerViewModel(IEnumerable<WalletViewModel> walletViewModels)
         {
-            this.WalletViewModels = new ObservableCollection<WalletViewModel>(WalletViewModels);
+            WalletViewModels = new ObservableCollection<WalletViewModel>(walletViewModels);
      
-            // подписка на событие удаления кошелька
-            if(this.WalletViewModels.Count > 0)
-                foreach(var walletVM in this.WalletViewModels)
-                    walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
+            SubscribeToDeleteWalletEvent();
 
-            SelectedWalletViewModel = this.WalletViewModels.FirstOrDefault()!;
+            SelectedWalletViewModel = WalletViewModels.FirstOrDefault()!;
 
-            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var result = await DialogService.ShowDialogAsync<Wallet>(
-                    new AddWalletWindow(){
-                        DataContext = new AddWalletViewModel("New Wallet")
-                    }
-                );
-                if(result != null)
-                    await InsertWallet(result);
-            });
+            OpenDialogCommand = ReactiveCommand.
+                CreateFromTask(async () => await OpenAddWalletWindow());
         }
 
         // добавление кошелька и его viewmodel
-        public async Task InsertWallet(Wallet wallet){
+        private async Task InsertWallet(Wallet wallet){
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertWalletAsync(wallet);
             
@@ -64,6 +54,7 @@ namespace MoneyApp.ViewModels
                     new ObservableCollection<CategoryViewModel>()
                 )
             );
+
             newWallet.DeleteWalletEvent += DeleteWalletEventHandler;
             WalletViewModels.Add(newWallet);
         }
@@ -78,5 +69,27 @@ namespace MoneyApp.ViewModels
                 await repo.DeleteWalletAsync(vm.Wallet);
             });
         }
+    
+        private async Task OpenAddWalletWindow()
+        {
+            var wallet = await DialogService.ShowDialogAsync<Wallet>(
+                    new AddWalletWindow(){
+                        DataContext = new AddWalletViewModel("New Wallet")
+                    }
+                );
+
+            if(wallet != null) await InsertWallet(wallet);
+        } 
+
+        // подписка на событие удаления кошелька
+        private void SubscribeToDeleteWalletEvent()
+        {
+            if(WalletViewModels.Count > 0)
+                foreach(var walletVM in WalletViewModels)
+                {
+                    walletVM.DeleteWalletEvent += DeleteWalletEventHandler;
+                }
+        }
+
     }
 }

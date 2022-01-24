@@ -36,27 +36,10 @@ namespace MoneyApp.ViewModels
             
             CategoryViewModels = new ObservableCollection<CategoryViewModel>(categoryViewModels);
 
-            // подписка на событие удаления категории
-            if(CategoryViewModels.Count > 0)
-                foreach(var categoryVM in CategoryViewModels)
-                    categoryVM.DeleteCategoryEvent += DeleteCategoryEventHandler;
+            SubcribeToDeleteCategoryEvent();
 
-            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var result = await DialogService.ShowDialogAsync<Category>(
-                    new AddCategoryWindow(){
-                        DataContext = new AddCategoryViewModel
-                        (
-                            WalletAvailableAmount,
-                            "New Category"
-                        )
-                    }
-                );
-                if(result != null)
-                {
-                    result.WalletId = _walletId;
-                    await InsertCategory(result);
-                }
-            });
+            OpenDialogCommand = ReactiveCommand.
+                CreateFromTask(async () => await OpenAddCategoryWindow());
         }
 
         // добавление категории и categoryVM в бд
@@ -64,24 +47,55 @@ namespace MoneyApp.ViewModels
             MoneyRepository repo = MoneyRepository.Instance;
             await repo.InsertCategoryAsync(category);
 
-            var vm = new CategoryViewModel
+            var viewModel = new CategoryViewModel
             (
                 category,
                 new List<RecordViewModel>()
             );
             
-            vm.DeleteCategoryEvent += DeleteCategoryEventHandler;
-            CategoryViewModels.Add(vm);
+            viewModel.DeleteCategoryEvent += DeleteCategoryEventHandler;
+            CategoryViewModels.Add(viewModel);
         }
 
         // удаление категории и categoryVM в бд
         private void DeleteCategoryEventHandler(object? sender, EventArgs e){
-            var vm = (CategoryViewModel)sender!;
-            CategoryViewModels.Remove(vm);
+            var viewModel = (CategoryViewModel)sender!;
+            CategoryViewModels.Remove(viewModel);
+
             Task.Run(async()=>{
                 MoneyRepository repo = MoneyRepository.Instance;
-                await repo.DeleteCategoryAsync(vm.Category);
+                await repo.DeleteCategoryAsync(viewModel.Category);
             });
         }
+   
+        private async Task OpenAddCategoryWindow()
+        {
+            var category = await DialogService.ShowDialogAsync<Category>(
+                new AddCategoryWindow(){
+                    DataContext = new AddCategoryViewModel
+                    (
+                        WalletAvailableAmount,
+                        "New Category"
+                    )
+                }
+            );
+
+            if(category != null)
+            {
+                category.WalletId = _walletId;
+                await InsertCategory(category);
+            }
+        }
+
+        // подписка на событие удаления категории
+        private void SubcribeToDeleteCategoryEvent()
+        {
+            if(CategoryViewModels.Count > 0)
+                foreach(var categoryViewModel in CategoryViewModels)
+                {
+                   categoryViewModel.DeleteCategoryEvent += DeleteCategoryEventHandler;
+                }
+        }
+
     }
 }

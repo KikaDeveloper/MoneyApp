@@ -7,10 +7,16 @@ namespace MoneyApp.ViewModels
 {
     public class WalletViewModel : ViewModelBase
     {
+
+        #region Private variables
+
         private Wallet? _wallet;
         private CategoryManagerViewModel? _categoryManagerViewModel;
         private int _remainingAmount;
-        public event EventHandler? DeleteWalletEvent;
+
+        #endregion
+
+        #region Public fields
 
         public int AvailableAmount
         {
@@ -33,6 +39,9 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _categoryManagerViewModel, value);
         }
 
+        #endregion
+
+        public event EventHandler? DeleteWalletEvent;
         public IReactiveCommand? DeleteWalletCommand { get; }
 
         public WalletViewModel(Wallet wallet ,CategoryManagerViewModel categoryManagerViewModel)
