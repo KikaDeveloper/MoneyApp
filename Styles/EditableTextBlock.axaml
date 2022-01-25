@@ -1,0 +1,56 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  
+		<Style Selector="TextBox.EditableTextBlock">
+			<Setter Property="FontSize" Value="18"/>
+			<Setter Property="HorizontalContentAlignment" Value="Center"/>
+			<Setter Property="VerticalContentAlignment" Value="Center"/>
+			<Setter Property="Padding" Value="10 5"/>
+			<Setter Property="BorderThickness" Value="2"/>
+			<Setter Property="BorderBrush" Value="{DynamicResource EditableTextBlockBorderBrush}"/>
+			<Setter Property="Background" Value="{DynamicResource EditableTextBlockBackground}"/>
+			<Setter Property="CornerRadius" Value="8"/>
+		</Style>
+
+		<Style Selector="TextBox.EditableTextBlock">
+			<Setter Property="Template">
+				<ControlTemplate>
+					<Panel>
+						<Border Name="PART_Border" 
+								BorderThickness="{TemplateBinding BorderThickness}" 
+								BorderBrush="{TemplateBinding BorderBrush}"  
+								CornerRadius="{TemplateBinding CornerRadius}"
+								Background="{TemplateBinding Background}"/>
+							<TextPresenter Name="PART_TextPresenter"
+										Margin="{TemplateBinding Padding}"
+										Text="{TemplateBinding Text, Mode=TwoWay}"
+										CaretIndex="{TemplateBinding CaretIndex}"
+										SelectionStart="{TemplateBinding SelectionStart}"
+										SelectionEnd="{TemplateBinding SelectionEnd}"
+										TextAlignment="{TemplateBinding TextAlignment}"
+										TextWrapping="{TemplateBinding TextWrapping}"
+										PasswordChar="{TemplateBinding PasswordChar}"
+										RevealPassword="{TemplateBinding RevealPassword}"
+										SelectionBrush="{TemplateBinding SelectionBrush}"
+										SelectionForegroundBrush="{TemplateBinding SelectionForegroundBrush}"
+										CaretBrush="{TemplateBinding CaretBrush}"
+										HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}" 
+										VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+					</Panel>
+				</ControlTemplate>
+			</Setter>
+		</Style>
+
+		<Style Selector="TextBox /template/ Border#PART_Border[IsPointerOver=true]">
+			<Setter Property="IsVisible" Value="true"/>
+		</Style>
+
+		<Style Selector="TextBox[IsPointerOver=false] /template/ Border#PART_Border">
+			<Setter Property="IsVisible" Value="false"/>
+		</Style>
+
+		<Style Selector="TextBox[IsFocused=true] /template/ Border#PART_Border">
+			<Setter Property="IsVisible" Value="true"/>
+		</Style>
+
+</Styles>

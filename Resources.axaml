@@ -54,4 +54,9 @@
     <SolidColorBrush x:Key="ComboBoxItemBackground" Color="{StaticResource Color2}"/>
     <SolidColorBrush x:Key="ComboBoxItemPointerOver" Color="{StaticResource HighlightColor}"/>
     <SolidColorBrush x:Key="ComboBoxItemSelected" Color="{StaticResource Color3}"/>
+
+    <!-- Editable TextBlock -->
+    <SolidColorBrush x:Key="EditableTextBlockBackground" Color="Transparent"/>
+    <SolidColorBrush x:Key="EditableTextBlockBorderBrush" Color="{StaticResource Color4}"/>
+
 </ResourceDictionary>
