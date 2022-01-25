@@ -40,13 +40,9 @@ namespace MoneyApp.ViewModels
             get => _recordViewModels!;
             set => this.RaiseAndSetIfChanged(ref _recordViewModels, value);
         }
-
-<<<<<<< HEAD
         #endregion
 
         public event EventHandler? DeleteCategoryEvent;
-=======
->>>>>>> anim_style_res
         public IReactiveCommand OpenDialogCommand { get; }
         public IReactiveCommand DeleteCategoryCommand { get; }
 
@@ -62,24 +58,8 @@ namespace MoneyApp.ViewModels
             // подписка на событие удаления записи
             SubscribeToDeleteRecordEvent();
 
-<<<<<<< HEAD
             OpenDialogCommand = ReactiveCommand.
                 CreateFromTask(async () => await OpenAddRecordWindow());
-=======
-            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var result = await DialogService.ShowDialogAsync<Record>(
-                    new AddRecordWindow()
-                    {
-                        DataContext = new AddRecordViewModel(AvailableAmount, "New Record")
-                    }
-                );
-                if(result != null)
-                {
-                    result.CategoryId = Category.Id;
-                    await InsertRecord(result);
-                }
-            });
->>>>>>> anim_style_res
 
             DeleteCategoryCommand = ReactiveCommand.Create(
                 () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
