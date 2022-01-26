@@ -59,4 +59,6 @@
     <SolidColorBrush x:Key="EditableTextBlockBackground" Color="Transparent"/>
     <SolidColorBrush x:Key="EditableTextBlockBorderBrush" Color="{StaticResource Color4}"/>
 
+    <!-- Context menu -->
+    <SolidColorBrush x:Key="ContextMenuBackground" Color="{StaticResource Color5}"/>
 </ResourceDictionary>

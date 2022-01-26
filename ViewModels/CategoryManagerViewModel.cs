@@ -30,6 +30,7 @@ namespace MoneyApp.ViewModels
         }
 
         public IReactiveCommand OpenDialogCommand { get; }
+        public IReactiveCommand UpdateDialogCommand { get; }
 
         public CategoryManagerViewModel(int walletId, IEnumerable<CategoryViewModel> categoryViewModels){
             _walletId = walletId;
@@ -40,6 +41,9 @@ namespace MoneyApp.ViewModels
 
             OpenDialogCommand = ReactiveCommand.
                 CreateFromTask(async () => await OpenAddCategoryWindow());
+
+            UpdateDialogCommand = ReactiveCommand.
+                CreateFromTask(async () => await OpenUpdateCategoryWindow());
         }
 
         // добавление категории и categoryVM в бд
@@ -80,6 +84,44 @@ namespace MoneyApp.ViewModels
             {
                 category.WalletId = _walletId;
                 await InsertCategory(category);
+            }
+        }
+
+        private async Task OpenUpdateCategoryWindow()
+        {
+            var category = await DialogService.ShowDialogAsync<Category>(
+                new CategoryDialogWindow(){
+                    DataContext = new CategoryDialogViewModel(WalletAvailableAmount, "Edit category")
+                }
+            );
+
+            if(category != null)
+            {
+                category.WalletId = _walletId;
+                await UpdateCategory(category);
+            }
+        }
+
+        private async Task UpdateCategory(Category category)
+        {
+            MoneyRepository repo = MoneyRepository.Instance;
+            category.Id = SelectedCategoryViewModel.Category.Id;
+            category.WalletId = SelectedCategoryViewModel.Category.WalletId;
+            await repo.UpdateCategoryAsync(category);
+
+            var nameIsValid = !string.IsNullOrEmpty(category.Name);
+            var amountIsValid = category.Amount > 0;
+
+            if(nameIsValid && amountIsValid)
+            {
+                SelectedCategoryViewModel.Category.Name = category.Name;
+                SelectedCategoryViewModel.Category.Amount = category.Amount;
+            } else if (!nameIsValid && amountIsValid)
+            {
+                SelectedCategoryViewModel.Category.Amount = category.Amount;
+            } else if(nameIsValid && !amountIsValid)
+            {
+                SelectedCategoryViewModel.Category.Name = category.Name;
             }
         }
 

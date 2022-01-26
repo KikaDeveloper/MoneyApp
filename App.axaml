@@ -26,6 +26,7 @@
         <StyleInclude Source="/Styles/Buttons.axaml"/>
         <StyleInclude Source="/Styles/Dialog.axaml"/>
         <StyleInclude Source="/Styles/EditableTextBlock.axaml"/>
+        <StyleInclude Source="/Styles/ContextMenu.axaml"/>
         <!-- Animations -->
         <StyleInclude Source="/Animations/WalletViewAnimations.axaml"/>
         <StyleInclude Source="/Animations/AddDialogAnimations.axaml"/>

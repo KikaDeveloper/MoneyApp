@@ -19,22 +19,27 @@
                   <DataTemplate>
                       <Grid ColumnDefinitions="4*, 4*, 2*"
                               RowDefinitions="18, *">
+
+                              <!-- Name -->
                               <TextBlock Text="{Binding Category.Name}"
                                     Grid.Column="0"
                                     Grid.Row="0" 
                                     Classes="category_box left"/>
+
                               <!-- Amount -->
                               <TextBlock Text="{Binding Category.Amount, Converter={StaticResource AmountConverter}}"
                                     Name="Amount"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     Classes="category_box right"/>
+
                               <!-- RemainingAmount -->
                               <TextBlock Text="{Binding AvailableAmount, Converter={StaticResource AmountConverter}}"
                                     Name="RemainingAmount"
                                     Grid.Column="1"
                                     Grid.Row="0"
                                     Classes="category_box right"/>
+
                               <!-- Кнопка удаления -->
                               <Button Grid.Column="2"
                                     Classes="delete right"
@@ -78,8 +83,9 @@
 
       <!-- Context menu for updaiting -->
       <ListBox.ContextMenu>
-            <ContextMenu>
-                  <MenuItem Header="Update"/>
+            <ContextMenu Background="{DynamicResource ContextMenuBackground}">
+                  <MenuItem Header="Update"
+                              Command="{Binding UpdateCommand}"/>
             </ContextMenu>
       </ListBox.ContextMenu>
 
