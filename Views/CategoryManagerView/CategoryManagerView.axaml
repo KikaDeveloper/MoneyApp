@@ -85,7 +85,7 @@
       <ListBox.ContextMenu>
             <ContextMenu Background="{DynamicResource ContextMenuBackground}">
                   <MenuItem Header="Update"
-                              Command="{Binding UpdateCommand}"/>
+                              Command="{Binding UpdateDialogCommand}"/>
             </ContextMenu>
       </ListBox.ContextMenu>
 
