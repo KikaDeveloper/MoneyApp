@@ -76,5 +76,12 @@
             </ItemsPanelTemplate>
       </ListBox.ItemsPanel>
 
+      <!-- Context menu for updaiting -->
+      <ListBox.ContextMenu>
+            <ContextMenu>
+                  <MenuItem Header="Update"/>
+            </ContextMenu>
+      </ListBox.ContextMenu>
+
       </ListBox>
 </UserControl>
