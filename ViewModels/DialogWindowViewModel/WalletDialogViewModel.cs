@@ -8,7 +8,7 @@ using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
 {
-    public class AddWalletViewModel : ViewModelBase
+    public class WalletDialogViewModel : ViewModelBase
     {
 
         #region Private variables
@@ -59,7 +59,7 @@ namespace MoneyApp.ViewModels
 
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddWalletViewModel(string title){ 
+        public WalletDialogViewModel(string title){ 
             Title = title;
             AmountRatios = Enum.GetNames(typeof(AmountRatio)).ToList();
             SelectedRatio = AmountRatios.First();

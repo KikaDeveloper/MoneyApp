@@ -1,21 +1,23 @@
+using System.Reactive;
 using ReactiveUI;
 using ReactiveUI.Validation.Contexts;
-using System.Reactive;
 using MoneyApp.Models;
 
 namespace MoneyApp.ViewModels
 {
-    public class AddRecordViewModel : ViewModelBase
+
+    public class  CategoryDialogViewModel : ViewModelBase
     {
+
         #region Private variables
-        
-        private string? _text;
+
+        private string? _name;
         private int _amount;
         private int _availableAmount;
         private string? _title;
 
         #endregion
-        
+
         #region Public fields
 
         public string Title
@@ -24,10 +26,10 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _title, value);
         }
 
-        public string InputText 
+        public string InputName
         {
-            get => _text!;
-            set => this.RaiseAndSetIfChanged(ref _text, value);
+            get => _name!;
+            set => this.RaiseAndSetIfChanged(ref _name, value);
         }
 
         public int InputAmount
@@ -44,37 +46,38 @@ namespace MoneyApp.ViewModels
 
         #endregion
 
-        public ReactiveCommand<Unit, Record?> AddCommand { get; set; }
+        public ReactiveCommand<Unit, Category?> AddCommand { get; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
-        public AddRecordViewModel(int availableAmount, string title){
+        public CategoryDialogViewModel(int availableAmount, string title){
             AvailableAmount = availableAmount;
             Title = title;
 
             // валидация полей ввода
-            var inputsIsValid = this.WhenAnyValue(
-                x => x.InputText,
+            var dialogValid = this.WhenAnyValue(
+                x => x.InputName,
                 x => x.InputAmount,
                 (name, amount) => {
                     return CheckInputs(name, amount);
                 }
             );
-
-            AddCommand = ReactiveCommand.Create<Record?>(()=>{
-                return new Record(){
-                    Text = InputText,
+            
+            AddCommand = ReactiveCommand.Create<Category?>(()=>{
+                return new Category(){
+                    Name = InputName,
                     Amount = InputAmount
                 };
-            }, inputsIsValid);
+            }, dialogValid);
         }
 
         private bool CheckInputs(string name, int amount)
         {
             bool nameIsValid = !string.IsNullOrEmpty(name);
-            bool amountIsValid = amount > 0 && AvailableAmount >= amount; 
+            bool amountIsValid = amount > 0 && AvailableAmount >= amount;
 
             if(nameIsValid && amountIsValid) return true;
             else return false;
         }
+
     }
 }
