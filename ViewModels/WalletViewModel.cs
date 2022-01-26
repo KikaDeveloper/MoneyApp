@@ -12,7 +12,7 @@ namespace MoneyApp.ViewModels
 
         private Wallet? _wallet;
         private CategoryManagerViewModel? _categoryManagerViewModel;
-        private int _remainingAmount;
+        private int _availableAmount;
 
         #endregion
 
@@ -20,9 +20,9 @@ namespace MoneyApp.ViewModels
 
         public int AvailableAmount
         {
-            get => _remainingAmount;
+            get => _availableAmount;
             set {
-                this.RaiseAndSetIfChanged(ref _remainingAmount, value);
+                this.RaiseAndSetIfChanged(ref _availableAmount, value);
                 CategoryManagerViewModel.WalletAvailableAmount = value;
             }
         }
@@ -44,10 +44,12 @@ namespace MoneyApp.ViewModels
         public event EventHandler? DeleteWalletEvent;
         public IReactiveCommand? DeleteWalletCommand { get; }
 
-        public WalletViewModel(Wallet wallet ,CategoryManagerViewModel categoryManagerViewModel)
+        public WalletViewModel(Wallet wallet, CategoryManagerViewModel categoryManagerViewModel)
         {
             Wallet = wallet;
             CategoryManagerViewModel = categoryManagerViewModel;
+            
+            //подписка на событие обновления коллекции
             CategoryManagerViewModel.CategoryViewModels.CollectionChanged += CategoryViewModelsCollectionChanged;
 
             UpdateRemainingAmount();
