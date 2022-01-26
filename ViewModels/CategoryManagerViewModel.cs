@@ -71,12 +71,8 @@ namespace MoneyApp.ViewModels
         private async Task OpenAddCategoryWindow()
         {
             var category = await DialogService.ShowDialogAsync<Category>(
-                new AddCategoryWindow(){
-                    DataContext = new AddCategoryViewModel
-                    (
-                        WalletAvailableAmount,
-                        "New Category"
-                    )
+                new CategoryDialogWindow(){
+                    DataContext = new CategoryDialogViewModel(WalletAvailableAmount, "New category")
                 }
             );
 

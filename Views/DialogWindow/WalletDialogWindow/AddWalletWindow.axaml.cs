@@ -12,7 +12,7 @@ using ReactiveUI;
 
 namespace MoneyApp.Dialog
 {
-    public partial class WalletDialogWindow : ReactiveWindow<AddWalletViewModel> 
+    public partial class WalletDialogWindow : ReactiveWindow<WalletDialogViewModel> 
     {
         public WalletDialogWindow()
         {

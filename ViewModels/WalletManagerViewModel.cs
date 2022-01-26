@@ -73,8 +73,8 @@ namespace MoneyApp.ViewModels
         private async Task OpenAddWalletWindow()
         {
             var wallet = await DialogService.ShowDialogAsync<Wallet>(
-                    new AddWalletWindow(){
-                        DataContext = new AddWalletViewModel("New Wallet")
+                    new WalletDialogWindow(){
+                        DataContext = new WalletDialogViewModel("New Wallet")
                     }
                 );
 

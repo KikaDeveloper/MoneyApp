@@ -10,7 +10,7 @@ using MoneyApp.Dialog;
 
 namespace MoneyApp.ViewModels
 {
-    public class CategoryViewModel:ViewModelBase
+    public class CategoryViewModel : ViewModelBase
     {
 
         #region Private variables
@@ -59,7 +59,7 @@ namespace MoneyApp.ViewModels
             SubscribeToDeleteRecordEvent();
 
             OpenDialogCommand = ReactiveCommand.
-                CreateFromTask(async () => await OpenAddRecordWindow());
+                CreateFromTask(async () => await OpenRecordWindow());
 
             DeleteCategoryCommand = ReactiveCommand.Create(
                 () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
@@ -87,12 +87,12 @@ namespace MoneyApp.ViewModels
             });
         }
 
-        private async Task OpenAddRecordWindow()
+        private async Task OpenRecordWindow()
         {
             Record record = await DialogService.ShowDialogAsync<Record>(
-                new AddRecordWindow()
+                new RecordDialogWindow()
                 {
-                    DataContext = new AddRecordViewModel(AvailableAmount, "New Record")
+                    DataContext = new RecordDialogViewModel(AvailableAmount, "New Record")
                 }
             );
             

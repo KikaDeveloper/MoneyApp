@@ -10,7 +10,7 @@ using MoneyApp.ViewModels;
 
 namespace MoneyApp.Dialog
 {
-    public partial class CategoryDialogWindow : ReactiveWindow<AddCategoryViewModel>
+    public partial class CategoryDialogWindow : ReactiveWindow<CategoryDialogViewModel>
     {
         public CategoryDialogWindow()
         {

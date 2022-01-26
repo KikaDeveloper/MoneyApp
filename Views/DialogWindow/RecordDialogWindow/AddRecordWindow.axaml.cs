@@ -10,7 +10,7 @@ using ReactiveUI;
 
 namespace MoneyApp.Dialog
 {
-    public partial class RecordDialogWindow : ReactiveWindow<AddRecordViewModel>
+    public partial class RecordDialogWindow : ReactiveWindow<RecordDialogViewModel>
     {
         public RecordDialogWindow()
         {
