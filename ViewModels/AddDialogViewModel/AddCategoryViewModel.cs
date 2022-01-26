@@ -3,15 +3,22 @@ using ReactiveUI;
 using ReactiveUI.Validation.Contexts;
 using MoneyApp.Models;
 
-
-namespace MoneyApp.ViewModels{
+namespace MoneyApp.ViewModels
+{
 
     public class  AddCategoryViewModel : ViewModelBase
     {
+
+        #region Private variables
+
         private string? _name;
         private int _amount;
         private int _availableAmount;
         private string? _title;
+
+        #endregion
+
+        #region Public fields
 
         public string Title
         {
@@ -37,6 +44,8 @@ namespace MoneyApp.ViewModels{
             set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
         }
 
+        #endregion
+
         public ReactiveCommand<Unit, Category?> AddCommand { get; }
         public ValidationContext ValidationContext { get; } = new ValidationContext();
 
@@ -49,11 +58,7 @@ namespace MoneyApp.ViewModels{
                 x => x.InputName,
                 x => x.InputAmount,
                 (name, amount) => {
-                    var nameV = !string.IsNullOrEmpty(name);
-                    var amountV = amount > 0 && AvailableAmount >= amount; 
-                    if(nameV && amountV)
-                        return true;
-                    else return false;
+                    return CheckInputs(name, amount);
                 }
             );
             
@@ -64,5 +69,15 @@ namespace MoneyApp.ViewModels{
                 };
             }, dialogValid);
         }
+
+        private bool CheckInputs(string name, int amount)
+        {
+            bool nameIsValid = !string.IsNullOrEmpty(name);
+            bool amountIsValid = amount > 0 && AvailableAmount >= amount;
+
+            if(nameIsValid && amountIsValid) return true;
+            else return false;
+        }
+
     }
 }

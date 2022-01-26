@@ -19,6 +19,7 @@ namespace MoneyApp.ViewModels
 
         public RecordViewModel(Record record){
             Record = record;
+            
             DeleteRecordCommand = ReactiveCommand.Create(()=>{
                 DeleteRecordEvent?.Invoke(this, new EventArgs());
             });

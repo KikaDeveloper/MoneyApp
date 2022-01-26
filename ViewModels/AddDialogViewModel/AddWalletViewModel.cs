@@ -11,11 +11,17 @@ namespace MoneyApp.ViewModels
     public class AddWalletViewModel : ViewModelBase
     {
 
+        #region Private variables
+
         private string? _name;
         private int _amount;
         private string? _selectedRatio;
         private List<string>? _amountRatios;
         private string? _title;
+        
+        #endregion
+        
+        #region Public fields
 
         public string Title
         {
@@ -47,6 +53,8 @@ namespace MoneyApp.ViewModels
             set => this.RaiseAndSetIfChanged(ref _selectedRatio, value);
         }
 
+        #endregion
+
         public ReactiveCommand<Unit, Wallet?> AddCommand { get; }
 
         public ValidationContext ValidationContext { get; } = new ValidationContext();
@@ -57,14 +65,12 @@ namespace MoneyApp.ViewModels
             SelectedRatio = AmountRatios.First();
 
             // валидация полей ввода
-            var dialogValid = this.WhenAnyValue(
+            var inputsIsValid = this.WhenAnyValue(
                 x => x.InputName,
                 x => x.InputAmount,
                 x => x.SelectedRatio,
                 (name, amount, ratio) => {
-                    if(!string.IsNullOrEmpty(name) && amount > 0 && ratio != null)
-                        return true;
-                    else return false;
+                    return CheckInputs(name, amount, ratio);
                 }
             );
 
@@ -74,8 +80,17 @@ namespace MoneyApp.ViewModels
                     Amount = InputAmount,
                     AmountRatio = (AmountRatio)Enum.Parse(typeof(AmountRatio), SelectedRatio)
                 };
-            }, dialogValid);
+            }, inputsIsValid);
+        }
 
+        private bool CheckInputs(string name, int amount, string ratio)
+        {
+            bool nameIsValid = !string.IsNullOrEmpty(name);
+            bool amountIsValid = amount > 0;
+            bool ratioIsValid = ratio != null;
+            
+            if(nameIsValid && amountIsValid && ratioIsValid) return true;
+            else return false;
         }
     }
 }

@@ -6,18 +6,18 @@ namespace MoneyApp.Converters
 {
     public class AmountConverter : IValueConverter
     {
-        public object Convert(object value, Type targetType, object parameter, CultureInfo culture){
+        public object Convert(object value, Type targetType, object parameter, CultureInfo culture) 
+            => ConvertToString(value.ToString()!);
 
-            return ConvertToString(value.ToString()!);
-        }
-
-        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture){
+        public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
+        {
             if(string.IsNullOrEmpty((string)value))
                 return 0;
             else return value;
         }
 
-        public string ConvertToString(string value){
+        public string ConvertToString(string value)
+        {
             int amount = int.Parse(value);
             string result = amount.ToString();
 

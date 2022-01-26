@@ -1,11 +1,11 @@
-using System;
-using ReactiveUI;
 using Avalonia;
 using Avalonia.Input;
 using Avalonia.Controls;
 using Avalonia.ReactiveUI;
 using Avalonia.Markup.Xaml;
 using Avalonia.Interactivity;
+using System;
+using ReactiveUI;
 using MoneyApp.ViewModels;
 
 namespace MoneyApp.Dialog
@@ -19,7 +19,8 @@ namespace MoneyApp.Dialog
             this.AttachDevTools();
 #endif
             this.WhenActivated(d => ViewModel!.AddCommand.Subscribe(Close));
-            this.FindControl<TextBox>("Amount").AddHandler(TextInputEvent, TextInputAmountHandler, RoutingStrategies.Tunnel);
+            this.FindControl<TextBox>("Amount").
+                AddHandler(TextInputEvent, TextInputAmountHandler, RoutingStrategies.Tunnel);
         }
 
         private void InitializeComponent()

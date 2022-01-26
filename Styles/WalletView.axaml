@@ -17,6 +17,37 @@
       <Setter Property="Spacing" Value="0"/>
     </Style>
 
+    <Style Selector="TabControl">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Template">
+          <ControlTemplate>
+            <Border BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}"
+                    CornerRadius="{TemplateBinding CornerRadius}"
+                    Background="{TemplateBinding Background}"
+                    HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                    VerticalAlignment="{TemplateBinding VerticalAlignment}">
+                  <DockPanel>
+                      <ScrollViewer AllowAutoHide="true"
+                                  VerticalScrollBarVisibility="Hidden"
+                                  DockPanel.Dock="{TemplateBinding TabStripPlacement}">
+                        <ItemsPresenter Name="PART_ItemsPresenter"
+                                Items="{TemplateBinding Items}"
+                                ItemsPanel="{TemplateBinding ItemsPanel}"
+                                ItemTemplate="{TemplateBinding ItemTemplate}"/>
+                      </ScrollViewer>
+                    <ContentPresenter Name="PART_SelectedContentHost"
+                                    Margin="{TemplateBinding Padding}"
+                                    HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                    VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                    Content="{TemplateBinding SelectedContent}"
+                                    ContentTemplate="{TemplateBinding SelectedContentTemplate}" />
+                  </DockPanel>
+            </Border>
+          </ControlTemplate>
+        </Setter>
+    </Style>
+
     <!-- TabItem -->
     <Style Selector="TabItem">
         <Setter Property="Background" Value="{DynamicResource TabItemBackground}"/>

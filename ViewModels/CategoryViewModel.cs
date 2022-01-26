@@ -1,9 +1,9 @@
-using ReactiveUI;
 using System;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Collections.Specialized;
+using ReactiveUI;
 using MoneyApp.Models;
 using MoneyApp.Services;
 using MoneyApp.Dialog;
@@ -12,10 +12,16 @@ namespace MoneyApp.ViewModels
 {
     public class CategoryViewModel:ViewModelBase
     {
+
+        #region Private variables
+
         private Category? _category;
         private int _availableAmount;
         private ObservableCollection<RecordViewModel>? _recordViewModels;
-        public event EventHandler? DeleteCategoryEvent;
+
+        #endregion
+
+        #region Public fields
 
         public int AvailableAmount
         {
@@ -34,7 +40,9 @@ namespace MoneyApp.ViewModels
             get => _recordViewModels!;
             set => this.RaiseAndSetIfChanged(ref _recordViewModels, value);
         }
+        #endregion
 
+        public event EventHandler? DeleteCategoryEvent;
         public IReactiveCommand OpenDialogCommand { get; }
         public IReactiveCommand DeleteCategoryCommand { get; }
 
@@ -50,19 +58,8 @@ namespace MoneyApp.ViewModels
             // подписка на событие удаления записи
             SubscribeToDeleteRecordEvent();
 
-            OpenDialogCommand = ReactiveCommand.CreateFromTask(async()=>{
-                var result = await DialogService.ShowDialogAsync<Record>(
-                    new AddRecordWindow()
-                    {
-                        DataContext = new AddRecordViewModel(AvailableAmount, "New Record")
-                    }
-                );
-                if(result != null)
-                {
-                    result.CategoryId = Category.Id;
-                    await InsertRecord(result);
-                }
-            });
+            OpenDialogCommand = ReactiveCommand.
+                CreateFromTask(async () => await OpenAddRecordWindow());
 
             DeleteCategoryCommand = ReactiveCommand.Create(
                 () => DeleteCategoryEvent?.Invoke(this, new EventArgs()));
@@ -90,23 +87,42 @@ namespace MoneyApp.ViewModels
             });
         }
 
+        private async Task OpenAddRecordWindow()
+        {
+            Record record = await DialogService.ShowDialogAsync<Record>(
+                new AddRecordWindow()
+                {
+                    DataContext = new AddRecordViewModel(AvailableAmount, "New Record")
+                }
+            );
+            
+            if(record != null)
+            {
+                record.CategoryId = Category.Id;
+                await InsertRecord(record);
+            }
+        }
+
         private void UpdateRemainingAmount()
         {
             int remainingAmount = Category.Amount;
             foreach(var recordVM in RecordViewModels)
+            {
                 remainingAmount -= recordVM.Record.Amount;
+            }
             AvailableAmount = remainingAmount;
         }
 
         private void RecordViewModelsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-        {
-            UpdateRemainingAmount();
-        }
+            => UpdateRemainingAmount();
 
         private void SubscribeToDeleteRecordEvent(){
             if(RecordViewModels.Count > 0)
                 foreach(var recordVM in RecordViewModels)
+                {
                     recordVM.DeleteRecordEvent += DeleteRecordEventHandler;
+                }
         }
+
     }
 }
