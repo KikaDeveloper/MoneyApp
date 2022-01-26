@@ -12,9 +12,9 @@ using ReactiveUI;
 
 namespace MoneyApp.Dialog
 {
-    public partial class AddWalletWindow : ReactiveWindow<AddWalletViewModel> 
+    public partial class WalletDialogWindow : ReactiveWindow<AddWalletViewModel> 
     {
-        public AddWalletWindow()
+        public WalletDialogWindow()
         {
             InitializeComponent();
 #if DEBUG
