@@ -15,6 +15,8 @@ namespace MoneyApp.ViewModels
 
         #region Private variables
 
+        private string? _name;
+        private int _amount;
         private Category? _category;
         private int _availableAmount;
         private ObservableCollection<RecordViewModel>? _recordViewModels;
@@ -23,16 +25,33 @@ namespace MoneyApp.ViewModels
 
         #region Public fields
 
+        public Category Category
+        {
+            get => _category!;
+        }
+
         public int AvailableAmount
         {
             get => _availableAmount;
             set => this.RaiseAndSetIfChanged(ref _availableAmount, value);
         }
 
-        public Category Category
+        public string Name
         {
-            get => _category!;
-            set => this.RaiseAndSetIfChanged(ref _category, value);
+            get => _category!.Name;
+            set {
+                this.RaiseAndSetIfChanged(ref _name, value);
+                _category!.Name = value;
+            }
+        }
+
+        public int Amount
+        {
+            get => _category!.Amount;
+            set {
+                this.RaiseAndSetIfChanged(ref _amount, value);
+                _category!.Amount = value;
+            }
         }
 
         public ObservableCollection<RecordViewModel> RecordViewModels
@@ -48,12 +67,12 @@ namespace MoneyApp.ViewModels
 
         public CategoryViewModel(Category category,IEnumerable<RecordViewModel> recordViewModels)
         {
-            Category = category;
+            _category = category;
             RecordViewModels = new ObservableCollection<RecordViewModel>(recordViewModels);
             RecordViewModels.CollectionChanged += RecordViewModelsCollectionChanged;
 
             //обновление остатка суммы категории после инициализации
-            UpdateRemainingAmount();
+            UpdateAvailableAmount();
 
             // подписка на событие удаления записи
             SubscribeToDeleteRecordEvent();
@@ -98,14 +117,14 @@ namespace MoneyApp.ViewModels
             
             if(record != null)
             {
-                record.CategoryId = Category.Id;
+                record.CategoryId = _category!.Id;
                 await InsertRecord(record);
             }
         }
 
-        private void UpdateRemainingAmount()
+        private void UpdateAvailableAmount()
         {
-            int remainingAmount = Category.Amount;
+            int remainingAmount = _category!.Amount;
             foreach(var recordVM in RecordViewModels)
             {
                 remainingAmount -= recordVM.Record.Amount;
@@ -114,7 +133,7 @@ namespace MoneyApp.ViewModels
         }
 
         private void RecordViewModelsCollectionChanged(object? sender, NotifyCollectionChangedEventArgs e)
-            => UpdateRemainingAmount();
+            => UpdateAvailableAmount();
 
         private void SubscribeToDeleteRecordEvent(){
             if(RecordViewModels.Count > 0)
