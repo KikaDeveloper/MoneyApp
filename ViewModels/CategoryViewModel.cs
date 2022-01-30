@@ -10,7 +10,7 @@ using MoneyApp.Dialog;
 
 namespace MoneyApp.ViewModels
 {
-    public class CategoryViewModel:ViewModelBase
+    public class CategoryViewModel : ViewModelBase
     {
 
         #region Private variables
