@@ -1,20 +1,23 @@
-## Money App 
+<h1 align="center"> Money App </h1> 
 
----
+<p align="center">
+    <img src="https://img.shields.io/badge/version-pre--alpha-blue"/>
+    <img src="https://img.shields.io/badge/license-MIT-green"/>
+</p>
+
+<h5 align="center"> Develop cross-platfrom MVVM application with Avalonia UI </h5>
 
 <!-- Preview -->
 
 ![Demo](demostration.gif)
 
----
-
-<img src="https://img.shields.io/badge/version-pre--alpha-blue">
-<img src="https://img.shields.io/github/license/KikaDeveloper/MoneyApp.svg">
-
+## About
 
 **This application helps you manage your budget simply and clearly.**
 
 ---
+
+## What I using
 
 #### UI Framework - [AvaloniaUI](https://github.com/AvaloniaUI/Avalonia)
 
