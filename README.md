@@ -5,11 +5,14 @@
     <img src="https://img.shields.io/badge/license-MIT-green"/>
 </p>
 
-<p align="center"> Develop cross-platfrom MVVM application with Avalonia UI. </ps>
+<p align="center"> Develop cross-platfrom MVVM application with Avalonia UI. </p>
 
 <!-- Preview -->
+<p align="center">
+    <img align="center" src="demostration.gif"/>
+</p>
 
-<img align="center" src="demostration.gif"/>
+---
 
 ## :clipboard: About
 
