@@ -5,7 +5,7 @@
     <img src="https://img.shields.io/badge/license-MIT-green"/>
 </p>
 
-<h5 align="center"> Develop cross-platfrom MVVM application with Avalonia UI </h5>
+<p align="center"> Develop cross-platfrom MVVM application with Avalonia UI </ps>
 
 <!-- Preview -->
 
@@ -14,8 +14,6 @@
 ## About
 
 **This application helps you manage your budget simply and clearly.**
-
----
 
 ## What I using
 
