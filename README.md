@@ -9,7 +9,7 @@
 
 <!-- Preview -->
 
-![Demo](demostration.gif)
+<img align="center" src="demostration.gif"/>
 
 ## :clipboard: About
 
