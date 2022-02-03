@@ -9,6 +9,15 @@
       <Setter Property="TextWrapping" Value="WrapWithOverflow"/>
     </Style>
 
+    <!-- ToolTip Styles -->
+    <Style Selector="Border.wallet_tooltip">
+      <Setter Property="Padding" Value="5"/>
+    </Style>
+
+    <Style Selector="TextBlock.wallet_tooltip">
+      <Setter Property="ToolTip.FontSize" Value="14"/>
+    </Style>
+
     <!-- TabItemsPanel  -->
     <Style Selector="StackPanel.wallet_tab_panel">
       <Setter Property="Orientation" Value="Vertical"/>

@@ -22,6 +22,10 @@
     <SolidColorBrush x:Key="TabItemSelected" Color="{StaticResource Color1}"/>
     <SolidColorBrush x:Key="TabItemSelectedPointerOver" Color="{StaticResource Color3}"/>
 
+    <!-- Wallet View -->
+    <x:String x:Key="WalletPeriodToolTipText">Time interval for the wallet.</x:String>
+    <x:String x:Key="WalletAmountToolTipText">Wallet amount.</x:String>
+
     <!-- Category resources -->
     <SolidColorBrush x:Key="CategoryItemBackground" Color="{StaticResource Color2}"/>
     <SolidColorBrush x:Key="CategoryItemPointerOver" Color="{StaticResource Color3}"/>
